@@ -5,12 +5,14 @@ OBJS = main.o sapo.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
+	mv *.o build/ && mv exec bin/
 
 main.o:
-	$(CC) $(CPPFLAGS) -c main.cpp
-sapo.o: sapo.h
-	$(CC) $(CPPFLAGS) -c sapo.cpp
+	$(CC) $(CPPFLAGS) -c src/main.cpp
 
+sapo.o: include/sapo.h
+	$(CC) $(CPPFLAGS) -c src/sapo.cpp
 
 clean: 
-	rm -f *.o exec
+	rm -f build/*.o
+	rm -f bin/*

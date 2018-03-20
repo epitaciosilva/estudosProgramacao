@@ -1,21 +1,24 @@
 class Sapo {
 	private: 
 		int identificador;
-		int distancia;
+		int impulsoMaximo;
+		int distanciaPercorrida;
 		int pulos;
 	
 	public: 
 		Sapo();
-		Sapo(int identificador, int distancia);
+		Sapo(int identificador, int impulsoMaximo);
 		~Sapo();
 
 		int getIdentificador();
-		int getDistancia();
+		int getImpulsoMaximo();
+		int getDistanciaPercorrida();
 		int getPulos();
 		void setIdentificador(int identificador);
-		void setDistancia(int distancia);
+		void setImpulsoMaximo(int impulso);
 		void setPulos(int pul);
 		
 		static int distanciaTotal;
-		int pular();
+		static int getDistanciaTotal();
+		void pular();
 };

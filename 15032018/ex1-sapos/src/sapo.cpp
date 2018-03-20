@@ -4,19 +4,20 @@
 #include <cstdlib>
 using namespace std;
 
-#include "sapo.h"
+#include "../include/sapo.h"
 int Sapo::distanciaTotal;
  
 Sapo::Sapo() {
 	identificador = 0;
-	distancia = 0;
+	impulsoMaximo = 0;
 	pulos = 0;
 }
 
-Sapo::Sapo(int ident, int dist) {
+Sapo::Sapo(int ident, int impulso) {
 	identificador = ident;
-	distancia = dist;
+	impulsoMaximo = impulso;
 	pulos = 0;
+	distanciaPercorrida = 0;
 }
 
 Sapo::~Sapo() {}
@@ -29,12 +30,12 @@ void Sapo::setIdentificador(int ident) {
 	identificador = ident;
 }
 
-int Sapo::getDistancia() {
-	return distancia;
+int Sapo::getImpulsoMaximo() {
+	return impulsoMaximo;
 }
 
-void Sapo::setDistancia(int dist){
-	distancia = dist;
+void Sapo::setImpulsoMaximo(int impulso){
+	impulsoMaximo = impulso;
 }
 
 int Sapo::getPulos() {
@@ -45,11 +46,12 @@ int Sapo::getDistanciaTotal() {
 	return distanciaTotal;
 }
 
-int Sapo::pular() { 
-	std::srand(std::time(nullptr));
-
-	int distanciaPercorrida = std::rand() % distancia + 1;
-	pulos++;
-	
+int Sapo::getDistanciaPercorrida() {
 	return distanciaPercorrida;
+}
+
+void Sapo::pular() { 
+	std::srand(std::time(nullptr));
+	distanciaPercorrida += std::rand() % impulsoMaximo + 1;
+	pulos++;
 }

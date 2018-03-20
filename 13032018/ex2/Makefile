@@ -11,6 +11,5 @@ main.o:
 dado.o: dado.h
 	$(CC) $(CPPFLAGS) -c dado.cpp
 
-
 clean: 
 	rm -f *.o exec
