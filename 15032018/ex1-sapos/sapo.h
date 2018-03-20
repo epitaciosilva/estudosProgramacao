@@ -6,13 +6,16 @@ class Sapo {
 	
 	public: 
 		Sapo();
-		Sapo(int identificador, int distancia, int pulos);
+		Sapo(int identificador, int distancia);
+		~Sapo();
+
 		int getIdentificador();
 		int getDistancia();
 		int getPulos();
-		void setIdentificador(int idt);
-		void setDistancia(int dtc);
+		void setIdentificador(int identificador);
+		void setDistancia(int distancia);
 		void setPulos(int pul);
+		
 		static int distanciaTotal;
-		static int getDistanciaTotal();
-}
+		int pular();
+};
