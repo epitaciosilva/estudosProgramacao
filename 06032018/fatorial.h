@@ -3,4 +3,6 @@
 
 int fatorial(int num);
 
+int fatorialCauda(int num, int parcial);
+
 #endif

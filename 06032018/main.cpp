@@ -13,7 +13,7 @@ int main() {
 
 	cin >> num;
 
-	fat = fatorial(num);
+	fat = fatorialCauda(num, 1);
 	primo = maiorPrimo(fat);
 	cout << primo << endl;
 
