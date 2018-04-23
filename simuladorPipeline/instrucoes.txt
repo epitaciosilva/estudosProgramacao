@@ -1,2 +1,2 @@
 add $t0, $t1, $t2
-sub $s5, $t3, $t4
+sub $t0, $t0, $t4

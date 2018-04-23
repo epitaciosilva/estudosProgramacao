@@ -27,17 +27,29 @@ bool registradorLivre(string registrador);
 void imprimirCiclo(int ciclo, string instrucao = " ");
 void inserirDependencia(string registrador);
 void dissponibilizarRegistradores(string registradores);
-void removerInstrucao(vector<InstrucaoPorCiclo> *instrucoesCiclo, int posicao);
-void realizarCiclo(vector<InstrucaoPorCiclo> instrucoesCiclo);
+void removerInstrucao(int posicao);
+void realizarCiclo();
 bool verificarInstrucaoLivre(vector<string> instrucao);
 
+//Todos os registradores que estiver em uso, estará armazenado no vetor abaixo.
 vector<string> registEmUso;
+//Todas as instruções que ainda estão sendo executas.
 vector<Instrucao> todasInstrucoes = inicializarInstrucoes();
+//Ciclos que estaram disponiveis a cada interação.
 vector<Ciclo> ciclos = inicializarCiclos();
+//Instruções e os seus devidos ciclos.
+vector<InstrucaoPorCiclo> instrucoesCiclo;
+
+void passarCiclos() {
+    for(int i =0; i < instrucoesCiclo.size(); i++) {
+        if(instrucoesCiclo[i].ciclo <=5) {
+            instrucoesCiclo[i].ciclo++;
+        }
+    }
+}
 
 int main () {
     vector<string> linhas;
-    vector<InstrucaoPorCiclo> instrucoesCiclo;
     string line;
     ifstream arquivo ("instrucoes.txt");
     //enquanto a proxima linha não estiver liberada, continue imprimindo a anterior.
@@ -46,30 +58,21 @@ int main () {
             linhas.push_back(line);
         }
     }    
-    InstrucaoPorCiclo instrucaoPorCiclo;
-    instrucaoPorCiclo.instrucao = linhas[0];
-    instrucaoPorCiclo.ciclo = 2;
-    InstrucaoPorCiclo instrucaoPorCiclo2;
-    instrucaoPorCiclo2.instrucao = linhas[1];
-    instrucaoPorCiclo2.ciclo = 1;
-    instrucoesCiclo.push_back(instrucaoPorCiclo);
-    instrucoesCiclo.push_back(instrucaoPorCiclo2);
-    realizarCiclo(instrucoesCiclo);
-    // for(int i = 0; i < linhas.size(); i++) {
-    //     vector<string> instrucao = split(linhas[i]);
-    //     if(verificarInstrucaoLivre(instrucao)) {
-    //         InstrucaoPorCiclo instrucaoPorCiclo;
-    //         instrucaoPorCiclo.instrucao = linhas[i];
-    //         instrucaoPorCiclo.ciclo = 1;
-    //         instrucoesCiclo.push_back(instrucaoPorCiclo);
-    //         realizarCiclo(instrucoesCiclo);
-    //         //enquanto a próxima instrucão não estiver livre.
-    //         //|| (instrucoesCiclo.size() != 0 && i > 0)
-    //         while((i == linhas.size() && instrucoesCiclo.size() != 0) || !verificarInstrucaoLivre(split(linhas[i+1]))) {
-    //             realizarCiclo(instrucoesCiclo);
-    //         }
-    //     }
-    // }
+    
+    for(int i = 0; i < linhas.size(); i++) {
+        if(verificarInstrucaoLivre(split(linhas[i]))) {
+            InstrucaoPorCiclo instrucaoPorCiclo;
+            instrucaoPorCiclo.instrucao = linhas[i];
+            instrucaoPorCiclo.ciclo = 1;
+            instrucoesCiclo.push_back(instrucaoPorCiclo);
+            realizarCiclo();
+            passarCiclos();
+            while((!instrucoesCiclo.empty() && i+1 == linhas.size()) || (i+1<linhas.size() && !verificarInstrucaoLivre(split(linhas[i+1])))) {
+                realizarCiclo();
+                passarCiclos();
+            }
+        }
+    }
     return 0;
 }
 
@@ -176,7 +179,6 @@ void dissponibilizarRegistradores(string instrucao) {
     //alterar quando for implementar o jump
     int tipoInstrucao = instrucao.find("$");
     string registrador = instrucao.substr(tipoInstrucao, 3);
-    cout << registrador << endl;
     for(int i = 0; i < registEmUso.size(); i++) {
         if(registEmUso[i] == registrador) {
             registEmUso.erase(registEmUso.begin()+i);            
@@ -184,11 +186,11 @@ void dissponibilizarRegistradores(string instrucao) {
     } 
 }
 
-void removerInstrucao(vector<InstrucaoPorCiclo> *instrucoesCiclo, int posicao) {
-    instrucoesCiclo->erase(instrucoesCiclo->begin()+posicao);
+void removerInstrucao(int posicao) {
+    instrucoesCiclo.erase(instrucoesCiclo.begin()+posicao);
 }
 
-void realizarCiclo(vector<InstrucaoPorCiclo> instrucoesCiclo) {
+void realizarCiclo() {
     for(int j = 1; j < 6; j++) {
         for(int i = 0; i < instrucoesCiclo.size(); i++) {
             if(instrucoesCiclo[i].ciclo == j && ciclos[j-1].disponivel) {
@@ -197,15 +199,17 @@ void realizarCiclo(vector<InstrucaoPorCiclo> instrucoesCiclo) {
                 if(j == 4) {
                     dissponibilizarRegistradores(instrucoesCiclo[i].instrucao);
                 } else if(j == 5) {
-                    removerInstrucao(&instrucoesCiclo, i);
+                    removerInstrucao(i);
                 }
             }
+            
         }
         if(ciclos[j-1].disponivel) {
             imprimirCiclo(j);
         }
     }
     cout << "-------------" << endl;
+    ciclos = inicializarCiclos();
 }
 
 bool registradorLivre(string registrador) {
