@@ -15,23 +15,24 @@ Pipeline::Pipeline() {
 
 bool Pipeline::verificarInstrucaoLivre(vector<string> instrucao) {
     int contador = 0;
-    for(vector<float>::size_type i = 1; i < instrucao.size(); i++) {
+    for(vector<int>::size_type i = 1; i < instrucao.size(); i++) {
         if(this->registradorLivre(instrucao[i])){ 
             contador++;
         }
     }    
 
-    for(vector<float>::size_type i = 0; i < this->todasInstrucoes.size(); i++) {
-        if(instrucao[0] == this->todasInstrucoes[i].getDescricao() && 
-            contador >= todasInstrucoes[i].getQtdRegistradores()) {
+    for(vector<int>::size_type i = 0; i < this->todasInstrucoes.size(); i++) {
+        if((instrucao[0] == this->todasInstrucoes[i].getDescricao() && 
+            contador >= this->todasInstrucoes[i].getQtdRegistradores()) || instrucao[0] == "jump") {
             return true;
         }    
     }
+    
     return false;
 }
 
 bool Pipeline::registradorLivre(string registrador) {
-    for(vector<float>::size_type i = 0; i < this->registradoresEmUso.size(); i++) {
+    for(vector<int>::size_type i = 0; i < this->registradoresEmUso.size(); i++) {
         if(this->registradoresEmUso[i] == registrador) {
             return false;            
         } 
@@ -59,15 +60,21 @@ void Pipeline::imprimirCiclo(int ciclo, string instrucao) {
     }
 }
 
-void Pipeline::inserirDependencia(string registrador) {
-    this->registradoresEmUso.push_back(registrador);
+void Pipeline::inserirDependencia(vector<string> instrucao) {
+    for(vector<int>::size_type i = 0; i < this->todasInstrucoes.size(); i++) {
+        if(instrucao[0] == this->todasInstrucoes[i].getDescricao()) {
+            this->registradoresEmUso.push_back(instrucao[this->todasInstrucoes[i].getDependenciaRegistradores()]);
+            // cout << instrucao[this->todasInstrucoes[i].getDependenciaRegistradores()] << endl;
+            break;
+        }
+    }
 }
 
 void Pipeline::dissponibilizarRegistradores(string instrucao) {
     //alterar quando for implementar o jump
     int tipoInstrucao = instrucao.find("$");
     string registrador = instrucao.substr(tipoInstrucao, 3);
-    for(vector<float>::size_type i = 0; i < this->registradoresEmUso.size(); i++) {
+    for(vector<int>::size_type i = 0; i < this->registradoresEmUso.size(); i++) {
         if(this->registradoresEmUso[i] == registrador) {
             this->registradoresEmUso.erase(this->registradoresEmUso.begin()+i);            
         } 
@@ -75,7 +82,7 @@ void Pipeline::dissponibilizarRegistradores(string instrucao) {
 }
 
 void Pipeline::passarCiclos() {
-    for(vector<float>::size_type i =0; i < this->instrucoesEmUso.size(); i++) {
+    for(vector<int>::size_type i =0; i < this->instrucoesEmUso.size(); i++) {
         if(this->instrucoesEmUso[i].getCiclo().getCiclo() <= 5) {
             Ciclo ciclo = this->instrucoesEmUso[i].getCiclo();
             ciclo.setCiclo(ciclo.getCiclo()+1);
@@ -89,12 +96,14 @@ void Pipeline::removerInstrucao(int posicao) {
 }
 
 void Pipeline::realizarCiclo() {
+    cout << "-------------" << endl;
     for(int j = 1; j < 6; j++) {
-        for(vector<float>::size_type i = 0; i < this->instrucoesEmUso.size(); i++) {
+        for(vector<int>::size_type i = 0; i < this->instrucoesEmUso.size(); i++) {
             if(this->instrucoesEmUso[i].getCiclo().getCiclo() == j && this->ciclos[j-1].getDisponivel()) {
                 imprimirCiclo(j, this->instrucoesEmUso[i].getInstrucao());
                 this->ciclos[j-1].setDisponivel(false);
-                if(j == 4) {
+               
+                if(j == 4 && this->instrucoesEmUso[i].getInstrucao().substr(0,4) != "jump") {
                     dissponibilizarRegistradores(this->instrucoesEmUso[i].getInstrucao());
                 } else if(j == 5) {
                     removerInstrucao(i);
@@ -105,8 +114,7 @@ void Pipeline::realizarCiclo() {
             imprimirCiclo(j);
         }
     }
-    cout << "-------------" << endl;
-    ciclos = Ciclo::ciclos();
+    this->ciclos = Ciclo::ciclos();
 }
 
 // gets and sets

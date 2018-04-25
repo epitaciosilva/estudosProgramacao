@@ -18,6 +18,7 @@ class Instrucao {
 
     public:
         Instrucao();
+        Instrucao(string instrucao, Ciclo);
         static vector<Instrucao> instrucoes();
         string getInstrucao();
         void setInstrucao(string instrucao);

@@ -31,11 +31,15 @@ vector<string> Arquivo::split(string instrucao, char c1, char c2, char c3) {
         if(caract != c1 && caract != c2 && caract != c3) {
             pedaco += caract;
         }else if(pedaco != "") {
+            if(pedaco.length() >= 6) {
+                size_t c = pedaco.find("$");
+                pedaco = pedaco.substr(c,3);
+            }
             vetorString.push_back(pedaco);
             pedaco = "";
         }
     }
-
+    
     if(pedaco != "") {
         vetorString.push_back(pedaco);
     }

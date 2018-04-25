@@ -7,8 +7,13 @@ using namespace std;
 
 Instrucao::Instrucao(){}
 
+Instrucao::Instrucao(string instrucao, Ciclo) {
+    this->instrucao = instrucao;
+    this->ciclo = ciclo;
+}
+
 vector<Instrucao> Instrucao::instrucoes() {
-    Instrucao add, sub, beq, bne, lw, sw;
+    Instrucao add, sub, beq, bne, lw, sw, jump;
     add.setDescricao("add");
     add.setDependenciaRegistradores(1);
     add.setQtdRegistradores(3);
@@ -27,11 +32,15 @@ vector<Instrucao> Instrucao::instrucoes() {
     
     lw.setDescricao("lw");
     lw.setDependenciaRegistradores(1);
-    lw.setQtdRegistradores(1);
+    lw.setQtdRegistradores(2);
 
     sw.setDescricao("sw");
     sw.setDependenciaRegistradores(2);
     sw.setQtdRegistradores(2);
+
+    jump.setDescricao("jump");
+    jump.setDependenciaRegistradores(1);
+    jump.setQtdRegistradores(0);
 
     vector<Instrucao> instrucoes;
     instrucoes.push_back(add);
@@ -40,6 +49,7 @@ vector<Instrucao> Instrucao::instrucoes() {
     instrucoes.push_back(bne);
     instrucoes.push_back(lw);
     instrucoes.push_back(sw);
+    instrucoes.push_back(jump);
 
     return instrucoes;
 }
