@@ -13,7 +13,7 @@ int main() {
     vector<string> linhas = Arquivo::lerArquivo("./instrucoes.txt");
     Pipeline pipeline;
     Ciclo ciclo(1); 
-
+	int contador = 0;
     for(vector<int>::size_type i = 0; i < linhas.size(); i++) {
         vector<string> linha = Arquivo::split(linhas[i] + " ");
         vector<string> proximaLinha;
@@ -39,19 +39,20 @@ int main() {
                 
                 if(j != -1) {
                     linhas.erase(linhas.begin()+i+2, linhas.begin()+j-1);
-                    cout << linhas.size() << endl;
                 }
             }
             
             pipeline.realizarCiclo();
             pipeline.passarCiclos();
-
+			contador++;
             while((i+1 == linhas.size() && !pipeline.getInstrucoesEmUso().empty()) || (i+1 < linhas.size() && !pipeline.verificarInstrucaoLivre(Arquivo::split(linhas[i+1])))) {
                 pipeline.realizarCiclo();
                 pipeline.passarCiclos();
+				contador++;
             }
         }
     }
 
+	cout << "\nForam realizados " << contador << " ciclo(s)" << endl;
     return 0;
 }

@@ -71,9 +71,17 @@ void Pipeline::inserirDependencia(vector<string> instrucao) {
 }
 
 void Pipeline::dissponibilizarRegistradores(string instrucao) {
-    //alterar quando for implementar o jump
-    int tipoInstrucao = instrucao.find("$");
-    string registrador = instrucao.substr(tipoInstrucao, 3);
+	int tipoInstrucao;
+    string registrador;
+
+	if(instrucao.substr(0,3) != "sw ") {
+	    tipoInstrucao = instrucao.find("$");
+	    registrador = instrucao.substr(tipoInstrucao, 3);
+	} else {
+		tipoInstrucao = instrucao.rfind("$");
+	    registrador = instrucao.substr(tipoInstrucao, 3);
+	}
+
     for(vector<int>::size_type i = 0; i < this->registradoresEmUso.size(); i++) {
         if(this->registradoresEmUso[i] == registrador) {
             this->registradoresEmUso.erase(this->registradoresEmUso.begin()+i);            
