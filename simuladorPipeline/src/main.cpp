@@ -14,6 +14,7 @@ int main() {
     Pipeline pipeline;
     Ciclo ciclo(1); 
 	int contador = 0;
+    
     for(vector<int>::size_type i = 0; i < linhas.size(); i++) {
         vector<string> linha = Arquivo::split(linhas[i] + " ");
         vector<string> proximaLinha;
@@ -24,7 +25,7 @@ int main() {
             instrucao.setCiclo(ciclo);
             pipeline.setInstrucoesEmUso(instrucao);
             
-            if(linha[0] != "beq" && linha[0] != "bne" && linha[0] != "jump") {
+            if(linha[0] != "beq" && linha[0] != "bne" && linha[0] != "jump" && linha[0] != "sw") {
                 pipeline.inserirDependencia(linha);
             }
             
