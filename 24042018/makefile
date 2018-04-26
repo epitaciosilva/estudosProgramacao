@@ -1,7 +1,7 @@
 PROG = programa
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic
-OBJS = main.o
+OBJS = main.o book.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -9,8 +9,8 @@ $(PROG) : $(OBJS)
 main.o:
 	$(CC) $(CPPFLAGS) -c main.cpp
 
-# lista.o: lista.hpp
-# 	$(CC) $(CPPFLAGS) -c lista.hpp
+book.o: book.hpp
+	$(CC) $(CPPFLAGS) -c book.cpp
 
 clean: 
 	rm -f *.o && rm $(PROG)
