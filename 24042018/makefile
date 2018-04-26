@@ -13,4 +13,4 @@ main.o:
 # 	$(CC) $(CPPFLAGS) -c lista.hpp
 
 clean: 
-	rm -f *.o
+	rm -f *.o && rm $(PROG)
