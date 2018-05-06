@@ -22,7 +22,7 @@ class Pipeline {
         bool registradorLivre(string registrador);
         void imprimirCiclo(int ciclo, string instrucao = " ");
         void inserirDependencia(vector<string> instrucao);
-        void dissponibilizarRegistradores(string registradores);
+        void disponibilizarRegistradores(string registradores);
         void removerInstrucao(int posicao);
         void realizarCiclo();
         void passarCiclos();

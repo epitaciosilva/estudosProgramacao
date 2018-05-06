@@ -23,7 +23,7 @@ bool Pipeline::verificarInstrucaoLivre(vector<string> instrucao) {
 
     for(vector<int>::size_type i = 0; i < this->todasInstrucoes.size(); i++) {
         if((instrucao[0] == this->todasInstrucoes[i].getDescricao() && 
-            contador >= this->todasInstrucoes[i].getQtdRegistradores()) || instrucao[0] == "jump") {
+            contador >= this->todasInstrucoes[i].getQtdRegistradores())) {
             return true;
         }    
     }
@@ -70,16 +70,13 @@ void Pipeline::inserirDependencia(vector<string> instrucao) {
     }
 }
 
-void Pipeline::dissponibilizarRegistradores(string instrucao) {
-	int tipoInstrucao;
-    string registrador;
+void Pipeline::disponibilizarRegistradores(string instrucao) {
+	int posicaoRegistrador = NULL;
+    string registrador = NULL;
 
-	if(instrucao.substr(0,3) != "sw") {
-	    tipoInstrucao = instrucao.find("$");
-	    registrador = instrucao.substr(tipoInstrucao, 3);
-	} else {
-		tipoInstrucao = instrucao.rfind("$");
-	    registrador = instrucao.substr(tipoInstrucao, 3);
+	if(instrucao.substr(0,2) != "sw") {
+	    posicaoRegistrador = instrucao.find(",")-instrucao.find("$");
+	    registrador = instrucao.substr(instrucao.find("$"), posicaoRegistrador);
 	}
 
     for(vector<int>::size_type i = 0; i < this->registradoresEmUso.size(); i++) {
@@ -111,8 +108,8 @@ void Pipeline::realizarCiclo() {
                 imprimirCiclo(j, this->instrucoesEmUso[i].getInstrucao());
                 this->ciclos[j-1].setDisponivel(false);
                
-                if(j == 4 && this->instrucoesEmUso[i].getInstrucao().substr(0,4) != "jump" && this->instrucoesEmUso[i].getInstrucao().substr(0,3) != "sw") {
-                    dissponibilizarRegistradores(this->instrucoesEmUso[i].getInstrucao());
+                if(j == 4) {
+                    disponibilizarRegistradores(this->instrucoesEmUso[i].getInstrucao());
                 } else if(j == 5) {
                     removerInstrucao(i);
                 }

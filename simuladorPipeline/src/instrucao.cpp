@@ -24,15 +24,15 @@ vector<Instrucao> Instrucao::instrucoes() {
 
     beq.setDescricao("beq");
     beq.setDependenciaRegistradores(2);
-    beq.setQtdRegistradores(2);
+    beq.setQtdRegistradores(3);
 
     bne.setDescricao("bne");
     bne.setDependenciaRegistradores(2);
-    bne.setQtdRegistradores(2);
+    bne.setQtdRegistradores(3);
     
     lw.setDescricao("lw");
     lw.setDependenciaRegistradores(1);
-    lw.setQtdRegistradores(2);
+    lw.setQtdRegistradores(1);
 
     sw.setDescricao("sw");
     sw.setDependenciaRegistradores(2);
@@ -40,7 +40,7 @@ vector<Instrucao> Instrucao::instrucoes() {
 
     jump.setDescricao("jump");
     jump.setDependenciaRegistradores(1);
-    jump.setQtdRegistradores(0);
+    jump.setQtdRegistradores(-1);
 
     vector<Instrucao> instrucoes;
     instrucoes.push_back(add);

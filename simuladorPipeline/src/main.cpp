@@ -25,7 +25,7 @@ int main() {
             instrucao.setCiclo(ciclo);
             pipeline.setInstrucoesEmUso(instrucao);
             
-            if(linha[0] != "beq" && linha[0] != "bne" && linha[0] != "jump" && linha[0] != "sw") {
+            if(linha[0] == "add" || linha[0] == "sub" || linha[0] == "lw") {
                 pipeline.inserirDependencia(linha);
             }
             
