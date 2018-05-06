@@ -1,1 +1,1 @@
-#Todas as práticas realizadas no descorrer da disciplina
+# Todas as práticas realizadas com a linguagem c++
