@@ -5,12 +5,13 @@ OBJS = main.o book.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
-
+	mv *.o build/ && mv $(PROG) bin/
+	
 main.o:
-	$(CC) $(CPPFLAGS) -c main.cpp
+	$(CC) $(CPPFLAGS) -c src/main.cpp
 
-book.o: book.hpp
-	$(CC) $(CPPFLAGS) -c book.cpp
+book.o: include/book.hpp
+	$(CC) $(CPPFLAGS) -c src/book.cpp
 
 clean: 
-	rm -f *.o && rm $(PROG)
+	rm -f build/*.o && rm bin/$(PROG)
