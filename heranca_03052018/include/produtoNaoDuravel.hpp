@@ -12,6 +12,7 @@ class ProdutoNaoDuravel : public Produto {
         string genero;
 
     public:
+        ProdutoNaoDuravel();
         string getDataValidade();
         string getGenero();
     

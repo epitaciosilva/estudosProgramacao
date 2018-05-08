@@ -14,6 +14,11 @@ class Produto {
         string dataFabricacao;      
 
     public:
+        void setNome(string nome);
+        void setPreco(double preco);
+        void setMarca(string marca);
+        void setDescricao(string descricao);  
+        void setDataFabricacao(string dataFabricacao);
         string getNome();
         double getPreco();
         string getMarca();

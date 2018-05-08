@@ -8,7 +8,10 @@ using namespace std;
 
 class Refrigerante : public ProdutoNaoDuravel {
     public:
-        Refrigerante(string nome, double preco, string marca, string descricao, string dataFabricacao, string dataValidade, string genero);
+        Refrigerante();
+        Refrigerante(string nome, double preco, string marca, string descricao, 
+            string dataFabricacao, string dataValidade, string genero
+        );
         ~Refrigerante();
 };
 

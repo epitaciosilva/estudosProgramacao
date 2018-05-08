@@ -8,10 +8,11 @@ using namespace std;
 
 class Pizza : public ProdutoNaoDuravel {
     public:
+        Pizza();
         Pizza(string nome, double preco, string marca, string descricao, 
             string dataFabricacao, string dataValidade, string genero
         );
         ~Pizza();
-};
+};  
 
 #endif

@@ -4,6 +4,8 @@ using namespace std;
 
 #include "../include/produtoNaoDuravel.hpp"
 
+ProdutoNaoDuravel::ProdutoNaoDuravel(){}
+
 string ProdutoNaoDuravel::getDataValidade() {
    return this->dataValidade;
 }

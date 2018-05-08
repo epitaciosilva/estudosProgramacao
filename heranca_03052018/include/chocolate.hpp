@@ -8,7 +8,10 @@ using namespace std;
 
 class Chocolate : public ProdutoNaoDuravel {
     public:
-        Chocolate(string nome, double preco, string marca, string descricao, string dataFabricacao, string dataValidade, string genero);
+        Chocolate();
+        Chocolate(string nome, double preco, string marca, string descricao, 
+            string dataFabricacao, string dataValidade, string genero
+        );
         ~Chocolate();
 };
 
