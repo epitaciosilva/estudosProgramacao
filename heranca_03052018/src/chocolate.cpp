@@ -7,7 +7,8 @@ using namespace std;
 Chocolate::Chocolate(){ }
 
 Chocolate::Chocolate(string nome, double preco, string marca, string descricao, 
-    string dataFabricacao, string dataValidade, string genero) {
+    string dataFabricacao, string dataValidade, string genero, float porcentagemCacau) {
+
     this->nome = nome;
     this->preco = preco;
     this->marca = marca;
@@ -15,6 +16,8 @@ Chocolate::Chocolate(string nome, double preco, string marca, string descricao,
     this->dataFabricacao = dataFabricacao;
     this->dataValidade = dataValidade;
     this->genero = genero;
+    this->porcentagemCacau = porcentagemCacau;
+    
 }
 
 Chocolate::~Chocolate(){}

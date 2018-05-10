@@ -5,7 +5,8 @@ using namespace std;
 #include "../include/celular.hpp"
 
 Celular::Celular(string nome, double preco, string marca, string descricao, string dataFabricacao, 
-    string materialPredominante, int durabilidade) {
+    string materialPredominante, int durabilidade, float polegadas) {
+
     this->nome = nome;
     this->preco = preco;
     this->marca = marca;
@@ -13,6 +14,8 @@ Celular::Celular(string nome, double preco, string marca, string descricao, stri
     this->dataFabricacao = dataFabricacao;
     this->materialPredominante = materialPredominante;
     this->durabilidade = durabilidade;
+    this->polegadas = polegadas;
+    
 }
 
 Celular::~Celular(){}

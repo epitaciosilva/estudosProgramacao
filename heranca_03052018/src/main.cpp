@@ -94,9 +94,14 @@ int main() {
                         
                         deposito.adicionarProduto(*produto);
 
-                    } else  {
+                    } else  if(opcao == 3) {
+                        float polegadas;
+
+                        cout << "Insira as polegadas do celular: ";
+                        cin >> polegadas;
+
                         Produto* produto = new Celular(nome, preco, marca, descricao, 
-                            dataFabricacao, materialPredominante, durabilidade
+                            dataFabricacao, materialPredominante, durabilidade, polegadas
                         );
 
                         deposito.adicionarProduto(*produto);
@@ -107,31 +112,48 @@ int main() {
 
                     cout << "Insira a data de validade: ";
                     cin >> dataValidade;
-                    cout << "Insira o genero :";
+                    cout << "Insira o genero: ";
                     cin >> genero;
 
                     if(opcao == 4) {
+                        float porcentagemCacau;
+
+                        cout << "Insira a porcentagem de cacau do chocolate: ";
+                        cin >> porcentagemCacau;
+
                         Produto* produto = new Chocolate(nome, preco, marca, descricao,
-                            dataFabricacao, dataValidade, genero
+                            dataFabricacao, dataValidade, genero, porcentagemCacau
                         );
                         
                         deposito.adicionarProduto(*produto);
 
                     } else if(opcao == 5) {
+                        string sabor;
+
+                        cout << "Insira o sabor da pizza: ";
+                        cin >> sabor;
+
                         Produto* produto = new Pizza(nome, preco, marca, descricao,
-                            dataFabricacao, dataValidade, genero
+                            dataFabricacao, dataValidade, genero, sabor
                         );
 
                         deposito.adicionarProduto(*produto);
-                    } else {
+
+                    } else if(opcao == 6) {
+                        float volume;
+
+                        cout << "Insira o valume do refrigerante: ";
+                        cin >> volume;
+
                         Produto* produto = new Refrigerante(nome, preco, marca, descricao,
-                            dataFabricacao, dataValidade, genero
+                            dataFabricacao, dataValidade, genero, volume
                         );
 
                         deposito.adicionarProduto(*produto);
                     }
                 }
             }
+
         } else if(opcao == 2) {
             string nome;
 
@@ -148,5 +170,6 @@ int main() {
             deposito.depositoVazio();
         }
     }   
+
     return 0;
 }

@@ -18,7 +18,7 @@ void Deposito::removerProduto(string nome) {
     for(size_t i = 0; i < this->estoque.size(); i++) { 
         if(this->estoque[i].getNome() == nome) {
             this->estoque.erase(this->estoque.begin()+i);
-            cout << "\nPrudot removido com sucesso" << endl;
+            cout << "\nProduto removido com sucesso" << endl;
             return;
         }
     }    
@@ -38,18 +38,23 @@ void Deposito::depositoVazio() {
 }
 
 void Deposito::produtoMaiorValor() {
-    double maiorValor = this->estoque[0].getPreco();
-    Produto produtoMaiorValor = this->estoque[0];
+    if(this->estoque.size() > 0) {
+        double maiorValor = this->estoque[0].getPreco();
+        Produto produtoMaiorValor = this->estoque[0];
 
-    for(size_t i = 1; i < this->estoque.size(); i++) { 
-        if(maiorValor < this->estoque[i].getPreco()) {
-            maiorValor = this->estoque[i].getPreco();
-            produtoMaiorValor = this->estoque[i];
-        }
-    } 
+        for(size_t i = 1; i < this->estoque.size(); i++) { 
+            if(maiorValor < this->estoque[i].getPreco()) {
+                maiorValor = this->estoque[i].getPreco();
+                produtoMaiorValor = this->estoque[i];
+            }
+        } 
 
-    cout << "\nO produto com maior valor é: ";
-    cout << "\nNome: " << produtoMaiorValor.getNome();
-    cout << "\nPreco: " << produtoMaiorValor.getPreco();
-    cout << "\nMarca: " << produtoMaiorValor.getMarca() << endl;
+        cout << "\nO produto com maior valor é: ";
+        cout << "\nNome: " << produtoMaiorValor.getNome();
+        cout << "\nPreco: " << produtoMaiorValor.getPreco();
+        cout << "\nMarca: " << produtoMaiorValor.getMarca() << endl;    
+
+    } else {
+        cout << "\nDeposito vazio";
+    }
 }

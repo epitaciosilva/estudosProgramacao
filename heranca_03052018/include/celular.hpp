@@ -7,9 +7,12 @@
 using namespace std;
 
 class Celular : public ProdutoDuravel {
+	private:
+		float polegadas;
+
     public:
         Celular(string nome, double preco, string marca, string descricao, 
-            string dataFabricacao, string getMaterialProdominante, int durabilidade
+            string dataFabricacao, string getMaterialProdominante, int durabilidade, float polegadas
         );
         ~Celular();
 };
