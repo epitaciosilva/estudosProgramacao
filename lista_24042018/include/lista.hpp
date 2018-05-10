@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cstring>
 using namespace std;
 
 #include "./book.hpp"
@@ -12,11 +13,12 @@ template<class Type>
 class Lista {
 	private:
 		vector<Type> lista; 
+		void sort();
+		static bool compString(Book b1, Book b2);
 
 	public:	
 		Lista();
 		void addValue(Type value);
-		void sort();
 		void showAll();
 		void showSigle(Type value);
 		size_t search(Type value);
@@ -24,11 +26,17 @@ class Lista {
 };
 
 template<class Type>
+bool Lista<Type>::compString(Book b1, Book b2) {
+	return std::strcmp(b1.getTitle().c_str(), b2.getTitle().c_str()) < 0;
+}
+
+template<class Type>
 Lista<Type>::Lista() {}
 
 template<class Type>
 void Lista<Type>::addValue(Type value) {
 	this->lista.push_back(value);
+	this->sort();
 }
 
 template<class Type>
@@ -43,6 +51,12 @@ void Lista<Type>::sort() {
 		}	
 	}
 }
+
+template<>
+void Lista<Book>::sort() {
+	std::sort(this->lista.begin(), this->lista.end(), this->compString);
+}
+
 
 template<class Type>
 void Lista<Type>::showAll() {
