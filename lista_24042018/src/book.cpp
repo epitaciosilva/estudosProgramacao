@@ -28,3 +28,7 @@ ostream& operator<< (ostream &o, Book const &book) {
 string Book::getTitle() {
 	return this->title;
 }
+
+void Book::setTitle(string title) {
+	this->title = title;
+}

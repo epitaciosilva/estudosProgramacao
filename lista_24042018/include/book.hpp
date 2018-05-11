@@ -19,6 +19,7 @@ class Book {
 		Book(string name, string author, int numberPages);
 		friend ostream& operator<< (ostream &o, Book const &book);
 		string getTitle();
+		void setTitle(string title);
 };
 
 #endif
