@@ -1,1 +1,10 @@
+# Arquivos código-objeto
 *.o
+
+# Executáveis
+exec
+executavel
+programa
+
+# Arquivos e pastas das IDEs.
+.vscode/
