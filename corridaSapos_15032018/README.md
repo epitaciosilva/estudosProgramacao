@@ -21,3 +21,6 @@
    - O sapo que primeiro alcançar a distância da corrida será o vencedor
    - Imprimir a quantidade de pulos dados pelo sapo vencedor e a distância por ele
  percorrida
+### Como executar
+    * make
+    * ./bin/executavel

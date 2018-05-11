@@ -1,4 +1,4 @@
-PROG = exec
+PROG = executavel
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic
 OBJS = main.o produto.o produtoDuravel.o produtoNaoDuravel.o deposito.o carro.o livro.o celular.o pizza.o chocolate.o refrigerante.o
@@ -41,4 +41,5 @@ refrigerante.o: include/refrigerante.hpp
 	$(CC) $(CPPFLAGS) -c src/refrigerante.cpp
 
 clean: 
-	rm -f build/* && rm -f bin/*
+	rm -f build/*.o 
+	rm -f bin/$(PROG)

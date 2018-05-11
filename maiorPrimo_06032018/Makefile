@@ -1,4 +1,4 @@
-PROG = anteriorPrimo
+PROG = programa
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic
 OGJS = main.o fatorial.o primalidade.o
@@ -15,6 +15,7 @@ primalidade.o : primalidade.h
 fatorial.o : fatorial.h
 	$(CC) $(CPPFLAGS) -c fatorial.cpp
 
-
 clean: 
 	rm -r *.o
+	rm $(PROG)
+	

@@ -5,7 +5,8 @@ OBJS = main.o conta.o movimentacao.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
-
+	mv *.o build/ && mv $(PROG) bin/
+	
 main.o:
 	$(CC) $(CPPFLAGS) -c ./src/main.cpp
 
@@ -16,4 +17,5 @@ movimentacao.o: ./include/movimentacao.hpp
 	$(CC) $(CPPFLAGS) -c ./src/movimentacao.cpp
 
 clean: 
-	rm -f *.o
+	rm -f build/*.o
+	rm -f bin/$(PROG)
