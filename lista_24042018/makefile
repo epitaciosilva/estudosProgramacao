@@ -1,4 +1,4 @@
-PROG = programa
+PROG = executavel
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic
 OBJS = main.o book.o
@@ -14,4 +14,5 @@ book.o: include/book.hpp
 	$(CC) $(CPPFLAGS) -c src/book.cpp
 
 clean: 
-	rm -f build/*.o && rm bin/$(PROG)
+	rm -f build/*.o
+	rm bin/$(PROG)

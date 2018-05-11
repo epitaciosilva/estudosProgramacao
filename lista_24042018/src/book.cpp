@@ -6,18 +6,21 @@ using namespace std;
 
 #include "../include/book.hpp"
 
-Book::Book(){}
+Book::Book() { }
 
-Book::Book(string title, string author, int numberSheets) { 
+Book::~Book() { }
+
+Book::Book(string title, string author, int numberPages) { 
 	this->title = title;
 	this->author = author;
-	this->numberSheets = numberSheets;
+	this->numberPages = numberPages;
 }
 
 ostream& operator<< (ostream &o, Book const &book) {
-	o << "\nTitle: " << book.title << endl;
+	
+	o << "Title: " << book.title << endl;
 	o << "Author: " << book.author << endl;
-	o << "Number of sheets: " << book.numberSheets << endl;		
+	o << "Number of pages: " << book.numberPages << endl;		
 	
 	return o;
 }

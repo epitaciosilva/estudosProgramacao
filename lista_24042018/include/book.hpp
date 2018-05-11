@@ -11,11 +11,12 @@ class Book {
 	private:
 		string title;
 		string author;
-		int numberSheets;
+		int numberPages;
 
 	public:	
 		Book();
-		Book(string name, string author, int numberSheets);
+		~Book();
+		Book(string name, string author, int numberPages);
 		friend ostream& operator<< (ostream &o, Book const &book);
 		string getTitle();
 };
