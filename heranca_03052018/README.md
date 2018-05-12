@@ -21,5 +21,5 @@ implementados anteriormente, que possua os seguintes métodos:
     * Informar se o depósito está vazio;
     * Informar o produto com maior valor.
 ### Como executar
-    * make
-    * ./bin/executavel
+* make
+* ./bin/executavel

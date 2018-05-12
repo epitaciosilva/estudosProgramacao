@@ -17,7 +17,6 @@ as seguintes operações básicas:
 emissão de saldo e extrato, além de transferência entre contas.
   * Especificamente com relação à emissão de extrato, seu programa deverá exibir a lista de
 movimentações realizadas por meio da sobrecarga do operador de inserção em stream (<<).
-
 ### Como executar
-    * make
-    * ./bin/programa
+* make
+* ./bin/executavel

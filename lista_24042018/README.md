@@ -6,4 +6,8 @@
 * Criar uma lista e testar suas funcionalidades para:
   * Lista de inteiros;
   * Lista de double;
-  * Lista de livros;ros;
+  * Lista de livros;
+
+### Como executar
+* make
+* ./bin/executavel
