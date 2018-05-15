@@ -16,14 +16,25 @@ Secretaria::Secretaria(string nome, double salario, string dataAdmissao, string 
 
 Secretaria::~Secretaria() { }
 
+void Funcionario::aumentoSalario() {
+    this->salario *= 8/100;
+}
+
 void operator>> (istream &i, Secretaria &secretaria) {
     Funcionario *funcionario = new Funcionario();
     i >> *funcionario;
-
     secretaria.nome = funcionario->getNome();
     secretaria.salario = funcionario->getSalario();
     secretaria.dataAdmissao = funcionario->getDataAdmissao();
     
-    cout << "\nDigite o ramal da secretaria: ";   
+    cout << "Digite o ramal da secretaria: ";   
     getline(i, secretaria.ramal);
+    i.ignore();
+}
+
+ostream& operator<< (ostream &o, Secretaria secretaria) {
+    o << secretaria;
+    o << "\nRamal: " << secretaria.ramal;
+    
+    return o;
 }

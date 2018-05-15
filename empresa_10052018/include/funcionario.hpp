@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Funcionario {
@@ -14,10 +15,13 @@ class Funcionario {
     public:
         Funcionario();
         ~Funcionario();
+        void aumentoSalario();
+        friend void operator>> (istream &i, Funcionario &funcionario);
+        friend ostream& operator<< (ostream &o, Funcionario funcionario);
+        // friend void operator<< (ostream &o, vector<Funcionario> &funcionarios);
         string getNome();
         double getSalario();
         string getDataAdmissao();
-        friend void operator>> (istream &i, Funcionario &funcionario);
 };
 
 #endif

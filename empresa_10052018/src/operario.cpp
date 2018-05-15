@@ -16,14 +16,25 @@ Operario::Operario(string nome, double salario, string dataAdmissao, string nome
 
 Operario::~Operario() { }
 
+void Funcionario::aumentoSalario() {
+    this->salario *= 5/100;
+}
+
 void operator>> (istream &i, Operario &operario) {
     Funcionario *funcionario = new Funcionario();
     i >> *funcionario;
-
     operario.nome = funcionario->getNome();
     operario.salario = funcionario->getSalario();
     operario.dataAdmissao = funcionario->getDataAdmissao();
     
-    cout << "\nDigite o nome da empresa: ";   
+    cout << "Digite o nome da empresa: ";   
     getline(i, operario.nomeEmpresa);
+    i.ignore();
+}
+
+ostream& operator<< (ostream &o, Operario operario) {
+    o << operario;
+    o << "\nNome da empresa: " << operario.nomeEmpresa;
+    
+    return o;
 }

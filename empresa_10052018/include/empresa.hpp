@@ -17,10 +17,13 @@ class Empresa {
     public:
         Empresa();
         ~Empresa();
+        void cadastrarProfissional(Funcionario funcionario);
+        static size_t encontrarEmpresa(vector<Empresa> &empresas, string nomeEmpresa);
+        friend void operator<< (ostream &o, Empresa &empresa);
+        friend void operator<< (ostream &o, vector<Funcionario> &funcionarios);
+        friend void operator>> (istream &i, vector<Empresa> &empresas);
         string getNome();
-        friend void operator>> (istream &i, Empresa &empresa);
-        template<typename Type>
-        void cadastrarProfissional(Type funcionario);
+        vector<Funcionario> getFuncionarios();
 };
 
 #endif

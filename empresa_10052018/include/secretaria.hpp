@@ -15,6 +15,7 @@ class Secretaria : public Funcionario {
         Secretaria(string nome, double salario, string dataAdmissao, string ramal);
         ~Secretaria();
         friend void operator>> (istream &i, Secretaria &secretaria);
+        friend ostream& operator<< (ostream &o, Secretaria secretaria);
 };
 
 #endif

@@ -8,14 +8,34 @@ Funcionario::Funcionario() { }
 
 Funcionario::~Funcionario() { }
 
-void operator>> (istream &i, Funcionario &funcionario) {
-    cout << "\nDigite o nome do funcionario: ";
-    getline(i, funcionario.nome);
-    cout << "\nDigite o salario do funcionario: "; 
-    i >> funcionario.salario;
-    cout << "\nDigite a data de admissao do funcionario: ";
-    getline(i, funcionario.dataAdmissao);
+void Funcionario::aumentoSalario() {
+    this->salario *= 1/100;
 }
+
+void operator>> (istream &i, Funcionario &funcionario) {
+    cout << "Digite o nome do funcionario: ";
+    getline(i, funcionario.nome);
+    cout << "Digite o salario do funcionario: "; 
+    i >> funcionario.salario;
+    i.ignore();
+    cout << "Digite a data de admissao do funcionario: ";
+    getline(i, funcionario.dataAdmissao);
+    i.ignore();
+}
+
+ostream& operator<< (ostream &o, Funcionario funcionario) {
+    o << "\nNome: " << funcionario.nome;
+    o << "\nSalario: " << funcionario.salario;
+    o << "\nData de Admissao: " << funcionario.dataAdmissao;
+    
+    return o;
+}
+
+// void operator<< (ostream &o, vector<Funcionario> &funcionarios) {
+//     for(size_t i = 0; i < funcionarios.size(); i++) {
+//         cout << funcionarios[i];
+//     }  
+// }
 
 string Funcionario::getNome() {
     return this->nome;

@@ -17,18 +17,27 @@ Gerente::Gerente(string nome, double salario, string dataAdmissao, string senha,
     this->numeroDeFuncionariosGerenciados = numeroDeFuncionariosGerenciados;
 } 
 
+void Funcionario::aumentoSalario() {
+    this->salario *= 10/100;
+}
+
 void operator>> (istream &i, Gerente &gerente) {
     Funcionario *funcionario = new Funcionario();
     i >> *funcionario;
-
     gerente.nome = funcionario->getNome();
     gerente.salario = funcionario->getSalario();
     gerente.dataAdmissao = funcionario->getDataAdmissao();
-    
-    cout << "\nDigite a senha: ";   
+
+    cout << "Digite a senha: ";   
     getline(i, gerente.senha);
-    i >> gerente.numeroDeFuncionariosGerenciados;
-    cout << "\nDigite o número de funcionários gerenciados: ";   
+    cout << "Digite o número de funcionários gerenciados: ";   
     i >> gerente.numeroDeFuncionariosGerenciados;    
+}
+
+ostream& operator<< (ostream &o, Gerente gerente) {
+    o << gerente;
+    o << "\nQuantidade de funcinarios gerenciados: " << gerente.numeroDeFuncionariosGerenciados;
+    
+    return o;
 }
 
