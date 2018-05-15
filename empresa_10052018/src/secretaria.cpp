@@ -16,7 +16,7 @@ Secretaria::Secretaria(string nome, double salario, string dataAdmissao, string 
 
 Secretaria::~Secretaria() { }
 
-void Funcionario::aumentoSalario() {
+void Secretaria::aumentoSalario() {
     this->salario *= 8/100;
 }
 

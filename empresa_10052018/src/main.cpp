@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <typeinfo>
+#include <vector>
 using namespace std;
 
 #include "../include/empresa.hpp"
@@ -13,32 +14,32 @@ int main() {
     int opcao;
 
     do {
-        cout << "Digite 1 para cadastrar uma empresa. ";
-        cout << "Digite 2 para cadastrar um funcionario a uma empresa.";
-        cout << "Digite 3 para listar todos os funcionarios de uma empresa.";
-        cout << "Digite 4 para dar um aumento a todos os funcionarios.";
-        cout << "Digite 0 para sair.";
-        cout << "Opcao: ";
+        cout << "\nDigite 1 para cadastrar uma empresa. ";
+        cout << "\nDigite 2 para cadastrar um funcionario a uma empresa.";
+        cout << "\nDigite 3 para listar todos os funcionarios de uma empresa.";
+        cout << "\nDigite 4 para dar um aumento a todos os funcionarios.";
+        cout << "\nDigite 0 para sair.";
+        cout << "\nOpcao: ";
         cin >> opcao;
         
         if(opcao == 1) {
             cin >> empresas;
-        } else if(opcao == 1) {
+        } else if(opcao == 2) {
             string nomeEmpresa;
             int opcaoDois;
-        
-            cout << "Digite o nome da empresa do funcionário: ";
-            cin >> nomeEmpresa;
+            
+            cout << "\nDigite o nome da empresa do funcionário: ";
+            getline(cin, nomeEmpresa);
 
-            cout << "Digite 1 para cadastrar um GERENTE. ";
-            cout << "Digite 2 para cadastrar uma SECRETARIA. ";
-            cout << "Digite 3 para cadastrar um OPERARIO. ";
+            cout << "\nDigite 1 para cadastrar um GERENTE. ";
+            cout << "\nDigite 2 para cadastrar uma SECRETARIA. ";
+            cout << "\nDigite 3 para cadastrar um OPERARIO. ";
             cin >> opcaoDois;
 
             if(opcaoDois == 1) {
-                Funcionario *gerente = new Gerente();
 
                 int indexEmpresa = Empresa::encontrarEmpresa(empresas, nomeEmpresa);
+                Funcionario *gerente = new Gerente();
                 
                 if(indexEmpresa != -1) {
                     empresas[indexEmpresa].cadastrarProfissional(*gerente);
@@ -81,7 +82,7 @@ int main() {
             cin >> nomeEmpresa;
 
             int indexEmpresa = Empresa::encontrarEmpresa(empresas, nomeEmpresa);
-            cout << empresas[0].getFuncionarios();
+            cout << empresas[indexEmpresa].getFuncionarios();
         } else if(opcao == 4) {
             
         }

@@ -18,9 +18,9 @@ class Empresa {
         Empresa();
         ~Empresa();
         void cadastrarProfissional(Funcionario funcionario);
-        static size_t encontrarEmpresa(vector<Empresa> &empresas, string nomeEmpresa);
-        friend void operator<< (ostream &o, Empresa &empresa);
-        friend void operator<< (ostream &o, vector<Funcionario> &funcionarios);
+        static size_t encontrarEmpresa(vector<Empresa> empresas, string nomeEmpresa);
+        friend ostream& operator<< (ostream &o, Empresa &empresa);
+        friend void operator<< (ostream &o, vector<Funcionario> funcionarios);
         friend void operator>> (istream &i, vector<Empresa> &empresas);
         string getNome();
         vector<Funcionario> getFuncionarios();

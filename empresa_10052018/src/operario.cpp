@@ -16,7 +16,7 @@ Operario::Operario(string nome, double salario, string dataAdmissao, string nome
 
 Operario::~Operario() { }
 
-void Funcionario::aumentoSalario() {
+void Operario::aumentoSalario() {
     this->salario *= 5/100;
 }
 

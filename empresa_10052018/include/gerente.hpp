@@ -15,6 +15,7 @@ class Gerente : public Funcionario {
         Gerente();
         Gerente(string nome, double salario, string dataAdmissao, string senha, int numeroDeFuncionariosGerenciados);
         ~Gerente();
+        void aumentoSalario();
         friend void operator>> (istream &i, Gerente &gerente);
         friend ostream& operator<< (ostream &o, Gerente gerente);
     

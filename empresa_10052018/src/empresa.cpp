@@ -20,8 +20,8 @@ void Empresa::cadastrarProfissional(Funcionario funcionario) {
 
 void operator>> (istream &i,  vector<Empresa> &empresas) {
     Empresa empresa;
-
-    std::cout << "Digite o nome da empresa: ";
+    i.ignore();
+    std::cout << "\nDigite o nome da empresa: ";
     getline(i, empresa.nome);
     std::cout << "Digite o CNPJ: ";
     getline(i, empresa.cnpj);
@@ -29,19 +29,23 @@ void operator>> (istream &i,  vector<Empresa> &empresas) {
     empresas.push_back(empresa);
 }
 
-void operator<< (ostream &o, Empresa &empresa) {
+ostream& operator<< (ostream &o, Empresa &empresa) {
     for(size_t i =0; i < empresa.funcionarios.size(); i++) {
-        cout << empresa.funcionarios[i] << endl;
+        o << empresa.funcionarios[i] << endl;
     }
+
+    return o;
 }
 
-void operator<< (ostream &o, vector<Funcionario> &funcionarios) {
+void operator<< (ostream &o, vector<Funcionario> funcionarios) {
     for(size_t i = 0; i < funcionarios.size(); i++) {
-        cout << funcionarios[i];
-    }  
+        o << funcionarios[i];
+    } 
+
+    return o; 
 }
 
-size_t encontrarEmpresa(vector<Empresa> &empresas, string nomeEmpresa) {
+size_t Empresa::encontrarEmpresa(vector<Empresa> empresas, string nomeEmpresa) {
     for(size_t i = 0; i < empresas.size(); i++) {
         if(empresas[i].getNome() == nomeEmpresa) {
             return i;

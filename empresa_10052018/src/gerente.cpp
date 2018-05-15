@@ -17,7 +17,7 @@ Gerente::Gerente(string nome, double salario, string dataAdmissao, string senha,
     this->numeroDeFuncionariosGerenciados = numeroDeFuncionariosGerenciados;
 } 
 
-void Funcionario::aumentoSalario() {
+void Gerente::aumentoSalario() {
     this->salario *= 10/100;
 }
 

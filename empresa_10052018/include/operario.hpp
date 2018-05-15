@@ -14,6 +14,7 @@ class Operario : public Funcionario {
         Operario();
         Operario(string nome, double salario, string dataAdmissao, string nomeEmpresa);
         ~Operario();
+        void aumentoSalario();
         friend void operator>> (istream &i, Operario &operario);
         friend ostream& operator<< (ostream &o, Operario operario);
 };
