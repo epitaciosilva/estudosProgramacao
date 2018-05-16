@@ -3,8 +3,10 @@
 #include <vector>
 using namespace std;
 
-Livro::Livro() { }
+#include "../include/midia.hpp"
+#include "../include/livro.hpp"
 
+Livro::Livro() { }
 
 Livro::Livro(string titulo, string autor, int anoLancamento, string editora, string isbn) { 
 	this->titulo = titulo;
@@ -16,24 +18,19 @@ Livro::Livro(string titulo, string autor, int anoLancamento, string editora, str
 
 Livro::~Livro() { }
 
-Midia Livro::cadastrar() {
+void operator>> (istream &i, Livro &livro) {
 	cout << "\nDigite o titulo do livro: ";
-	getline(cin, this->titulo);
+	getline(i, livro.titulo);
 
-	cin.ignore();
+	i.ignore();
 	cout << "\nDigite o autor do livro: ";
-	getline(cin, this->autor);
+	getline(i, livro.autor);
 	
 	cout << "\nDigite a data de lancamento do livro: ";
-	cin >> this->anoLancamento;
+	i >> livro.anoLancamento;
 
 	cout << "\nDigite o editora do livro: ";
-	getline(cin, this->editora);
+	getline(i, livro.editora);
 
-
-	Midia livro = new Livro(titulo, autor, editora, anoLancamento);
- 
-    return livro;	
 }
 
-#endif

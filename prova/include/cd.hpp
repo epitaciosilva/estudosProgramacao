@@ -8,7 +8,7 @@ using namespace std;
 
 #include "midia.hpp"
 
-class Midia : public Midia{
+class Cd : public Midia {
     protected: 
         int qtdFaixas;
         string gravadora;
@@ -17,6 +17,7 @@ class Midia : public Midia{
         Cd();
         Cd(string titulo, string autor, int anoLancamento, int qtdFaixas, string gravadora);
         ~Cd();
+        friend void operator>> (istream &i, Cd &cd);
 };
 
 #endif

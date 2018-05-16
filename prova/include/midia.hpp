@@ -16,9 +16,10 @@ class Midia {
     public:
         Midia();
         ~Midia();
-        void cadastrarCd();
-        void cadastrarDvD();
-        void cadastrarLivro();
+        friend ostream& operator<< (ostream &o, Midia &midia);
+        void cadastrarMidia(Midia midia);
+        void listarTodasMidias();
+        void listarQtdMidiasPorTipo();
 };
 
 #endif

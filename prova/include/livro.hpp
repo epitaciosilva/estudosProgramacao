@@ -15,9 +15,10 @@ class Livro : public Midia {
 
     public:
         Livro();
-        Livro::Livro(string titulo, string autor, int anoLancamento, string editora, string isbn);
+        Livro(string titulo, string autor, int anoLancamento, string editora, string isbn);
         ~Livro();
-        Livro cadastrar();
+        friend void operator>> (istream &i, Livro &livro);
+        // Livro cadastrar();
 
 };
 

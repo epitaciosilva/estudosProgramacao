@@ -10,14 +10,15 @@ using namespace std;
 #include "../include/midia.hpp"
 
 int main() {
-    vector<Empresa> empresas;
     int opcao;
+    
+    Midia *midias = new Midia();
 
     do {
         cout << "\nDigite 1 para cadastrar uma midia. ";
         cout << "\nDigite 2 para remover uma midia.";
         cout << "\nDigite 3 para editar uma midia cadastrada.";
-        cout << "\nDigite 4 para listar todas as midias."
+        cout << "\nDigite 4 para listar todas as midias.";
         cout << "\nDigite 5 para visualizar quantidade de cada tipo de midia cadastrada.";
         cout << "\nDigite 0 para sair.";
         cout << "\nOpcao: ";
@@ -30,15 +31,16 @@ int main() {
             cout << "\nDigite 0 para sair.";
             cout << "\nOpcao: ";
             cin >> opcao;    
+
             if(opcao == 1) {
                 Cd *cd = new Cd();
-                cin >> cd;
+                cin >> *cd;
             } else if(opcao == 1) {
                 Dvd *dvd = new Dvd();
-                cin >> dvd;
+                cin >> *dvd;
             } else if(opcao == 1) {
                 Livro *livro = new Livro();
-                cin >> Livro;
+                cin >> *livro;
             }
 
             cout << "\nMidia cadastrada com sucesso!" << endl;
@@ -100,7 +102,9 @@ int main() {
                 getline(cin, titulo);
             }
         } else if(opcao == 4) {
-            
+            midias->listarTodasMidias();
+        } else if(opcao == 5) { 
+            midias->listarQtdMidiasPorTipo();
         }
     } while(opcao != 0);
 

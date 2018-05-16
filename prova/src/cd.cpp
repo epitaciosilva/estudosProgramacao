@@ -3,6 +3,9 @@
 #include <vector>
 using namespace std;
 
+#include "../include/midia.hpp"
+#include "../include/cd.hpp"
+
 Cd::Cd() { }
 
 Cd::~Cd() { }
@@ -15,28 +18,21 @@ Cd::Cd(string titulo, string autor, int anoLancamento, int qtdFaixas, string gra
 	this->gravadora = gravadora;
 }
 
-
-Cd::cadastrar() {
+void operator>> (istream &i, Cd &cd) { 
 	cout << "\nDigite o nome do Cd: ";
-	getline(cin, this->titulo);
+	getline(i, cd.titulo);
 
-	cin.ignore();
+	i.ignore();
 	cout << "\nDigite o compositor do Cd: ";
-	getline(cin, this->autor);
+	getline(i, cd.autor);
 
 	cout << "\nDigite o data de lancamento do Cd: ";
-	cin >> this->anoLancamento;
+	i >> cd.anoLancamento;
 
 	cout << "\nDigite o nome da gravadora do Cd: ";
-	getline(cin, this->gravadora);
+	getline(i, cd.gravadora);
 	
 	cout << "\nDigite quantidade de faixas do Cd: ";
-	cin >> this->qtdFaixas;
-
-	Midia cd = new Cd(this->titulo, this->autor, this->anoLancamento, this->qtdFaixas, this->gravadora);
- 
-    return cd;	
-
+	i >> cd.qtdFaixas;
 }
 
-#endif
