@@ -8,7 +8,7 @@ using namespace std;
 
 Livro::Livro() { }
 
-Livro::Livro(string titulo, string autor, int anoLancamento, string editora, string isbn) { 
+Livro::Livro(string titulo, string autor, string anoLancamento, string editora, string isbn) { 
 	this->titulo = titulo;
 	this->autor = autor;
 	this->anoLancamento = anoLancamento;
@@ -19,18 +19,19 @@ Livro::Livro(string titulo, string autor, int anoLancamento, string editora, str
 Livro::~Livro() { }
 
 void operator>> (istream &i, Livro &livro) {
-	cout << "\nDigite o titulo do livro: ";
+	i.ignore();
+	
+	cout << "Digite o titulo do livro: ";
 	getline(i, livro.titulo);
 
-	i.ignore();
-	cout << "\nDigite o autor do livro: ";
+	cout << "Digite o autor do livro: ";
 	getline(i, livro.autor);
 	
-	cout << "\nDigite a data de lancamento do livro: ";
+	cout << "Digite a data de lancamento do livro: ";
 	i >> livro.anoLancamento;
 
-	cout << "\nDigite o editora do livro: ";
+	i.ignore();
+	cout << "Digite o editora do livro: ";
 	getline(i, livro.editora);
-
 }
 

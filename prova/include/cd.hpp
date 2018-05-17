@@ -15,7 +15,7 @@ class Cd : public Midia {
 
     public:
         Cd();
-        Cd(string titulo, string autor, int anoLancamento, int qtdFaixas, string gravadora);
+        Cd(string titulo, string autor, string anoLancamento, int qtdFaixas, string gravadora);
         ~Cd();
         friend void operator>> (istream &i, Cd &cd);
 };

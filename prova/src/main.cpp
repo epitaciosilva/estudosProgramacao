@@ -12,7 +12,7 @@ using namespace std;
 int main() {
     int opcao;
     
-    Midia *midias = new Midia();
+    Midia midias;
 
     do {
         cout << "\nDigite 1 para cadastrar uma midia. ";
@@ -33,14 +33,23 @@ int main() {
             cin >> opcao;    
 
             if(opcao == 1) {
-                Cd *cd = new Cd();
-                cin >> *cd;
-            } else if(opcao == 1) {
-                Dvd *dvd = new Dvd();
-                cin >> *dvd;
-            } else if(opcao == 1) {
-                Livro *livro = new Livro();
-                cin >> *livro;
+                
+                Midia *cd = new Cd();
+                midias.cadastrarMidia(*cd);
+                delete cd;
+
+            } else if(opcao == 2) {
+                
+                Midia *dvd = new Dvd();
+                midias.cadastrarMidia(*dvd);
+                delete dvd;
+
+            } else if(opcao == 3) {
+                
+                Midia *livro = new Livro();
+                midias.cadastrarMidia(*livro);
+                delete livro;
+
             }
 
             cout << "\nMidia cadastrada com sucesso!" << endl;
@@ -53,25 +62,31 @@ int main() {
             cin >> opcao;
 
             if(opcao == 1) {
-                string nomeCd;
+                string titulo;
 
                 cin.ignore();
-                cout << "\nDigite o nome do CD.";
-                getline(cin, nomeCd);
+                cout << "\nDigite o nome do CD: ";
+                getline(cin, titulo);
+                
+                midias.removerMidia(titulo);
 
             } else if(opcao == 2) {
                 string titulo;
             
                 cin.ignore();
-                cout << "\nDigite o titulo do DvD.";
+                cout << "\nDigite o titulo do DvD: ";
                 getline(cin, titulo);
+                
+                midias.removerMidia(titulo);
 
             } else if(opcao == 3) {
                 string titulo;
 
                 cin.ignore();
-                cout << "\nDigite o titulo do Livro.";
+                cout << "\nDigite o titulo do Livro: ";
                 getline(cin, titulo);
+
+                midias.removerMidia(titulo);
             }
         } else if(opcao == 3) {
             cout << "\nDigite 1 para editar um CD. ";
@@ -81,11 +96,11 @@ int main() {
             cin >> opcao;
 
             if(opcao == 1) {
-                string nomeCd;
+                string titulo;
 
                 cin.ignore();
                 cout << "\nDigite o nome do CD.";
-                getline(cin, nomeCd);
+                getline(cin, titulo);
 
             } else if(opcao == 2) {
                 string titulo;
@@ -102,9 +117,9 @@ int main() {
                 getline(cin, titulo);
             }
         } else if(opcao == 4) {
-            midias->listarTodasMidias();
+            midias.listarTodasMidias();
         } else if(opcao == 5) { 
-            midias->listarQtdMidiasPorTipo();
+            midias.listarQtdMidiasPorTipo();
         }
     } while(opcao != 0);
 

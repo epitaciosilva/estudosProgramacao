@@ -8,7 +8,7 @@ using namespace std;
 
 Dvd::Dvd() { }
 
-Dvd::Dvd(string titulo, string autor, int anoLancamento, string duracao, string classificacao) {
+Dvd::Dvd(string titulo, string autor, string anoLancamento, string duracao, string classificacao) {
 	this->titulo = titulo;
 	this->autor = autor;
 	this->anoLancamento = anoLancamento;
@@ -19,20 +19,21 @@ Dvd::Dvd(string titulo, string autor, int anoLancamento, string duracao, string 
 Dvd::~Dvd() { }
 
 void operator>> (istream &i, Dvd &dvd) {
-	cout << "\nDigite o titulo do DvD: ";
+	i.ignore();
+	cout << "Digite o titulo do DvD: ";
 	getline(i, dvd.titulo);
 
-	i.ignore();
-	cout << "\nDigite o diretor do DvD: ";
+	cout << "Digite o diretor do DvD: ";
 	getline(i, dvd.autor);
 
-	cout << "\nDigite o data de lancamento do DvD: ";
+	cout << "Digite o data de lancamento do DvD: ";
 	i >> dvd.anoLancamento;
 
-	cout << "\nDigite a duracao do DvD: ";
+	i.ignore();
+	cout << "Digite a duracao do DvD: ";
 	getline(i, dvd.duracao);
 	
-	cout << "\nDigite classificacao do DvD: ";
+	cout << "Digite classificacao do DvD: ";
 	i >> dvd.classificacao;
 }
 

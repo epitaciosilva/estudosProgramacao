@@ -10,7 +10,7 @@ Cd::Cd() { }
 
 Cd::~Cd() { }
 
-Cd::Cd(string titulo, string autor, int anoLancamento, int qtdFaixas, string gravadora) {
+Cd::Cd(string titulo, string autor, string anoLancamento, int qtdFaixas, string gravadora) {
 	this->titulo = titulo;
 	this->autor = autor;
 	this->anoLancamento = anoLancamento;
@@ -19,20 +19,22 @@ Cd::Cd(string titulo, string autor, int anoLancamento, int qtdFaixas, string gra
 }
 
 void operator>> (istream &i, Cd &cd) { 
-	cout << "\nDigite o nome do Cd: ";
+	i.ignore();
+
+	cout << "Digite o nome do Cd: ";
 	getline(i, cd.titulo);
 
-	i.ignore();
-	cout << "\nDigite o compositor do Cd: ";
+	cout << "Digite o compositor do Cd: ";
 	getline(i, cd.autor);
 
-	cout << "\nDigite o data de lancamento do Cd: ";
+	cout << "Digite o data de lancamento do Cd: ";
 	i >> cd.anoLancamento;
 
-	cout << "\nDigite o nome da gravadora do Cd: ";
+	i.ignore();
+	cout << "Digite o nome da gravadora do Cd: ";
 	getline(i, cd.gravadora);
 	
-	cout << "\nDigite quantidade de faixas do Cd: ";
+	cout << "Digite quantidade de faixas do Cd: ";
 	i >> cd.qtdFaixas;
 }
 
