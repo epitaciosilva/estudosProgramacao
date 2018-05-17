@@ -34,19 +34,25 @@ int main() {
 
             if(opcao == 1) {
                 
-                Midia *cd = new Cd();
+                Midia *midia = new Cd();
+                Cd *cd = (Cd *)(midia);
+                std::cin >> cd;
                 midias.cadastrarMidia(*cd);
                 delete cd;
 
             } else if(opcao == 2) {
                 
-                Midia *dvd = new Dvd();
+                Midia *midia = new Dvd();
+                Dvd *dvd = (Dvd *)(midia);
+                std::cin >> dvd;
                 midias.cadastrarMidia(*dvd);
                 delete dvd;
 
             } else if(opcao == 3) {
                 
-                Midia *livro = new Livro();
+                Midia *midia = new Livro();
+                Livro *livro = (Livro *)(midia);
+                std::cin >> livro;
                 midias.cadastrarMidia(*livro);
                 delete livro;
 
@@ -58,7 +64,8 @@ int main() {
             cout << "\nDigite 1 para remover um CD. ";
             cout << "\nDigite 2 para remover um DvD. ";
             cout << "\nDigite 3 para remover um Livro. ";
-            cout << "\nDigite 0 para sair.";
+            cout << "\nDigite 0 para sair. ";
+            cout << "\nOpcao: ";
             cin >> opcao;
 
             if(opcao == 1) {

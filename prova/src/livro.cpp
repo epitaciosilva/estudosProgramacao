@@ -18,20 +18,28 @@ Livro::Livro(string titulo, string autor, string anoLancamento, string editora, 
 
 Livro::~Livro() { }
 
-void operator>> (istream &i, Livro &livro) {
+void operator>> (istream &i, Livro *livro) {
 	i.ignore();
 	
 	cout << "Digite o titulo do livro: ";
-	getline(i, livro.titulo);
+	getline(i, livro->titulo);
 
 	cout << "Digite o autor do livro: ";
-	getline(i, livro.autor);
+	getline(i, livro->autor);
 	
 	cout << "Digite a data de lancamento do livro: ";
-	i >> livro.anoLancamento;
+	i >> livro->anoLancamento;
 
 	i.ignore();
 	cout << "Digite o editora do livro: ";
-	getline(i, livro.editora);
+	getline(i, livro->editora);
 }
 
+ostream& operator<< (ostream &o, Livro &midia) {
+	o << "\nTitulo: " << midia.titulo;
+	o << "\nAutor: " << midia.autor;
+	o << "\nAno de lancamento: " << midia.anoLancamento;
+	o << "\nEditora: " << midia.editora;
+	
+	return o;
+}
