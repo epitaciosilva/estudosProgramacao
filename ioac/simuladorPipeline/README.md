@@ -50,3 +50,8 @@ Apenas utilize-os para montar a execução ciclo a ciclo do pipeline.
   * A saída da ferramenta deve mostrar:
     * A quantidade de ciclos total para executar as instruções
     * O estágio que cada instrução se encontra por ciclo.
+
+## Como executar
+  * make
+  * Insira as instruções no arquivo instrucoes.txt.
+  * bin/programa

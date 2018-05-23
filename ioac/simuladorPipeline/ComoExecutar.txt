@@ -1,7 +1,0 @@
-Dentro da pasta do trabalho basta realizar os seguintes comandos e procedimentos:
-	- make
-	- inserir as instruções no arquivo "instrucoes.txt", que está na raiz do trabalho.
-	- ./bin/programa
-
-Caso queira remover os arquivos executáveis, insira o comando abaixo:
-	- make clean
