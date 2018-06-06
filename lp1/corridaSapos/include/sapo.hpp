@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <random>
 
 class Sapo {
 	private: 
@@ -27,8 +28,14 @@ class Sapo {
 		~Sapo();
 		
 		void pular();
-		static std::uniform_int_distribution<> distancia;
+		void posCorrida(bool vitoria, bool empate);
+		void setDistanciaPercorrida(int distanciaPercorrida);
+		int getDistanciaPercorrida();
+
 		static int distanciaTotalCorrida;
+		static std::random_device rd;
+		static std::mt19937 gen;
+		static std::uniform_int_distribution<> dis;
 };
 
 #endif
