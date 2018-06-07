@@ -7,15 +7,15 @@
 #include "../include/lerArquivo.hpp"
 
 int main() {
-    std::string arquivoSapo;
-    std::string arquivoPistas;
+    std::string arquivoSapo = "./sapos.txt";
+    std::string arquivoPistas = "./pistas.txt";
     Corrida corrida;
 
-    std::cout << "Insira o local do arquivo dos sapos: \n";
-    std::cin >> arquivoSapo;
+    // std::cout << "Insira o local do arquivo dos sapos: \n";
+    // std::cin >> arquivoSapo;
 
-    std::cout << "Insira o local do arquivo das pistas: \n";
-    std::cin >> arquivoPistas;
+    // std::cout << "Insira o local do arquivo das pistas: \n";
+    // std::cin >> arquivoPistas;
 
     corrida.inserirSapos(arquivoSapo);
     corrida.inserirPistas(arquivoPistas);
@@ -36,11 +36,35 @@ int main() {
         } else if(opcao == 2) {
             corrida.imprimirEstatisticasPistas();
         } else if(opcao == 3) {
-            corrida.iniciarCorrida();
+            corrida.imprimirEstatisticasPistas();
+            std::string nomePista;
+
+            std::cout << "\nInsira nome da pista que acontecerá a corrida: \n";
+            std::cin >> nomePista;
+            
+            corrida.iniciarCorrida(nomePista);
         } else if(opcao == 4) {
+            std::string descricao;
+            std::string identificador;
 
+            std::cout << "\nDigite o nome do sapo: \n";
+            std::cin >> descricao;
+            std::cout << "\nDigite o identificador do sapo: \n";
+            std::cin >> identificador;
+            
+            Sapo sapo(descricao, identificador);
+            corrida.escreverSapo(sapo, arquivoSapo);
         } else if(opcao == 5) {
+            std::string descricao;
+            int distancia;
 
+            std::cout << "\nDigite o nome da pista: \n";
+            std::cin >> descricao;
+            std::cout << "\nDigite o tamanho da pista: \n";
+            std::cin >> distancia;
+            
+            Pista pista(descricao, distancia);
+            corrida.escreverPista(pista, arquivoPistas);
         }
     }
     return 0;

@@ -21,6 +21,8 @@ class LerArquivo {
         std::vector<Pista> lerPistas(std::string localArquivo); 
         std::vector<Sapo> lerSapos(std::string localArquivo); 
         std::vector<std::string> getLinhas();
+        void escreverPista(std::string localArquivo, Pista pista);
+        void escreverSapo(std::string localArquivo, Sapo sapo); 
 };
 
 #endif

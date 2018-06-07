@@ -24,9 +24,7 @@ void LerArquivo::lerArquivo(std::string localArquivo) {
 }
 
 std::vector<Pista> LerArquivo::lerPistas(std::string localArquivo) {
-    //Lendo arquivo  
     this->lerArquivo(localArquivo);
-
     std::vector<Pista> pistas;
     size_t i = 0;
 
@@ -99,4 +97,21 @@ std::vector<Sapo> LerArquivo::lerSapos(std::string localArquivo) {
     this->linhas.erase(this->linhas.begin()+this->linhas.size());
 
     return sapos;
+}
+
+void LerArquivo::escreverSapo(std::string localArquivo, Sapo sapo) {
+    std::ofstream arquivo(localArquivo, std::fstream::app);
+    
+    std::string descricao = sapo.getDescricao() + "-" + sapo.getIdentificador();
+    arquivo << descricao;   
+    arquivo.close();
+}
+
+void LerArquivo::escreverPista(std::string localArquivo, Pista pista) {
+    std::ofstream arquivo(localArquivo, std::fstream::app);
+    
+    std::string descricao = pista.getDescricao() + "-" + (char)pista.getDistancia();
+    arquivo << "\n" << descricao;   
+    arquivo.close();
+
 }
