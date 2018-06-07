@@ -19,19 +19,14 @@ class Sapo {
 			
 	public: 
 		Sapo();
-		Sapo(
-			std::string nome, int identificador, 
-			int distanciaPercorrida, int quantidadePulos, 
-			int quantidadeCorridas, int vitorias, 
-			int empates, int quantidadeTotalPulos
-			); 
+		Sapo(std::string nome, int identificador); 
 		~Sapo();
 		
 		void pular();
 		void posCorrida(bool vitoria, bool empate);
 		void setDistanciaPercorrida(int distanciaPercorrida);
 		int getDistanciaPercorrida();
-
+		int getIdentificador();
 		static int distanciaTotalCorrida;
 		static std::random_device rd;
 		static std::mt19937 gen;

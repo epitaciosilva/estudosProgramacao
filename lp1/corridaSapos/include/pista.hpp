@@ -14,6 +14,7 @@ class Pista {
         int quantidadeSapos;
         std::vector<Sapo> sapos;
         std::vector<Sapo> classificacao;
+        void vetorAuxiliar(int *vet, int tam);
         
     public:
         Pista();
@@ -22,7 +23,6 @@ class Pista {
         void setSapos(Sapo sapo);
         void corrida();
 
-
-}
+};
 
 #endif

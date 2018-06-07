@@ -1,41 +1,70 @@
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <random>
 
-#include "../include/sapo.h"
-int Sapo::distanciaTotal;
+#include "../include/sapo.hpp"
+// int Sapo::distanciaTotal;
 
-std::uniform_int_distribution<> Sapo::distancia(1,100); 
-
+std::random_device Sapo::rd{};
+std::mt19937 Sapo::gen(Sapo::rd());
+std::uniform_int_distribution<> Sapo::dis(1,100);
 
 Sapo::Sapo() { }
 
-Sapo::Sapo(
-	std::string nome, int identificador, 
-	int distanciaPercorrida, int quantidadePulos, 
-	int quantidadeCorridas, int vitorias, 
-	int empates, int quantidadeTotalPulos
-	) {
+Sapo::Sapo(std::string nome, int identificador) {
 
 	this->nome = nome;
 	this->identificador = identificador;
-	this->distanciaPercorrida = distanciaPercorrida;
-	this->quantidadePulos = quantidadePulos;
-	this->quantidadeCorridas = quantidadeCorridas;
-	this->vitorias = vitorias;
-	this->empates = empates;
-	this->quantidadeTotalPulos = quantidadeTotalPulos;
-	// this->inpulsoMaximo = 
+	this->distanciaPercorrida = 0;
+	this->quantidadePulos = 0;
+	this->quantidadeCorridas = 0;
+	this->vitorias = 0;
+	this->empates = 0;
+	this->quantidadeTotalPulos = 0;
+	this->impulsoMaximo = std::round(dis(gen));
 }
 
 Sapo::~Sapo() {}
 
-void Sapo::pular() { 
-	// std::srand(std::time(nullptr));
-	// distanciaPercorrida += std::rand() % impulsoMaximo + 1;
-	// pulos++;
+void Sapo::setDistanciaPercorrida(int distanciaPercorrida) {
+	this->distanciaPercorrida += distanciaPercorrida;
 }
+
+void Sapo::posCorrida(bool vitoria, bool empate) {
+	this->quantidadeCorridas++;
+
+	if(vitoria) {
+		this->vitorias++;
+	} else if(empate) {
+		this->empates++;
+	}
+}
+
+void Sapo::pular() { 
+	std::uniform_int_distribution<int> distribution(1, this->impulsoMaximo);
+	this->distanciaPercorrida += std::round(distribution(gen));
+	quantidadePulos++;
+}
+
+int Sapo::getDistanciaPercorrida() {
+	return this->distanciaPercorrida;
+}
+
+int Sapo::getIdentificador() {
+	return this->identificador;
+}
+
+// Sapo::setQuantidadeCorridas() {
+// 	this->quantidadeCorridas++;
+// }
+
+// Sapo::setVitorias() {
+// 	this->vitorias++;
+// }
+
+// Sapo::setEmpates() {
+// 	this->empates++;
+// }
 
 // int Sapo::getIdentificador() {
 // 	return identificador;
@@ -57,9 +86,6 @@ void Sapo::pular() {
 // 	return pulos;
 // }
 
-// int Sapo::getDistanciaTotal() {
-// 	return distanciaTotal;
-// }
 
 // int Sapo::getDistanciaPercorrida() {
 // 	return distanciaPercorrida;
