@@ -1,3 +1,12 @@
+/**
+* @author Epitácio Bessa
+* @file corrida.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/src/corrida.cpp
+* @since 29/05/18
+* @date 07/06/18
+* @brief Implementações dos métodos da classe corrida
+*/
+
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -10,16 +19,28 @@ Corrida::Corrida() { }
 
 Corrida::~Corrida() { }
 
+/**
+ * @brief Pega os sapos que estavam no arquivo e salvam no vetor
+ * @param localArquivo é o local do arquivo que deverá ser lido
+ */
 void Corrida::inserirSapos(std::string localArquivo) {
     LerArquivo arquivoSapos;    
     this->sapos = arquivoSapos.lerSapos(localArquivo);
 } 
 
+
+/**
+ * @brief Pega as pistas que estavam no arquivo e salvam no vetor
+ * @param localArquivo é o local do arquivo que deverá ser lido
+ */
 void Corrida::inserirPistas(std::string localArquivo) {
     LerArquivo arquivoSapos;    
     this->pistas = arquivoSapos.lerPistas(localArquivo);
 } 
 
+/**
+ * @brief Mostra todos os sapos presentes na corrida.
+ */
 void Corrida::imprimirSapos() {
     
     //Imprimir todos os sapos 
@@ -31,6 +52,10 @@ void Corrida::imprimirSapos() {
     }
 }
 
+/**
+ * @brief Mostra as informações mais detalhadas de todos os sapos, como vitórias,
+ * e total percorrido.
+ */
 void Corrida::imprimirEstatisticasSapos() { 
     for(size_t i = 0; i < this->sapos.size(); i++) {
         std::cout << "\n------ " << (i + 1) << "° Sapo ------" << std::endl;
@@ -38,13 +63,20 @@ void Corrida::imprimirEstatisticasSapos() {
     }
 }
 
+/**
+ * @brief Mostra todas as pistas disponíveis
+ */
 void Corrida::imprimirEstatisticasPistas() { 
     for(size_t i = 0; i < this->pistas.size(); i++) {
         std::cout << "\n------ " << (i + 1) << "°  Pista ------" << std::endl;
         std::cout << this->pistas[i];
     }
 }
-
+/**
+ * @brief Mostra todos os sapos presentes na corrida.
+ * @param nomePista é o nome da pista que deve acontecer a corrida
+ * @return Retorna o index da pista do vetor de pistas.
+ */
 size_t Corrida::buscarCorrida(std::string nomePista) {
     for(size_t i = 0; i < this->pistas.size(); i++) {
         if(this->pistas[i].getDescricao() == nomePista) {
@@ -55,6 +87,10 @@ size_t Corrida::buscarCorrida(std::string nomePista) {
     return (size_t)-1;
 }
 
+/**
+ * @brief Inicia a corrida, fazendo com que os sapos pulem até o fim da corrida.
+ * @param nomePista é o nome da pista que deve acontecer a corrida
+ */
 void Corrida::iniciarCorrida(std::string nomePista) {
     size_t indexPista = this->buscarCorrida(nomePista);
     
@@ -95,6 +131,11 @@ void Corrida::iniciarCorrida(std::string nomePista) {
 
     this->imprimirRank(indexPista);
 }
+
+/**
+ * @brief Salva o rank de cada corrida no arquivo 'rank.txt'
+ * @param indexPista é o index do vetor na qual contém a pista em que foi realizada a corrida.
+ */
 void Corrida::imprimirRank(size_t indexPista) {
     //Imprime o rank da corrida 
     std::ofstream arquivo("./rank.txt", std::ostream::app);
@@ -137,12 +178,20 @@ void Corrida::imprimirRank(size_t indexPista) {
     this->classificacao.clear();
 }
 
+/**
+ * @brief Salva os sapos que foram criados
+ * @param localArquivo local do arquivo que as informações derão ser salvas.
+ */
 void Corrida::escreverSapo(Sapo sapo, std::string localArquivo) {
     this->sapos.push_back(sapo);
     LerArquivo arquivo;
     arquivo.escreverSapo(localArquivo, sapo);
 }
 
+/**
+ * @brief Salva as pistas que foram criados
+ * @param localArquivo local do arquivo que as informações derão ser salvas.
+ */
 void Corrida::escreverPista(Pista pista, std::string localArquivo) {
     LerArquivo arquivo;
     arquivo.escreverPista(localArquivo, pista);

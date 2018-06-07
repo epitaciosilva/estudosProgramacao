@@ -1,3 +1,11 @@
+/**
+* @author Epitácio Bessa
+* @file corrida.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/include/corrida.hpp
+* @since 29/05/18
+* @date 07/06/18
+*/
+
 #ifndef _CORRIDA_
 #define _CORRIDA_
 

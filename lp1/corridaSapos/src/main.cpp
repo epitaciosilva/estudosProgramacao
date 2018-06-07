@@ -1,3 +1,13 @@
+/**
+* @author Epitácio Bessa
+* @file main.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/src/main.cpp
+* @since 29/05/18
+* @date 07/06/18
+* @brief Implementações da classe principal ou main
+*/
+
+
 #include <iostream>
 #include <string>
 
@@ -10,12 +20,6 @@ int main() {
     std::string arquivoSapo = "./sapos.txt";
     std::string arquivoPistas = "./pistas.txt";
     Corrida corrida;
-
-    // std::cout << "Insira o local do arquivo dos sapos: \n";
-    // std::cin >> arquivoSapo;
-
-    // std::cout << "Insira o local do arquivo das pistas: \n";
-    // std::cin >> arquivoPistas;
 
     corrida.inserirSapos(arquivoSapo);
     corrida.inserirPistas(arquivoPistas);

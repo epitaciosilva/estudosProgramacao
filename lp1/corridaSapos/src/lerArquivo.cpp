@@ -1,10 +1,22 @@
+/**
+* @author Epitácio Bessa
+* @file lerArquivo.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/src/lerArquivo.cpp
+* @since 29/05/18
+* @date 07/06/18
+* @brief Implementações dos métodos da classe lerArquivo
+*/
+
 #include "../include/lerArquivo.hpp"
 
 LerArquivo::LerArquivo() { }
 
 LerArquivo::~LerArquivo() { }
- 
-//Lendo arquivos. 
+
+/**
+ * @brief Função que ler todas as linhas de um arquivo.
+ * @param localArquivo é o local do arquivo que deverá ser lido
+ */
 void LerArquivo::lerArquivo(std::string localArquivo) {
     std::string line;
     std::ifstream arquivo(localArquivo);
@@ -23,6 +35,11 @@ void LerArquivo::lerArquivo(std::string localArquivo) {
     arquivo.close();
 }
 
+
+/**
+ * @brief Função que extrai as informações das pistas
+ * @param localArquivo é o local do arquivo que deverá ser lido
+ */
 std::vector<Pista> LerArquivo::lerPistas(std::string localArquivo) {
     this->lerArquivo(localArquivo);
     std::vector<Pista> pistas;
@@ -62,6 +79,11 @@ std::vector<Pista> LerArquivo::lerPistas(std::string localArquivo) {
     return pistas;
 }
 
+
+/**
+ * @brief Função que extrai as informações dos sapos
+ * @param localArquivo é o local do arquivo que deverá ser lido
+ */
 std::vector<Sapo> LerArquivo::lerSapos(std::string localArquivo) {
 
     //Lendo arquivo  
@@ -99,7 +121,14 @@ std::vector<Sapo> LerArquivo::lerSapos(std::string localArquivo) {
     return sapos;
 }
 
+
+/**
+ * @brief Função que salva as informações dos sapos criados pelo usuário
+ * @param localArquivo é o local do arquivo que deverá ser salvo
+ * @param sapo são as informações que serão salvas no arquivo
+ */
 void LerArquivo::escreverSapo(std::string localArquivo, Sapo sapo) {
+    //Abre o arquivo no mode de edição, para que as informações sejam inseridas no fim do arquivo.
     std::ofstream arquivo(localArquivo, std::fstream::app);
     
     std::string descricao = sapo.getDescricao() + "-" + sapo.getIdentificador();
@@ -107,10 +136,16 @@ void LerArquivo::escreverSapo(std::string localArquivo, Sapo sapo) {
     arquivo.close();
 }
 
+
+/**
+ * @brief Função que salva as informações das pistas criadas pelo usuário
+ * @param localArquivo é o local do arquivo que deverá ser salvo
+ * @param pista são as informações que serão salvas no arquivo
+ */
 void LerArquivo::escreverPista(std::string localArquivo, Pista pista) {
+    //Abre o arquivo no mode de edição, para que as informações sejam inseridas no fim do arquivo.
     std::ofstream arquivo(localArquivo, std::fstream::app);
     
     arquivo << "\n" << pista.getDescricao() << "-" << pista.getDistancia();
     arquivo.close();
-
 }

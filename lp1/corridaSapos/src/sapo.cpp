@@ -1,3 +1,12 @@
+/**
+* @author Epitácio Bessa
+* @file corrida.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/src/sapo.cpp
+* @since 29/05/18
+* @date 07/06/18
+* @brief Implementações dos métodos da classe sapo
+*/
+
 #include "../include/sapo.hpp"
 // int Sapo::distanciaTotal;
 

@@ -1,3 +1,12 @@
+/**
+* @author Epitácio Bessa
+* @file corrida.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/include/sapo.hpp
+* @since 29/05/18
+* @date 07/06/18
+*/
+
+
 #ifndef _SAPOS_
 #define _SAPOS_
 

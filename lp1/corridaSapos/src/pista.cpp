@@ -1,3 +1,12 @@
+/**
+* @author Epitácio Bessa
+* @file sapo.cpp
+* @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/src/pista.cpp
+* @since 29/05/18
+* @date 07/06/18
+* @brief Implementações dos métodos da classe pista
+*/
+
 #include "../include/pista.hpp"
 
 Pista::Pista() { }
