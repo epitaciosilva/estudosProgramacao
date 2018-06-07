@@ -16,6 +16,7 @@ class Pista {
         Pista();
         ~Pista();
         Pista(std::string descricao, int distancia);
+        std::string getDescricao();
         int getDistancia();
 };
 

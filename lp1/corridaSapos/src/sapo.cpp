@@ -11,9 +11,8 @@ std::uniform_int_distribution<> Sapo::dis(1,100);
 
 Sapo::Sapo() { }
 
-Sapo::Sapo(std::string nome, int identificador) {
-
-	this->nome = nome;
+Sapo::Sapo(std::string descricao, std::string identificador) {
+	this->descricao = descricao;
 	this->identificador = identificador;
 	this->distanciaPercorrida = 0;
 	this->quantidadePulos = 0;
@@ -50,43 +49,18 @@ int Sapo::getDistanciaPercorrida() {
 	return this->distanciaPercorrida;
 }
 
-int Sapo::getIdentificador() {
+std::string Sapo::getIdentificador() {
 	return this->identificador;
 }
 
-// Sapo::setQuantidadeCorridas() {
-// 	this->quantidadeCorridas++;
+std::string Sapo::getDescricao() {
+	return this->descricao;
+}
+
+// void Sapo::setDescricao(std::string descricao) {
+// 	this->descricao = descricao;
 // }
 
-// Sapo::setVitorias() {
-// 	this->vitorias++;
-// }
-
-// Sapo::setEmpates() {
-// 	this->empates++;
-// }
-
-// int Sapo::getIdentificador() {
-// 	return identificador;
-// }
-
-// void Sapo::setIdentificador(int ident) {
-// 	identificador = ident;
-// }
-
-// int Sapo::getImpulsoMaximo() {
-// 	return impulsoMaximo;
-// }
-
-// void Sapo::setImpulsoMaximo(int impulso){
-// 	impulsoMaximo = impulso;
-// }
-
-// int Sapo::getPulos() {
-// 	return pulos;
-// }
-
-
-// int Sapo::getDistanciaPercorrida() {
-// 	return distanciaPercorrida;
+// void Sapo::setIdentificador(std::string identificador) {
+// 	this->identificador = identificador;
 // }

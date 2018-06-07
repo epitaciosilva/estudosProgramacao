@@ -16,3 +16,7 @@ Pista::Pista(std::string descricao, int distancia) {
 int Pista::getDistancia() {
     return this->distancia;
 }
+
+std::string Pista::getDescricao() {
+    return this->descricao;
+}

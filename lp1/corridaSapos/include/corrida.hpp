@@ -10,15 +10,16 @@
 
 class Corrida { 
     private:
-        Pista pista;
+        std::vector<Pista> pistas;
         std::vector<Sapo> sapos;
         std::vector<Sapo> classificacao;
         
     public:
         Corrida();
-        Corrida(Pista pista);
         ~Corrida();
         void corrida();
+        void inserirSaposPistas(std::vector<std::string> linhas);
+        void imprimirSaposPistas();
 };
 
 #endif
