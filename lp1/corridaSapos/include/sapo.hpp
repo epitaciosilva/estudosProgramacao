@@ -25,9 +25,8 @@ class Sapo {
 		void pular();
 		void posCorrida(bool vitoria, bool empate);
 		void setDistanciaPercorrida(int distanciaPercorrida);
-		// void setDescricao(std::string descricao);
-		// void setIdentificador(std::string identificador);
 		int getDistanciaPercorrida();
+		int getQuantidadePulos();
 		std::string getIdentificador();
 		std::string getDescricao();
 		

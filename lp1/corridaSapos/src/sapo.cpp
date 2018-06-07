@@ -30,19 +30,37 @@ void Sapo::setDistanciaPercorrida(int distanciaPercorrida) {
 }
 
 void Sapo::posCorrida(bool vitoria, bool empate) {
-	this->quantidadeCorridas++;
+	//Zera a distancia e a quantidade de pulos para não interferir na próxima corrida.
+	this->distanciaPercorrida = 0;
+	this->quantidadePulos = 0;
 
+	//Aumenta ao termino de cada corrida.
+	this->quantidadeCorridas++;
+	
+	//Adicionando vitorias e empates.
 	if(vitoria) {
 		this->vitorias++;
-	} else if(empate) {
+	} 
+	if(empate) {
 		this->empates++;
 	}
 }
 
 void Sapo::pular() { 
+	
 	std::uniform_int_distribution<int> distribution(1, this->impulsoMaximo);
-	this->distanciaPercorrida += std::round(distribution(gen));
+	int pulo = std::round(distribution(gen));
+	
+	//Incrementa a distancia percorrida pelo sapo na corrida.
+	this->distanciaPercorrida += pulo;
+	//Aumenta a quantidade de pulos.
 	quantidadePulos++;
+	quantidadeTotalPulos++;
+
+	//Imprime as informações do sapo e o pulo dado.
+	std::cout << "\nSapo: " << this->descricao << std::endl;
+	std::cout << "Identificador: " << this->identificador << std::endl;
+	std::cout << "Pulo: " << pulo << std::endl;
 }
 
 int Sapo::getDistanciaPercorrida() {
@@ -57,10 +75,6 @@ std::string Sapo::getDescricao() {
 	return this->descricao;
 }
 
-// void Sapo::setDescricao(std::string descricao) {
-// 	this->descricao = descricao;
-// }
-
-// void Sapo::setIdentificador(std::string identificador) {
-// 	this->identificador = identificador;
-// }
+int Sapo::getQuantidadePulos() {
+	return this->quantidadePulos;
+}

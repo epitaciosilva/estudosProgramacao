@@ -12,6 +12,6 @@ int main() {
  
     arquivo.lerArquivo("./arquivo.txt");
     corrida.inserirSaposPistas(arquivo.getLinhas());
-
+    corrida.iniciarCorrida();
     return 0;
 }

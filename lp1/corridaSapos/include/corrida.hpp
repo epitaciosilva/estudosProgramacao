@@ -17,9 +17,10 @@ class Corrida {
     public:
         Corrida();
         ~Corrida();
-        void corrida();
+        void iniciarCorrida();
         void inserirSaposPistas(std::vector<std::string> linhas);
         void imprimirSaposPistas();
+        void imprimirRank();
 };
 
 #endif
