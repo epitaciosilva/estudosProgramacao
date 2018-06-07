@@ -1,6 +1,6 @@
 /**
 * @author Epitácio Bessa
-* @file corrida.cpp
+* @file lerArquivo.hpp
 * @sa https://github.com/epitaciosilva/cppClass/blob/corridaSapos/lp1/corridaSapos/include/lerArquivo.hpp
 * @since 29/05/18
 * @date 07/06/18
