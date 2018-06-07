@@ -5,8 +5,6 @@
 #include <string>
 #include <vector>
 
-#include "sapo.hpp"
-
 class Pista { 
     private:
         std::string descricao;
@@ -18,6 +16,7 @@ class Pista {
         Pista(std::string descricao, int distancia);
         std::string getDescricao();
         int getDistancia();
+        friend std::ostream& operator<< (std::ostream &o, Pista pista);
 };
 
 #endif

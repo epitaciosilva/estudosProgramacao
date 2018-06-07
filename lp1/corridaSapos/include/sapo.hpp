@@ -30,6 +30,8 @@ class Sapo {
 		std::string getIdentificador();
 		std::string getDescricao();
 		
+		friend std::ostream& operator<< (std::ostream &o, Sapo sapo);
+
 		static int distanciaTotalCorrida;
 		static std::random_device rd;
 		static std::mt19937 gen;

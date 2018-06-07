@@ -6,6 +6,9 @@
 #include <vector>
 #include <fstream>
 
+#include "../include/pista.hpp"
+#include "../include/sapo.hpp"
+
 class LerArquivo { 
     private:
         std::vector<std::string> linhas;
@@ -15,6 +18,8 @@ class LerArquivo {
         LerArquivo();
         ~LerArquivo();
         void lerArquivo(std::string localArquivo);
+        std::vector<Pista> lerPistas(std::string localArquivo); 
+        std::vector<Sapo> lerSapos(std::string localArquivo); 
         std::vector<std::string> getLinhas();
 };
 

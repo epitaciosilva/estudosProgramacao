@@ -7,6 +7,7 @@
 
 #include "sapo.hpp"
 #include "pista.hpp"
+#include "lerArquivo.hpp"
 
 class Corrida { 
     private:
@@ -18,8 +19,11 @@ class Corrida {
         Corrida();
         ~Corrida();
         void iniciarCorrida();
-        void inserirSaposPistas(std::vector<std::string> linhas);
-        void imprimirSaposPistas();
+        void inserirSapos(std::string localArquivo);
+        void inserirPistas(std::string localArquivo);
+        void imprimirEstatisticasSapos();
+        void imprimirEstatisticasPistas();
+        void imprimirSapos();
         void imprimirRank();
 };
 

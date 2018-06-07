@@ -4,95 +4,51 @@
 #include <algorithm>
 
 #include "../include/corrida.hpp"
-#include "../include/pista.hpp"
-#include "../include/sapo.hpp"
+#include "../include/lerArquivo.hpp"
 
 Corrida::Corrida() { }
 
 Corrida::~Corrida() { }
 
-void Corrida::inserirSaposPistas(std::vector<std::string> linhas) {
-    size_t i = 1;
-
-    //Enquanto a linha que sinaliza as pistas não chegar, continua lendo as informações dos sapos;
-    while(linhas[i] != "PISTAS") {
-        std::vector<std::string> atributos;
-        std::string pedaco = "";
-
-        //Pega carácter por carácter até encontrar o '-' ou o '\n' que sinalizam o termino de uma informação.
-        for(auto caracter:linhas[i]) {
-            if(caracter != '-' && caracter != '\n') {
-                pedaco += caracter;
-            }else if(pedaco != "") {
-                atributos.push_back(pedaco);
-                pedaco = "";
-            }
-        }
-
-        if(pedaco != "") {
-            atributos.push_back(pedaco);
-        }
-        
-        //Alocando os atributos descritos no arquivo para um novo objeto Sapo;
-        Sapo sapo(atributos[0], atributos[1]);
-        this->sapos.push_back(sapo);
-        i++;
-    }
-    
-    //Pula a linha com a informação "PISTAS"
-    i++;
-
-    //Até chegar ao fim das linhas do arquivo, fica lendo as informações das pistas.
-    while(i < linhas.size()) {
-        std::vector<std::string> atributos;
-        std::string pedaco = "";
-        
-        for(auto caracter:linhas[i]) {
-            if(caracter != '-' && caracter != '\n') {
-                pedaco += caracter;
-            }else if(pedaco != "") {
-                atributos.push_back(pedaco);
-                pedaco = "";
-            }
-        }
-
-        if(pedaco != "") {
-            atributos.push_back(pedaco);
-        }
-
-        //Transformar std::string para inteiro.
-        std::string::size_type sz;  
-        int distancia = std::stoi(atributos[1], &sz);
-        
-        //Alocando os atributos descritos no arquivo para um novo objeto Pista.
-        Pista pista(atributos[0], distancia);
-        this->pistas.push_back(pista);
-        i++;
-    }
-
-    this->imprimirSaposPistas();
+void Corrida::inserirSapos(std::string localArquivo) {
+    LerArquivo arquivoSapos;    
+    this->sapos = arquivoSapos.lerSapos(localArquivo);
 } 
 
-void Corrida::imprimirSaposPistas() {
+void Corrida::inserirPistas(std::string localArquivo) {
+    LerArquivo arquivoSapos;    
+    this->pistas = arquivoSapos.lerPistas(localArquivo);
+} 
+
+
+void Corrida::imprimirSapos() {
     
     //Imprimir todos os sapos 
+    std::cout << "\n------- SAPOS QUE PARTICIPARAO DA CORRIDA -------" << std::endl;
     for(size_t i = 0; i < this->sapos.size(); i++) {
         std::cout << "\n------ Sapo " << i+1 << " ------"<< std::endl;
         std::cout << "Descricao: " << this->sapos[i].getDescricao() << std::endl;
         std::cout << "Identificador: " << this->sapos[i].getIdentificador() << std::endl;
     }
+}
 
-    //Imprimir todas as pistas
+void Corrida::imprimirEstatisticasSapos() { 
+    for(size_t i = 0; i < this->sapos.size(); i++) {
+        std::cout << "\n------ " << (i + 1) << "° Sapo ------" << std::endl;
+        std::cout << this->sapos[i];
+    }
+}
+
+void Corrida::imprimirEstatisticasPistas() { 
     for(size_t i = 0; i < this->pistas.size(); i++) {
-        std::cout << "\n------ Pista " << i+1 << " ------"<< std::endl;
-        std::cout << "Descricao: " << this->pistas[i].getDescricao() << std::endl;
-        std::cout << "Distancia: " << this->pistas[i].getDistancia() << std::endl;
+        std::cout << "\n------ " << (i + 1) << "°  Pista ------" << std::endl;
+        std::cout << this->pistas[i];
     }
 }
 
 void Corrida::imprimirRank() {
-
     //Imprime o rank da corrida 
+    std::cout << "\n------------------ RANK ------------------"<< std::endl;
     for(size_t i = 0; i < this->classificacao.size(); i++) {
         std::cout << "\n------ " << i+1 << "° lugar------"<< std::endl;
         std::cout << "Sapo: " << this->classificacao[i].getDescricao() << std::endl;
@@ -114,10 +70,14 @@ void Corrida::imprimirRank() {
         }
     }
 
+    //Limpando a classificação.
+    this->classificacao.erase(this->classificacao.begin()+this->classificacao.size());
 }
 
 void Corrida::iniciarCorrida() {
     
+    std::cout << "\n\n---------- CORRIDA INICIALIZADA -----------" << std::endl;
+
     for(size_t i = 0; i < this->sapos.size(); i++) {
         bool podePular = true;
 

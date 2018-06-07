@@ -1,7 +1,3 @@
-#include <iostream>
-#include <string>
-#include <random>
-
 #include "../include/sapo.hpp"
 // int Sapo::distanciaTotal;
 
@@ -60,7 +56,22 @@ void Sapo::pular() {
 	//Imprime as informações do sapo e o pulo dado.
 	std::cout << "\nSapo: " << this->descricao << std::endl;
 	std::cout << "Identificador: " << this->identificador << std::endl;
-	std::cout << "Pulo: " << pulo << std::endl;
+	std::cout << "Tamanho do pulo: " << pulo << std::endl;
+	std::cout << "Distancia ja alcancada: " << this->distanciaPercorrida << std::endl;
+}
+
+std::ostream& operator<< (std::ostream &o, Sapo sapo) {
+    
+	//Estatísticas dos sapos
+	o << "Descricao: " << sapo.descricao << std::endl;
+    o << "Identificador: " << sapo.identificador << std::endl;
+	o << "Vitorias: " << sapo.vitorias << std::endl;
+	o << "Empates: " << sapo.empates << std::endl;
+	o << "Impulso maximo: " << sapo.impulsoMaximo << std::endl;
+    o << "Quantidade de corridas: " << sapo.quantidadeCorridas << std::endl;
+	o << "Quantidade total de pulos: " << sapo.quantidadeTotalPulos << std::endl;
+    
+    return o;
 }
 
 int Sapo::getDistanciaPercorrida() {
