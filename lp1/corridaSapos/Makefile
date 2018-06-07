@@ -1,7 +1,7 @@
 PROG = executavel
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic
-OBJS = main.o sapo.o pista.o
+OBJS = main.o sapo.o pista.o corrida.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -15,6 +15,9 @@ sapo.o: include/sapo.hpp
 
 pista.o: include/pista.hpp
 	$(CC) $(CPPFLAGS) -c src/pista.cpp
+
+corrida.o: include/corrida.hpp
+	$(CC) $(CPPFLAGS) -c src/corrida.cpp
 
 clean: 
 	rm -f build/*.o
