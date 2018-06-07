@@ -6,7 +6,12 @@
     * Sapos: nome-identificador  
     * Pistas: nome-tamanho
   * ./bin/executavel
-  
+
+### Gerar documentação
+Para gerar a documentação do projeto basta executar o comando abaixo e acessar o arquivo **docs/index.html**  
+  * doxygen Doxyfile
+ 
+
 ### Descrição da tarefa
 Implemente em C++ um programa que simule a uma corrida de sapos. Implemente
 uma classe chamada Sapo contendo: 
