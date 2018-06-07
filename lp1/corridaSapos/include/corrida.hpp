@@ -25,7 +25,7 @@ class Corrida {
         void imprimirEstatisticasSapos();
         void imprimirEstatisticasPistas();
         void imprimirSapos();
-        void imprimirRank();
+        void imprimirRank(size_t indexPista);
         void escreverSapo(Sapo sapo, std::string localArquivo);
         void escreverPista(Pista pista, std::string localArquivo);
         

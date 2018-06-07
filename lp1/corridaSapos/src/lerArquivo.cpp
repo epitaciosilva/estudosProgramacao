@@ -110,8 +110,7 @@ void LerArquivo::escreverSapo(std::string localArquivo, Sapo sapo) {
 void LerArquivo::escreverPista(std::string localArquivo, Pista pista) {
     std::ofstream arquivo(localArquivo, std::fstream::app);
     
-    std::string descricao = pista.getDescricao() + "-" + (char)pista.getDistancia();
-    arquivo << "\n" << descricao;   
+    arquivo << "\n" << pista.getDescricao() << "-" << pista.getDistancia();
     arquivo.close();
 
 }
