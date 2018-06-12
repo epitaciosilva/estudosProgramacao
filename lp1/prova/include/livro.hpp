@@ -17,8 +17,7 @@ class Livro : public Midia {
         Livro();
         Livro(string titulo, string autor, string anoLancamento, string editora, string isbn);
         ~Livro();
-        friend void operator>> (istream &i, Livro *livro);
-        friend ostream& operator<< (ostream &o, Livro &midia);
+        friend void operator>> (istream &i, Livro &livro);
         // Livro cadastrar();
 
 };

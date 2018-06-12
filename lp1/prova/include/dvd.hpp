@@ -16,8 +16,7 @@ class Dvd : public Midia {
         Dvd();
         Dvd(string titulo, string autor, string anoLancamento, string duracao, string classficacao);
         ~Dvd();
-        friend void operator>> (istream &i, Dvd *dvd);
-        friend ostream& operator<< (ostream &o, Dvd &midia);
+        friend void operator>> (istream &i, Dvd &dvd);
 };
 
 #endif
