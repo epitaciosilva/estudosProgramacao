@@ -24,9 +24,10 @@ class Controle {
 		void inicializarMemorias(std::string arquivoConfiguracoes);
 		void read(int endereco);
 		void write(int endereco, int conteudo);
-		void mapeamentoDireto(int enderecoSolicitado, int conteudo = 0);
-		// void totalmenteAssossiativo(int enderecoSolicitado, int conteudo = 0);
-		// void parcialmenteAssossiativo(int enderecoSolicitado, int conteudo = 0);
+		void mapeamentoDireto(int endereco, int conteudo = 0);
+		void totalmenteAssossiativo(int endereco, int conteudo = 0);
+		void show();
+		// void parcialmenteAssossiativo(int endereco, int conteudo = 0);
 		~Controle();
 };
 #endif

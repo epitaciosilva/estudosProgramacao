@@ -30,3 +30,11 @@ Principal::~Principal() { }
 int ** Principal::getPrincipal() {
 	return this->principal;
 }
+
+void Principal::show(int tamanhoPrincipal) {
+	std::cout << "      Principal      \n";
+	std::cout << "Bloco - Endereco - Conteudo\n";
+	for(int i = 0; i < tamanhoPrincipal; i++) {
+		std::cout << this->principal[i][0] << "        " << this->principal[i][1] << "        " << this->principal[i][2] << std::endl;
+	}
+}

@@ -10,9 +10,10 @@ class Principal {
 
 	public:
 		Principal();
+		~Principal();
 		void inicializarMemoria(int qtdBlocos, int tamanhoBloco);
 		int **getPrincipal();
-		~Principal();
+		void show(int tamanhoCache);
 };
 
 #endif
