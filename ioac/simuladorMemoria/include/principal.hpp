@@ -2,17 +2,16 @@
 #define _PRINCIPAL_HPP_
 
 #include <iostream>
+#include <cstdlib> 
 
 class Principal {
 	private:
-		int * blocos;
-		int * enderecos;
-		int * conteudos;
-		int ** principal;
+		int **principal;
 
 	public:
 		Principal();
-		void inicializarMemoria(int qtdBlocos, int qtdPalavras);
+		void inicializarMemoria(int qtdBlocos, int tamanhoBloco);
+		int **getPrincipal();
 		~Principal();
 };
 
