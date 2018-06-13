@@ -5,36 +5,18 @@ Cache::Cache() {
 	this->cicloTemporal = 0;
 }
 
-void Cache::inicializarMemoria(int qtdBlocos, int tamanhoBloco, int qtdVias) {
+void Cache::inicializarMemoria(int qtdBlocos, int tamanhoBloco) {
 	this->cache = (int **) malloc(qtdBlocos*tamanhoBloco * sizeof(int*));
-	int cont1 = 0, cont2 = 0;
-
-	if(qtdVias > 0) {
-		cont1 = qtdBlocos*tamanhoBloco/qtdVias;
-	}
-
 	for(int i = 0; i < qtdBlocos*tamanhoBloco; i++) {
-		this->cache[i] =  (int *) malloc(8 * sizeof(int));
+		this->cache[i] =  (int *) malloc(7 * sizeof(int));
 		
-		if(i >= cont1) {
-			cont2++;
-			cont1 *= 2;
-		}
-
-		if(qtdVias > 0) {
-			this->cache[i][8] = cont2;
-			this->cache[i][0] = i/tamanhoBloco/qtdVias;	
-		} else {
-			this->cache[i][0] = i/tamanhoBloco; 
-		}
-		
+		this->cache[i][0] = i/tamanhoBloco; 
 		this->cache[i][1] = 0;
 		this->cache[i][2] = 0;	 
 		this->cache[i][3] = 0;	 
 		this->cache[i][4] = 0; 
 		this->cache[i][5] = cicloTemporal; 
 		this->cache[i][6] = cicloFixo; 
-		
 	}
 
 	this->cicloTemporal++;
@@ -65,6 +47,7 @@ void Cache::atualizarCache(int localSub, int tamanhoBloco, int **principal, int 
 
 		//Caso seja um write (conteudo != 0), faz a substituição do conteúdo.
 		if(conteudo != 0 && principal[localMiss+i][1] == endereco){
+			// std::cout << (principal[localMiss+i][1] == endereco) << std::endl;
 			this->cache[localSub+i][3] = conteudo;
 			principal[localMiss+i][2] = conteudo;
 		} else {
@@ -148,4 +131,9 @@ void Cache::setCiclo(int bloco, int tamanhoBloco, int tipoSubstituicao) {
 			this->cache[bloco*tamanhoBloco+i][4]++;
 		}
 	}
+}
+
+
+void Cache::setFifu(int posicao) {
+	this->cache[posicao][4] += 1;
 }

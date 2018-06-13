@@ -28,20 +28,6 @@ int main(){
 			controle.show();
 		} 
 	}
-	// controle.read(10);
-	// controle.read(28);
-	// controle.read(33);	
-	// controle.read(8);
-	// controle.read(9);
-	// controle.read(29);
-	// controle.read(40);
-	// controle.read(3);
-	// controle.read(23);
-	// controle.read(50);
-	// controle.read(63);
-	// controle.read(40);
-	// controle.read(41);
-	// controle.read(2);
 
 	return 0;
 }

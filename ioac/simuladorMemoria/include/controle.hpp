@@ -27,7 +27,6 @@ class Controle {
 		int buscarPrincipal(int endereco);
 		void mapeamentoDireto(int endereco, int conteudo = 0);
 		void totalmenteAssossiativo(int endereco, int conteudo = 0);
-		void parcialmenteAssossiativo(int endereco, int conteudo);
 		void show();
 		// void parcialmenteAssossiativo(int endereco, int conteudo = 0);
 		~Controle();
