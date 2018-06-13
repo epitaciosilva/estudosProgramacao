@@ -22,10 +22,12 @@ class Controle {
 	public:
 		Controle();
 		void inicializarMemorias(std::string arquivoConfiguracoes);
-		void read(int endereco);
+		void read(int endereco, int conteudo = 0);
 		void write(int endereco, int conteudo);
+		int buscarPrincipal(int endereco);
 		void mapeamentoDireto(int endereco, int conteudo = 0);
 		void totalmenteAssossiativo(int endereco, int conteudo = 0);
+		void parcialmenteAssossiativo(int endereco, int conteudo);
 		void show();
 		// void parcialmenteAssossiativo(int endereco, int conteudo = 0);
 		~Controle();

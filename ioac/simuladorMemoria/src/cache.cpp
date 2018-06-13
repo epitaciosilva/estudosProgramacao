@@ -5,18 +5,36 @@ Cache::Cache() {
 	this->cicloTemporal = 0;
 }
 
-void Cache::inicializarMemoria(int qtdBlocos, int tamanhoBloco) {
+void Cache::inicializarMemoria(int qtdBlocos, int tamanhoBloco, int qtdVias) {
 	this->cache = (int **) malloc(qtdBlocos*tamanhoBloco * sizeof(int*));
+	int cont1 = 0, cont2 = 0;
+
+	if(qtdVias > 0) {
+		cont1 = qtdBlocos*tamanhoBloco/qtdVias;
+	}
+
 	for(int i = 0; i < qtdBlocos*tamanhoBloco; i++) {
-		this->cache[i] =  (int *) malloc(7 * sizeof(int));
+		this->cache[i] =  (int *) malloc(8 * sizeof(int));
 		
-		this->cache[i][0] = i/tamanhoBloco; 
+		if(i >= cont1) {
+			cont2++;
+			cont1 *= 2;
+		}
+
+		if(qtdVias > 0) {
+			this->cache[i][8] = cont2;
+			this->cache[i][0] = i/tamanhoBloco/qtdVias;	
+		} else {
+			this->cache[i][0] = i/tamanhoBloco; 
+		}
+		
 		this->cache[i][1] = 0;
 		this->cache[i][2] = 0;	 
 		this->cache[i][3] = 0;	 
 		this->cache[i][4] = 0; 
 		this->cache[i][5] = cicloTemporal; 
 		this->cache[i][6] = cicloFixo; 
+		
 	}
 
 	this->cicloTemporal++;
