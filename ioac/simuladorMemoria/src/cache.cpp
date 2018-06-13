@@ -29,7 +29,7 @@ int ** Cache::getCache() {
 	return this->cache;
 }
 
-void Cache::atualizarCache(int localSub, int tamanhoBloco, int **principal, int localMiss, int conteudo) {
+void Cache::atualizarCache(int localSub, int tamanhoBloco, int **principal, int localMiss, int endereco, int conteudo) {
 	for(int i = 0; i < tamanhoBloco; i++) {
 
 		if(this->cache[localSub+i][1] != principal[localMiss+i][0]) {
@@ -46,10 +46,11 @@ void Cache::atualizarCache(int localSub, int tamanhoBloco, int **principal, int 
 		this->cache[localSub+i][2] = principal[localMiss+i][1];
 
 		//Caso seja um write (conteudo != 0), faz a substituição do conteúdo.
-		if(conteudo == 0) {
-			this->cache[localSub+i][3] = principal[localMiss+i][2];
-		} else {
+		if(conteudo != 0 && principal[localMiss+i][1] == endereco){
 			this->cache[localSub+i][3] = conteudo;
+			principal[localMiss+i][2] = conteudo;
+		} else {
+			this->cache[localSub+i][3] = principal[localMiss+i][2];
 		}
 
 		//lru
@@ -77,13 +78,12 @@ int Cache::lfu(int tamanhoCache, int tamanhoBloco) {
 int Cache::lru(int tamanhoCache, int tamanhoBloco) {
 	int menosTempoUsado = this->cache[0][5];
 	int index = 0;
-	// std::cout << 0  << " " << this->cache[0][5] << " " << menosTempoUsado << std::endl;
+
 	for(int i = tamanhoBloco; i < tamanhoCache; i+=tamanhoBloco) {
 		if(menosTempoUsado > this->cache[i][5]) {
 			menosTempoUsado = this->cache[i][5];
 			index = this->cache[i][0];
 		}
-		// std::cout << i  << " " << this->cache[i][5] << " " << menosTempoUsado << std::endl;
 	}
 
 	return index;
@@ -106,7 +106,6 @@ int Cache::fifo(int tamanhoCache, int tamanhoBloco) {
 int Cache::aleatorio(int tamanhoCache, int tamanhoBloco) {
 	std::srand(std::time(nullptr));
 	int linha = std::rand() % tamanhoCache;
-	std::cout << linha << std::endl;
 
 	return this->cache[linha*tamanhoBloco][0];
 }

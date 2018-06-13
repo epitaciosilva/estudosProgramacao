@@ -37,10 +37,10 @@ void Controle::read(int endereco) {
 void Controle::write(int endereco, int conteudo) {
     if(this->tipoMapeamento == 1) {
         this->mapeamentoDireto(endereco, conteudo);
-    }
-    //  else if(this->tipoMapeamento == 2) {
-    //     this->totalmenteAssossiativo(endereco, conteudo);
-    // } else {
+    } else if(this->tipoMapeamento == 2) {
+        this->totalmenteAssossiativo(endereco, conteudo);
+    } 
+    // else {
     //     this->parcialmenteAssossiativo(endereco, conteudo);
     // }
 }
@@ -61,7 +61,8 @@ void Controle::mapeamentoDireto(int endereco, int conteudo) {
         linhaSub*this->tamanhoBloco, 
         this->tamanhoBloco, 
         this->principal.getPrincipal(), 
-        principal * this->tamanhoBloco, conteudo);
+        principal * this->tamanhoBloco,
+        endereco, conteudo);
    
     std::cout << "Miss -> alocado na linha " << linhaSub << " -> bloco " << this->principal.getPrincipal()[principal][0] << " substituido" << std::endl;
 }
@@ -88,7 +89,7 @@ void Controle::totalmenteAssossiativo(int endereco, int conteudo) {
         linhaSub = this->cache.aleatorio(this->linhasCache, this->tamanhoBloco);
     }
 
-    this->cache.atualizarCache(linhaSub*this->tamanhoBloco, this->tamanhoBloco, this->principal.getPrincipal(), principal*this->tamanhoBloco, conteudo);
+    this->cache.atualizarCache(linhaSub*this->tamanhoBloco, this->tamanhoBloco, this->principal.getPrincipal(), principal*this->tamanhoBloco, endereco, conteudo);
     std::cout << "Miss -> alocado na linha " << linhaSub << " -> bloco " << principal << " substituido" << std::endl;
 }
 

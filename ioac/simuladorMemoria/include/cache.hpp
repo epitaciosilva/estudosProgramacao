@@ -13,7 +13,7 @@ class Cache {
 		Cache();
 		~Cache();
 		void inicializarMemoria(int qtdBlocos, int tamanhoBloco);
-		void atualizarCache(int localSub, int tamanhoBloco, int **principal, int localMiss, int conteudo = 0);
+		void atualizarCache(int localSub, int tamanhoBloco, int **principal, int localMiss, int endereco, int conteudo = 0);
 		int lfu(int tamanhoCache, int tamanhoBloco);
 		int lru(int tamanhoCache, int tamanhoBloco);
 		int fifo(int tamanhoCache, int tamanhoBloco);
