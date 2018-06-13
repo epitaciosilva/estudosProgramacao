@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "../include/principal.hpp"
-#include "../include/cache.hpp"
+#include "../include/controle.hpp"
 
 int main(){
-	
+	Controle controle;
+	controle.inicializarMemorias("./docs/config.txt");
 	return 0;
 }
