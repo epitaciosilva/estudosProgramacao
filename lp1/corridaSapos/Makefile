@@ -1,6 +1,6 @@
 PROG = executavel
 CC = g++
-CPPFLAGS = -O0 -g -W -Wall -pedantic
+CPPFLAGS = -O0 -g -W -Wall -pedantic -std=c++11
 OBJS = main.o sapo.o pista.o corrida.o lerArquivo.o
 
 $(PROG) : $(OBJS)
