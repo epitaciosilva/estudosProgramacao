@@ -39,6 +39,27 @@ void AnaliseDocumento::realizarAnalise(std::string nomeArquivo) {
             }
         }
     }
-    
+
+    this->ordenarVetorString();
     Arquivo::exportarArquivo(this->analise, this->contador, nomeArquivo);
+}
+
+void AnaliseDocumento::ordenarVetorString() {
+    // algoritmo de inserção
+    for(size_t i = 0; i < this->analise.size(); i++) {
+        std::string palavra = this->analise[i];
+        std::string letra = this->analise[i].substr(0,1);
+        int cont = this->contador[i];
+        size_t posicaoInsercao = i;
+        
+        while(posicaoInsercao > 0 && (this->analise[posicaoInsercao-1].compare(palavra) > 0 ||
+            (letra.compare(this->analise[posicaoInsercao].substr(0,1)) == 0 && this->contador[posicaoInsercao] > this->contador[posicaoInsercao-1]))) {
+            
+            this->analise[posicaoInsercao] = this->analise[posicaoInsercao-1];
+            this->contador[posicaoInsercao] = this->contador[posicaoInsercao-1];
+            posicaoInsercao--;            
+        }
+        this->analise[posicaoInsercao] = palavra;
+        this->contador[posicaoInsercao] = cont; 
+    }
 }

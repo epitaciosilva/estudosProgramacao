@@ -37,7 +37,12 @@ void Arquivo::exportarArquivo(std::vector<std::string>& palavras, std::vector<in
     std::ofstream arquivo(nomeArquivo, std::ostream::out);
     
     for(size_t i = 0; i < palavras.size(); i++) {
-        arquivo << "(" << palavras[i] << ", " << contagem[i] << ")" << std::endl;
+        arquivo << "(" << palavras[i] << ", " << contagem[i] << ") ";
+        // quando as palavras iniciam com a mesma letra
+        // se a primeria letra da palavra não for igual a da palavra seguinte, então quebra de linha.
+        if(i+1 < palavras.size() && palavras[i].substr(0,1).compare(palavras[i+1].substr(0,1)) != 0) {
+            arquivo << std::endl;
+        }
     }
 
     arquivo.close();

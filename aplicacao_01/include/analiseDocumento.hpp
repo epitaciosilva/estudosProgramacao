@@ -19,6 +19,7 @@ class AnaliseDocumento {
 		AnaliseDocumento();
 		~AnaliseDocumento();
 		void realizarAnalise(std::string nomeArquivo);
+		void ordenarVetorString();
 };
 
 #endif
