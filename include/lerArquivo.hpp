@@ -5,16 +5,13 @@
 #include <string>
 #include <vector>
 #include <fstream>
-
+#include <sstream>
 class LerArquivo {
-	private:
-		std::vector<std::string> linhas;
-
 	public: 
 		LerArquivo();
 		~LerArquivo();
-		void ler(std::string nomeArquivo);
-		std::vector<std::string> getLinhas();
+		static void ler(std::vector<std::string>& vetor, std::string nomeArquivo);
+		static void split(std::vector<std::string> &vetor, std::string& texto, char delim = ' ');
 
 };
 

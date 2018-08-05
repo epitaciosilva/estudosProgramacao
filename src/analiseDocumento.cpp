@@ -3,53 +3,40 @@
 AnaliseDocumento::AnaliseDocumento() { }
 
 AnaliseDocumento::~AnaliseDocumento() { }
+    
+void AnaliseDocumento::realizarAnalise(std::string nomeArquivo) {
+    std::vector<std::string> linhas;
+    LerArquivo::ler(linhas, nomeArquivo);
 
-void AnaliseDocumento::split(std::vector<std::string> &vetor, std::string instrucao, char c1) {
-    std::string pedaco;
+    LerArquivo::split(this->stopWords, linhas[0]);   
 
-    for(auto caract:instrucao) {
-        if(caract != c1) {
-            pedaco += caract;
-        }else if(pedaco != "") {
-            if(pedaco.length() >= 6) {
-                size_t c = pedaco.find("$");
-                pedaco = pedaco.substr(c,3);
-            }
-            vetor.push_back(pedaco);
-            pedaco = "";
-        }
+    for(size_t i = 1; i < linhas.size(); i++) {
+        LerArquivo::split(this->palavras, linhas[i]);
     }
     
-    if(pedaco != "") {
-        vetor.push_back(pedaco);
-    }
-    std::cout << vetor[vetor.size()-1] << std::endl;
-
-}
-
-void AnaliseDocumento::processar(std::string nomeArquivo) {
-    LerArquivo arquivo;
-    arquivo.ler(nomeArquivo);
-    
-    this->split(this->stopWords, arquivo.getLinhas()[0], ' ');
-    
-    for(size_t i = 1; i < arquivo.getLinhas().size(); i++) {
-        this->split(this->palavras, arquivo.getLinhas()[i], ' ');
-    }
-    std::cout << "ASDASDASd" << std::endl;
-
-    // i = 1 -> ignorar a primeira linha pois são as stopWords
     size_t j;
-    for(size_t i = 1; i < palavras.size(); i++) {
+    for(size_t i = 0; i < this->palavras.size(); i++) {
         for(j = 0; j < this->stopWords.size(); j++) {
-            if(arquivo.getLinhas()[i] == this->stopWords[j]) {
-                palavras.erase(palavras.begin()+i);
-                j = this->stopWords.size() + 1;
+            if(this->palavras[i].compare(this->stopWords[j]) == 0) {
+                j = -1;
+                break;
             }
         }
-        if(j == this->stopWords.size() - 1) {
-            this->analise.push_back(palavras[i]);
+
+        if(j != (size_t)-1) {
+            size_t t;
+            for(t = 0; t < this->analise.size(); t++) {
+                if(this->palavras[i].compare(this->analise[t]) == 0) {
+                    this->contador[t] += 1;
+                    t = this->analise.size() + 1;
+                    break;
+                }
+            }
+
+            if(t != this->analise.size() + 1) {
+                this->analise.push_back(palavras[i]);
+                this->contador.push_back(1);
+            }
         }
     }
-    
 }

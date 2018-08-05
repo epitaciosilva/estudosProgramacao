@@ -4,14 +4,14 @@ LerArquivo::LerArquivo() { }
 
 LerArquivo::~LerArquivo() { }
 
-void LerArquivo::ler(std::string nomeArquivo) {
-    std::string line;
+void LerArquivo::ler(std::vector<std::string>& vetor, std::string nomeArquivo) {
+    std::string linha;
     std::ifstream arquivo(nomeArquivo);
     
     if(arquivo.is_open()) {
         //Essa função retorna todas as linhas individualmente do arquivo.
-        while(getline(arquivo, line)) {
-            this->linhas.push_back(line);
+        while(getline(arquivo, linha)) {
+            vetor.push_back(linha);
         }
     } else {
         //Caso aconteça algum erro na leitura do arquivo.
@@ -22,6 +22,12 @@ void LerArquivo::ler(std::string nomeArquivo) {
     arquivo.close();
 }
 
-std::vector<std::string> LerArquivo::getLinhas() {
-	return this->linhas;
+void LerArquivo::split(std::vector<std::string> &vetor, std::string& texto, char delim) {
+    std::string palavra;
+    std::istringstream linha(texto);
+    
+    //Essa função retorna todas as linhas individualmente do arquivo.
+    while(getline(linha, palavra, delim)) {
+        vetor.push_back(palavra);
+    }
 }
