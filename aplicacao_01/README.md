@@ -36,3 +36,7 @@ a opção **--file**, os arquivos de entrada e saı́da serão, respectivamente,
 
 Para implementar a opção **--gz**, utilize a biblioteca **gzstream**. Além disso, sua biblioteca deverá permitir o
 uso dos operadores de inserção e extração de streams e não apresentar redundância de código.
+
+## Como Executar
+    * make
+    * ./bin/executavel [--std, --file nomearquivo]  
