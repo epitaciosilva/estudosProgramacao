@@ -1,10 +1,10 @@
-#include "../include/lerArquivo.hpp"
+#include "../include/arquivo.hpp"
 
-LerArquivo::LerArquivo() { }
+Arquivo::Arquivo() { }
 
-LerArquivo::~LerArquivo() { }
+Arquivo::~Arquivo() { }
 
-void LerArquivo::ler(std::vector<std::string>& vetor, std::string nomeArquivo) {
+void Arquivo::ler(std::vector<std::string>& vetor, std::string nomeArquivo) {
     std::string linha;
     std::ifstream arquivo(nomeArquivo);
     
@@ -22,7 +22,7 @@ void LerArquivo::ler(std::vector<std::string>& vetor, std::string nomeArquivo) {
     arquivo.close();
 }
 
-void LerArquivo::split(std::vector<std::string> &vetor, std::string& texto, char delim) {
+void Arquivo::split(std::vector<std::string> &vetor, std::string& texto, char delim) {
     std::string palavra;
     std::istringstream linha(texto);
     
@@ -30,4 +30,15 @@ void LerArquivo::split(std::vector<std::string> &vetor, std::string& texto, char
     while(getline(linha, palavra, delim)) {
         vetor.push_back(palavra);
     }
+}
+
+void Arquivo::exportarArquivo(std::vector<std::string>& palavras, std::vector<int>& contagem, std::string nomeArquivo) {
+    nomeArquivo = nomeArquivo.substr(0, nomeArquivo.find(".")) + ".out";
+    std::ofstream arquivo(nomeArquivo, std::ostream::out);
+    
+    for(size_t i = 0; i < palavras.size(); i++) {
+        arquivo << "(" << palavras[i] << ", " << contagem[i] << ")" << std::endl;
+    }
+
+    arquivo.close();
 }

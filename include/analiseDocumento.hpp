@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm> 
 
-#include "lerArquivo.hpp"
+#include "arquivo.hpp"
 
 class AnaliseDocumento {
 	private:

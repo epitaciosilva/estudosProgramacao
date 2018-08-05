@@ -1,7 +1,7 @@
 PROG = executavel
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic -std=c++11
-OBJS = main.o lerArquivo.o analiseDocumento.o
+OBJS = main.o arquivo.o analiseDocumento.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -10,8 +10,8 @@ $(PROG) : $(OBJS)
 main.o:
 	$(CC) $(CPPFLAGS) -c src/main.cpp
 
-lerArquivo.o: include/lerArquivo.hpp
-	$(CC) $(CPPFLAGS) -c src/lerArquivo.cpp
+arquivo.o: include/arquivo.hpp
+	$(CC) $(CPPFLAGS) -c src/arquivo.cpp
 
 analiseDocumento.o: include/analiseDocumento.hpp
 	$(CC) $(CPPFLAGS) -c src/analiseDocumento.cpp

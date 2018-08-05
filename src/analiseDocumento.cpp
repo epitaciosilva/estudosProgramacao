@@ -6,12 +6,12 @@ AnaliseDocumento::~AnaliseDocumento() { }
     
 void AnaliseDocumento::realizarAnalise(std::string nomeArquivo) {
     std::vector<std::string> linhas;
-    LerArquivo::ler(linhas, nomeArquivo);
+    Arquivo::ler(linhas, nomeArquivo);
 
-    LerArquivo::split(this->stopWords, linhas[0]);   
+    Arquivo::split(this->stopWords, linhas[0]);   
 
     for(size_t i = 1; i < linhas.size(); i++) {
-        LerArquivo::split(this->palavras, linhas[i]);
+        Arquivo::split(this->palavras, linhas[i]);
     }
     
     size_t j;
@@ -39,4 +39,6 @@ void AnaliseDocumento::realizarAnalise(std::string nomeArquivo) {
             }
         }
     }
+    
+    Arquivo::exportarArquivo(this->analise, this->contador, nomeArquivo);
 }
