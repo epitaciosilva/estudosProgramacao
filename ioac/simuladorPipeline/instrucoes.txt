@@ -1,0 +1,5 @@
+sw $t1, 0($t0)
+add $t0, $t1, $t2
+sub $t3, $t1, $t2
+sub $t0, $t1, $t2
+sub $t3, $t1, $t10
