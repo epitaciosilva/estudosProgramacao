@@ -13,11 +13,6 @@ void sortSelecao(int *v, int N) {
         int tmp = v[i];
         v[i] = v[posicaoMenor];
         v[posicaoMenor] = tmp;       
-
-        // for(int n = 0; n < N; n++) { 
-        //     cout << v[n] << " ";
-        // }
-        // cout << endl; 
     }
     for(int n = 0; n < N; n++) { 
         cout << v[n] << " ";

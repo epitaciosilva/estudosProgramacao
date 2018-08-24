@@ -31,11 +31,26 @@ void quickSort(int *values, int began, int end)
 }
 
 int main() {
-    int v[10] = {5, 3, 1, 2, 8, 9, 10, 7, 6, 4};
-    quickSort(v, 0, 10);
+    time_t t;
+    int tam;
+    std::cin >> tam;
+    
+    int v[tam];
 
-    for(int j = 0; j < 10; j++) { 
-        cout << v[j] << " ";
+    for(int i = 0; i < tam; i++) {
+        std::cin >> v[i];
     }
-    cout << endl;
+    
+    std::cout << "iniciou\n";
+
+    quickSort(v, 0, tam);
+
+    for(int i = 0; i < tam; i++) {
+        std::cout << v[i] << std::endl;
+    }
+
+    t = clock() - t;
+    std::cout << "\nTempo de execução: " << ((float)t)/CLOCKS_PER_SEC << std::endl;
+
+    return 0;
 }
