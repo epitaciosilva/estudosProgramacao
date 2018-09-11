@@ -5,8 +5,8 @@ template <typename T>
 class Node {
 	public:
 		T dado;
-		Node<T> *proximo;
-		Node<T> *anterior;
+		Node<T> *next;
+		Node<T> *previous;
 
 		Node(){}
 		~Node(){}

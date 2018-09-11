@@ -21,10 +21,20 @@ class Pilha {
 		}
 
 		void empilhar(T dado) {
-			pilha->push_back(dado);
+			if(pilha->isEmpty()) {
+			// std::cout << pilha->isEmpty() << " vazio\n\n";
+				menorElemento->push_back(dado);
+			} else if(dado <= menorElemento->getLastElement()) {
+				menorElemento->push_back(dado);
+			}
+
+			pilha->push_front(dado);
 		}
 
 		void desempilhar() {
+			if(pilha->getLastElement() == menorElemento->getLastElement()) {
+				menorElemento->remove_back();
+			}
 			pilha->remove_back();
 		}
 
@@ -33,7 +43,7 @@ class Pilha {
 		}
 
 		void imprimirMenorElemento() {
-			menorElemento->print(-1);
+			std::cout << "\nMenor elemento: " << menorElemento->getLastElement() << std::endl;
 		}
 };
 #endif

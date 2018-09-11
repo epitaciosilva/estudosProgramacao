@@ -6,120 +6,124 @@
 template <typename T>
 class ListaDuplamenteLigada {
 	private:
-		Node<T> *inicio;
-		Node<T> *fim;
-		int tamanho;
+		Node<T> *start;
+		Node<T> *end;
+		int size;
 
 	public:
 		ListaDuplamenteLigada() {  
-			inicio = new Node<T>;
-			fim = new Node<T>;
-			inicio->proximo = fim;
-			fim->anterior = inicio;
-			tamanho = 0;
+			start = new Node<T>;
+			end = new Node<T>;
+			start->next = end;
+			end->previous = start;
+			size = 0;
 		}
 
 		~ListaDuplamenteLigada() {
-			Node<T> *index = inicio->proximo;
-			while(index != fim) {
-				index = index->proximo;
-				delete index->anterior;
+			Node<T> *index = start->next;
+			while(index != end) {
+				index = index->next;
+				delete index->previous;
 			}
 
-			delete inicio;
-			delete fim;
-			tamanho = 0;
+			delete start;
+			delete end;
+			size = 0;
 		}
 
 		void push_back(T dado) {
 			Node<T> *tmp = new Node<T>;
-			tmp->dado = dado;
+			tmp->dado = dado;	
 
-			Node<T> *anterior = fim->anterior;
-			anterior->proximo = tmp;
-			fim->anterior = tmp;
-			tmp->proximo = fim;
-			tmp->anterior = anterior;
+			Node<T> *previous = end->previous;
+			previous->next = tmp;
+			end->previous = tmp;
+			tmp->next = end;
+			tmp->previous = previous;
 
-			tamanho +=1;
+			size +=1;
 		}
 
 		void push_front(T dado) {
 			Node<T> *tmp = new Node<T>;
 			tmp->dado = dado;
 
-			if(tamanho > 1) {
-				inicio->proximo = tmp;
-				tmp->anterior = inicio;
-				tmp->proximo = fim;
-				fim->anterior = tmp;
+			if(this->size == 0) {
+				start->next = tmp;
+				tmp->previous = start;
+				tmp->next = end;
+				end->previous = tmp;
 			} else { 
-				tmp->proximo = inicio->proximo;
-				tmp->anterior = inicio;
-				inicio->proximo = tmp;
+				tmp->next = start->next;
+				tmp->previous = start;
+				start->next = tmp;
 			}
 
-			tamanho +=1;
+			size +=1;
 		}
 
 		void remove_back(){
-            if(tamanho == 1){
-                delete fim->anterior;
-                fim->anterior = inicio;
-                tamanho -= 1;
-            } else if(tamanho > 1){
-                Node<T> *anterior = fim->anterior->anterior;
+            if(size == 1){
+                delete end->previous;
+                end->previous = start;
+                size -= 1;
+            } else if(size > 1){
+                Node<T> *previous = end->previous->previous;
 
-                delete fim->anterior;
-                anterior->proximo = fim;
-                fim->anterior = anterior;
-                tamanho -= 1;
+                delete end->previous;
+                previous->next = end;
+                end->previous = previous;
+                size -= 1;
             } else {
                 std::cout << "Nenhum elemento a ser removido\n";
             }
 		}
 
 		void remove_front() {
-			if(tamanho == 1) {
-				delete inicio->proximo;
-				inicio->proximo = fim;
-				tamanho -=1;
-			} else if(tamanho > 1) {
-				Node<T> *proximo = inicio->proximo->proximo;
+			if(size == 1) {
+				delete start->next;
+				start->next = end;
+				size -=1;
+			} else if(size > 1) {
+				Node<T> *next = start->next->next;
 				
-				delete inicio->proximo;
-				proximo->anterior = inicio;
-				inicio->proximo = proximo;
-				tamanho -= 1;
+				delete start->next;
+				next->previous = start;
+				start->next = next;
+				size -= 1;
 			} else {
 				std::cout << "Nenhum elemento a ser removido\n\n";
 			}
 		}
 
-		void getElements(T element) {
-			return inicio->proximo;
-		}
-
-		void print(int indexInicial = 0, int indexFinal = -1) {
-			indexInicial = indexInicial == -1 ? tamanho-1 : indexInicial;
-			indexFinal = indexFinal == -1 ? tamanho : indexFinal;
-			
-			std::cout << "\n-------LISTA-------\n";
-			
-			if(indexFinal > 0){
-	            Node<T> *i = inicio->proximo;
-				for(int j = 0; j < indexFinal; j++){
-					if(j >= indexInicial) {
-						std::cout << i->dado << " ";
-					}
-					i = i->proximo;
+		void print() {
+			if(this->size > 0) {
+	            Node<T> *i = start->next;
+				for(int j = 0; j < this->size; j++){
+					std::cout << i->dado << " ";
+					i = i->next;
 				}
 				std::cout << std::endl;
 			} else {
-                std::cout << "Nenhum elemento na lista\n";
+                std::cout << "\nNenhum elemento na lista\n";
 			}
+		}
 
-			std::cout << std::endl;
+
+		int getSize() {
+			return size;
+		}
+		
+		T getLastElement() {
+			return end->previous->dado;
+		}
+
+		T getFirstElement() {
+			return start->next->dado;
+		}
+
+		bool isEmpty() {
+			return size == 0;
 		}
 };
 

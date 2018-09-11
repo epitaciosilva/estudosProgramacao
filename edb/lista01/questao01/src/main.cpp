@@ -6,10 +6,9 @@ int main() {
 	Pilha<int> pilha;
 
 	int opcao;
-
 	while(opcao != 0) {
 		std::cout 
-			<< "1) Empilhar\n" 
+			<< "\n1) Empilhar\n" 
 			<< "2) Desempilhar\n"
 			<< "3) Imprimir lista\n" 
 			<< "4) Imprimir menor elemento\n"
