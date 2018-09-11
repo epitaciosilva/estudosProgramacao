@@ -5,12 +5,11 @@
 
 template <typename T>
 class ListaDuplamenteLigada {
-	private:
+	public:
 		Node<T> *start;
 		Node<T> *end;
 		int size;
 
-	public:
 		ListaDuplamenteLigada() {  
 			start = new Node<T>;
 			end = new Node<T>;
@@ -98,10 +97,14 @@ class ListaDuplamenteLigada {
 
 		void print() {
 			if(this->size > 0) {
-	            Node<T> *i = start->next;
+	            Node<T> *iter = this->start->next;
 				for(int j = 0; j < this->size; j++){
-					std::cout << i->dado << " ";
-					i = i->next;
+					std::cout << iter->dado << " ";
+					try {
+						iter = iter->next;
+					} catch(int e) {
+
+					}
 				}
 				std::cout << std::endl;
 			} else {
@@ -109,9 +112,11 @@ class ListaDuplamenteLigada {
 			}
 		}
 
-
-		int getSize() {
-			return size;
+		void merge(ListaDuplamenteLigada<T> *lista) {
+			this->end->previous->next = lista->start->next;
+			lista->start->next->previous = this->end->previous;
+			this->end = lista->end;
+			this->size += lista->size;
 		}
 		
 		T getLastElement() {
@@ -124,6 +129,10 @@ class ListaDuplamenteLigada {
 
 		bool isEmpty() {
 			return size == 0;
+		}
+
+		int getSize() {
+			return size;
 		}
 };
 
