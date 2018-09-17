@@ -20,30 +20,33 @@ class Arvore {
         void addIrmao(Node<T> *tmp, Node<T> *root) {
             Node<T> *iter = root;
             while(iter->irmao != NULL) {
-                if(iter->dado == tmp->dado) {
+                // analogamente ao do addFilho  
+                if(tmp->dado > iter->irmao->dado) {
                     iter = iter->irmao;
                 } else {
-                    // até o momento o 'irmao' não possui filho,
-                    // mas caso contrário, esse deve ser o caminho
-                    addFilho(tmp, root);
+                    addFilho(tmp, iter->irmao);
                     return;
                 }
             }
+
+            std::cout << "Irmao do "  << iter->dado << '\n';
             iter->irmao = tmp;
         }
 
         void addFilho(Node<T> *tmp, Node<T> *root) {
             Node<T> *iter = root;
             while(iter->filho != NULL) {
-                // tem que começar dessa maneira, senão pega o valor da raiz.
-                if(iter->filho->dado != tmp->dado) {
+                // 'iter->filho->dado' => tem que começar dessa maneira, senão pega o valor da raiz.
+                // os valores menores ao inicial ficam a esquerda (filho) e os maiores a direita (irmao)
+                if(tmp->dado <= iter->filho->dado) {
                     iter = iter->filho;
-                } else {
-                    // manda adicionar como irmão se for igual
+                } else if(tmp->dado > iter->filho->dado) {
                     addIrmao(tmp, iter->filho);
                     return;
                 }
             }
+
+            std::cout << "Filho do "  << iter->dado << '\n';
             iter->filho = tmp;
         }
 
@@ -60,6 +63,7 @@ class Arvore {
             this->addFilho(tmp, this->raiz);
         }
 
+        // ainda está com problemas
         void print() {
             std::cout << "---------\"Árvore\"--------\n";
             Node<T> *filho = this->raiz;
