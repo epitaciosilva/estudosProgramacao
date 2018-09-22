@@ -4,11 +4,15 @@
 template <typename T>
 class Node {
 	public:
-		T dado;
+		T valor;
 		Node<T> *irmao;
 		Node<T> *filho;
 
-		Node() { }
+		Node(T valor) { 
+			this->valor = valor;
+            this->filho = NULL;
+            this->irmao = NULL;
+		}
 		~Node(){}
 };
 
