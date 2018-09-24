@@ -7,11 +7,13 @@ class Node {
 		T valor;
 		Node<T> *irmao;
 		Node<T> *filho;
+		Node<T> *pai;
 
 		Node(T valor) { 
 			this->valor = valor;
             this->filho = NULL;
             this->irmao = NULL;
+			this->pai = NULL;
 		}
 		~Node(){}
 };

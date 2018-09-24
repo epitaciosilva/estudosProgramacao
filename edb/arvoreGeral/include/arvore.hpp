@@ -29,6 +29,7 @@ class Arvore {
                 }
             }
 
+            tmp->pai = iter;
             iter->irmao = tmp;
         }
 
@@ -44,7 +45,8 @@ class Arvore {
                     return;
                 }
             }
-
+            
+            tmp->pai = iter;
             iter->filho = tmp;
         }
 
@@ -59,28 +61,43 @@ class Arvore {
             this->addFilho(tmp, this->raiz);
         }
 
-        bool buscarFilho(Node<T> *filho, T value) {
+        bool buscarFilho(Node<T> *filho, T value, bool remover) {
             if(filho == NULL) {
                 return false;
-            } else if(filho->valor == value || buscarIrmao(filho->irmao, value)) {
+            } else if(filho->valor == value && remover) {
+                this->remover(filho);
+            } else if(filho->valor == value || buscarIrmao(filho->irmao, value, remover)) {
                 return true;
             }
 
-            return buscarFilho(filho->filho, value);
+            return buscarFilho(filho->filho, value, remover);
         }
 
-        bool buscarIrmao(Node<T> *irmao, T value) {
+        bool buscarIrmao(Node<T> *irmao, T value, bool remover) {
             if(irmao == NULL) {
                 return false;
-            } else if(irmao->valor == value || buscarFilho(irmao->filho, value)) {
+            } else if(irmao->valor == value && remover) {
+                this->remover(irmao);
+            } else if(irmao->valor == value || buscarFilho(irmao->filho, value, remover)) {
                 return true;
             }
             
-            return buscarIrmao(irmao->irmao, value);
+            return buscarIrmao(irmao->irmao, value, remover);
         }
 
-        bool buscar(T value) {
-            return this->buscarFilho(this->raiz, value);
+        bool buscar(T value, bool remover = false) {
+            return this->buscarFilho(this->raiz, value, remover);
+        }
+
+        void remover(T value) {
+            this->buscar(value, true);
+        }
+
+        void remover(Node<T> *no) {
+            if(no->pai != NULL) {
+                no->pai->filho = NULL;
+                no->pai->irmao = NULL;
+            }
         }
 
         // ainda está com problemas
