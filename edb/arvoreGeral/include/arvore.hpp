@@ -113,32 +113,32 @@ class Arvore {
             }
 
             if(no->irmao != NULL) {
-                this->printIrmao(no->irmao, " ");
-            } 
+                this->printIrmao(no->irmao, "  ");
+            }
 
             if(no->filho != NULL) {
                 std::cout << '\n';
-                espaco += espaco;
                 this->printFilho(no->filho, espaco);
             }
-            
+
             return;
-        } 
+        }
 
         void printIrmao(Node<T> *no, std::string espaco = "") {
             if(no != NULL) {
-                std::cout << espaco << no->valor;
-            } 
+                std::cout << " " << no->valor;
+            }
 
             if(no->irmao != NULL) {
-                this->printIrmao(no->irmao, " ");
+                espaco += espaco;
+                this->printIrmao(no->irmao, espaco);
             }
 
             if(no->filho != NULL) {
                 std::cout << '\n';
-                espaco += espaco;
                 this->printFilho(no->filho, espaco);
             }
+
             return;
         }
 
