@@ -100,7 +100,6 @@ class Arvore {
             }
         }
 
-        // ainda está com problemas
         void print() {
             std::cout << "---------\"Árvore\"--------\n";
             printFilho(this->raiz);
@@ -108,12 +107,14 @@ class Arvore {
         }
 
         void printFilho(Node<T> *no, std::string espaco = "") {
-            if(no != NULL) {
+            if(no != NULL && no->valor < 10 && no->valor >= 0) {
+                std::cout << espaco << "0" << no->valor;
+            } else if(no != NULL) {
                 std::cout << espaco << no->valor;
             }
 
             if(no->irmao != NULL) {
-                this->printIrmao(no->irmao, "  ");
+                this->printIrmao(no->irmao, "   ");
             }
 
             if(no->filho != NULL) {
@@ -125,13 +126,14 @@ class Arvore {
         }
 
         void printIrmao(Node<T> *no, std::string espaco = "") {
-            if(no != NULL) {
+            if(no != NULL && no->valor < 10 && no->valor >= 0) {
+                std::cout << " 0" << no->valor;
+            } else if(no != NULL) {
                 std::cout << " " << no->valor;
             }
 
             if(no->irmao != NULL) {
-                espaco += espaco;
-                this->printIrmao(no->irmao, espaco);
+                this->printIrmao(no->irmao, espaco+espaco);
             }
 
             if(no->filho != NULL) {

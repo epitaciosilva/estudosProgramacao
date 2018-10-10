@@ -24,8 +24,5 @@ int main() {
         std::cin >> valor;
     } while(valor != -1);
     
-    arvore.remover(10);
-    arvore.print();
-
     return 0;
 }
