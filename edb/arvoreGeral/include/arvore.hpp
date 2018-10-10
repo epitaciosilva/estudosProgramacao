@@ -21,7 +21,7 @@ class Arvore {
             Node<T> *iter = root;
             while(iter->irmao != NULL) {
                 // analogamente ao do addFilho  
-                if(tmp->valor > iter->irmao->valor) {
+                if(tmp->valor >= iter->irmao->valor) {
                     iter = iter->irmao;
                 } else {
                     addFilho(tmp, iter->irmao);
@@ -38,7 +38,7 @@ class Arvore {
             while(iter->filho != NULL) {
                 // 'iter->filho->valor' => tem que começar dessa maneira, senão pega o valor da raiz.
                 // os valores menores ao inicial ficam a esquerda (filho) e os maiores a direita (irmao)
-                if(tmp->valor <= iter->filho->valor) {
+                if(tmp->valor < iter->filho->valor) {
                     iter = iter->filho;
                 } else if(tmp->valor > iter->filho->valor) {
                     addIrmao(tmp, iter->filho);
@@ -103,27 +103,45 @@ class Arvore {
         // ainda está com problemas
         void print() {
             std::cout << "---------\"Árvore\"--------\n";
-            std::cout << this->raiz->valor << '\n';
-            Node<T> *filho = this->raiz;
-            while(filho->filho != NULL) {
-                // 'sempre' começa pelo filho, pois não se mexe na raiz.
-                filho = filho->filho;
-                std::cout << filho->valor << " ";
-
-                // enquanto o filho em questão tiver um irmao (for igual a ele),
-                // continue a imprimi-los
-                if(filho->irmao != NULL) {
-                    // pega o node mesmo, não o endereço, senão quebra a interação com dos filhos.
-                    Node<T> irmao = *filho;
-                    while(irmao.irmao != NULL) {
-                        irmao = *irmao.irmao;
-                        std::cout << irmao.valor << " ";
-                    }
-                } 
-
-                std::cout << "\n";
-            }
+            printFilho(this->raiz);
+            std::cout << '\n';
         }
+
+        void printFilho(Node<T> *no, std::string espaco = "") {
+            if(no != NULL) {
+                std::cout << espaco << no->valor;
+            }
+
+            if(no->irmao != NULL) {
+                this->printIrmao(no->irmao, " ");
+            } 
+
+            if(no->filho != NULL) {
+                std::cout << '\n';
+                espaco += espaco;
+                this->printFilho(no->filho, espaco);
+            }
+            
+            return;
+        } 
+
+        void printIrmao(Node<T> *no, std::string espaco = "") {
+            if(no != NULL) {
+                std::cout << espaco << no->valor;
+            } 
+
+            if(no->irmao != NULL) {
+                this->printIrmao(no->irmao, " ");
+            }
+
+            if(no->filho != NULL) {
+                std::cout << '\n';
+                espaco += espaco;
+                this->printFilho(no->filho, espaco);
+            }
+            return;
+        }
+
 };
 
 #endif
