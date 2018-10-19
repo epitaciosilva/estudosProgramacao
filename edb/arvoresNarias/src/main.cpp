@@ -12,6 +12,13 @@ int main() {
         std::cin >> option;
     }
     arvore.print();
+    std::cin >> option;
+
+    while(option != -1) {
+        std::cout << '\n' << (arvore.busca(option) != NULL ? "true" : "false") << '\n';
+        std::cin >> option;
+    }
+    
     // std::cin >> option;
     // std::cout << (arvore.busca(option) != -1 ? "true" : "false") << '\n';
 }

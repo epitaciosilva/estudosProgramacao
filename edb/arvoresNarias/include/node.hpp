@@ -5,7 +5,7 @@ template <typename T>
 class Node {
 	public: 
 		T valor;
-		std::vector<Node<T>> filhos;
+		std::vector<Node<T>*> filhos;
 		
 		Node() {
 
@@ -15,8 +15,8 @@ class Node {
 			this->valor = valor;	
 		}
 
-		void addFilho(T valor) {
-			this->filhos.push_back(valor);
+		void addFilho(Node<T> *tmp) {
+			this->filhos.push_back(tmp);
 		}
 };
 
