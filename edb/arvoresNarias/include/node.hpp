@@ -18,6 +18,10 @@ class Node {
 		void addFilho(Node<T> *tmp) {
 			this->filhos.push_back(tmp);
 		}
+
+		int tamanho() {
+			return (int) this->filhos.size();
+		}
 };
 
 #endif

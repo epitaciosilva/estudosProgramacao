@@ -16,11 +16,18 @@ class ArvoreComNos {
             this->N = N;
         }
         
-        void add(Node<T> *raiz, Node<T> *tmp) {
-            if(raiz->filhos.size() < (size_t) this->N) {
-                raiz->addFilho(tmp);
+        void add(Node<T> *no, Node<T> *tmp) {
+            if(no->tamanho() < this->N) {
+                no->addFilho(tmp);
             } else {
-                add(raiz->filhos[0], tmp);
+                for(int i =0; i < this->N; i++) { 
+                    if(no->filhos[i]->tamanho() < this->N) {
+                        add(no->filhos[i], tmp);
+                        break;
+                    } else if(i == this->N-1){
+                        add(no->filhos[0], tmp);
+                    }
+                }
             }
         }
 
@@ -39,7 +46,7 @@ class ArvoreComNos {
             if(tmp->valor == valor) {
                 return tmp;
             } else {
-                for(int i =0; i < (int)tmp->filhos.size(); i++) { 
+                for(int i =0; i < tmp->tamanho(); i++) { 
                     if(tmp->filhos[i] != NULL) {
                         elem = buscaNo(tmp->filhos[i], valor);
                         if(elem != NULL) {
@@ -57,13 +64,11 @@ class ArvoreComNos {
         }
 
         void printNo(Node<T> *tmp) {
-            std::cout << tmp->valor << '\n';
-
-            for(int i =0; i < (int)tmp->filhos.size(); i++) {
-                // if(tmp->filhos[i]->filhos.size() != 0) {
-                //     printNo(tmp->filhos[i]);
-                // }
+            for(int i =0; i < tmp->tamanho(); i++) {
                 std::cout << tmp->filhos[i]->valor << " ";
+                if(tmp->filhos[i]->tamanho() != 0) {
+                    printNo(tmp->filhos[i]);
+                }
             }
 
             std::cout << '\n';
@@ -71,6 +76,7 @@ class ArvoreComNos {
 
         void print() {
             std::cout << "\n----Árvore----\n";
+            std::cout << this->raiz->valor << '\n';
             this->printNo(this->raiz);
         }
 };
