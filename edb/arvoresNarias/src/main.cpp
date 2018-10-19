@@ -11,4 +11,7 @@ int main() {
         arvore.addElemento(option);
         std::cin >> option;
     }
+
+    std::cin >> option;
+    std::cout << (arvore.busca(option) != -1 ? "true" : "false") << '\n';
 }
