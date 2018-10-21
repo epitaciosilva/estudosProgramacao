@@ -17,11 +17,11 @@ class ArvoreComNos {
         }
         
         void add(Node<T> *no, Node<T> *tmp) {
-            if(no->tamanho() < this->N) {
+            if(no->quantidadeFilhos() < this->N) {
                 no->addFilho(tmp);
             } else {
                 for(int i =0; i < this->N; i++) { 
-                    if(no->filhos[i]->tamanho() < this->N) {
+                    if(no->filhos[i]->quantidadeFilhos() < this->N) {
                         add(no->filhos[i], tmp);
                         break;
                     } else if(i == this->N-1){
@@ -42,31 +42,47 @@ class ArvoreComNos {
         }
         
         Node<T>* buscaNo(Node<T>* tmp, T valor) {
-            Node<T>* elem = NULL;
+            Node<T>* elemento = NULL;
             if(tmp->valor == valor) {
                 return tmp;
             } else {
-                for(int i =0; i < tmp->tamanho(); i++) { 
+                for(int i =0; i < tmp->quantidadeFilhos(); i++) { 
                     if(tmp->filhos[i] != NULL) {
-                        elem = buscaNo(tmp->filhos[i], valor);
-                        if(elem != NULL) {
-                            return elem;
+                        elemento = buscaNo(tmp->filhos[i], valor);
+                        if(elemento != NULL) {
+                            return elemento;
                         }
                     }
                 }                
             }
 
-            return elem;
+            return elemento;
         }
 
         Node<T>* busca(T valor) {
             return this->buscaNo(this->raiz, valor);
         }
 
+        void remover(T valor) {
+            Node<T> *tmp = this->busca(valor);
+            tmp->pai->removerFilhos(tmp->posicaoVetorDoPai);
+            this->removerRecursivamente(tmp);
+        }
+
+        void removerRecursivamente(Node<T> *tmp) {
+            for(int i =0; i < tmp->quantidadeFilhos(); i++) {
+                this->removerRecursivamente(tmp->filhos[i]);
+            }
+            // removendo todos os filhos do vetor
+            tmp->removerFilhos();
+            delete tmp;
+        }
+ 
+       // precisa ser melhorado
         void printNo(Node<T> *tmp) {
-            for(int i =0; i < tmp->tamanho(); i++) {
+            for(int i =0; i < tmp->quantidadeFilhos(); i++) {
                 std::cout << tmp->filhos[i]->valor << " ";
-                if(tmp->filhos[i]->tamanho() != 0) {
+                if(tmp->filhos[i]->quantidadeFilhos() != 0) {
                     printNo(tmp->filhos[i]);
                 }
             }
