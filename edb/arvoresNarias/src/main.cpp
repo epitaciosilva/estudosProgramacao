@@ -14,6 +14,7 @@ int main() {
                 << "2 para buscar;\n"
                 << "3 para remover;\n"
                 << "4 para imprimir;\n" 
+                << "5 para saber a altura;\n"
                 << "0 para sair;\n";
         std::cin >> option;
 
@@ -22,7 +23,7 @@ int main() {
             std::cin >> elemento;
 
             if(option == 1) {
-                arvore.addElemento(elemento);
+                arvore.adicionar(elemento);
             } else if(option == 2) {
                 std::cout << (arvore.busca(elemento) != NULL ? "Está" : "Não está") << " na árvore\n";
             } else {
@@ -30,6 +31,8 @@ int main() {
             }
         } else if(option == 4) {
             arvore.print();
+        } else if(option == 5) {
+            arvore.altura(); 
         }
-    } while(option != 0);
+    } while(option != 0 );
 }

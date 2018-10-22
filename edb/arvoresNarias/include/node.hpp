@@ -17,25 +17,28 @@ class Node {
 			pai = NULL;
 		}
 
-		void addFilho(Node<T> *tmp) {
+		void adicionarFilho(Node<T> *tmp) {
 			tmp->pai = this;
-			tmp->posicaoVetorDoPai = this->quantidadeFilhos();
+			tmp->posicaoVetorDoPai = this->getQuantidadeFilhos();
 			this->filhos.push_back(tmp);
 		}
 		
-		void removerFilhos(int posicao = -1) {
-			if(posicao == -1) {
-				this->filhos.erase(this->filhos.begin(), this->filhos.begin() + this->quantidadeFilhos());
-				return;
-			}
+		void removerFilhos() {
+			// remove todos
+			this->filhos.erase(this->filhos.begin(), this->filhos.begin() + this->getQuantidadeFilhos());
+		}
 
+		void removerFilho(int posicao) {
+			// remove o filho do vetor do pai
 			this->filhos.erase(this->filhos.begin() + posicao);
-			for(int i = 0; i < this->quantidadeFilhos(); i++) {
+
+			// atualizando posições no vetor do pai
+			for(int i = 0; i < this->getQuantidadeFilhos(); i++) {
 				this->filhos[i]->posicaoVetorDoPai = i;
 			}
 		}
 
-		int quantidadeFilhos() {
+		int getQuantidadeFilhos() {
 			return (int) this->filhos.size();
 		}
 };

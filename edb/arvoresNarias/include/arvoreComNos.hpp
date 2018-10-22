@@ -16,84 +16,128 @@ class ArvoreComNos {
             this->N = N;
         }
         
-        void add(Node<T> *no, Node<T> *tmp) {
-            if(no->quantidadeFilhos() < this->N) {
-                no->addFilho(tmp);
+        void adicionar(Node<T> *no, Node<T> *tmp) {
+            if(no->getQuantidadeFilhos() < this->N) {
+                no->adicionarFilho(tmp);
             } else {
                 for(int i =0; i < this->N; i++) { 
-                    if(no->filhos[i]->quantidadeFilhos() < this->N) {
-                        add(no->filhos[i], tmp);
+                    if(no->filhos[i]->getQuantidadeFilhos() < this->N) {
+                        adicionar(no->filhos[i], tmp);
                         break;
                     } else if(i == this->N-1){
-                        add(no->filhos[0], tmp);
+                        // se estiver cheia adiciona no primeiro elemento
+                        adicionar(no->filhos[0], tmp);
                     }
                 }
             }
         }
 
-        void addElemento(T valor) {
+        void adicionar(T valor) {
             Node<T> *tmp = new Node<T>(valor);
             
             if(this->raiz == NULL) {
                 this->raiz = tmp;
             } else {
-                this->add(this->raiz, tmp);
+                this->adicionar(this->raiz, tmp);
             }
         }
         
-        Node<T>* buscaNo(Node<T>* tmp, T valor) {
+        Node<T>* busca(Node<T>* node, T valor) {
             Node<T>* elemento = NULL;
-            if(tmp->valor == valor) {
-                return tmp;
+
+            if(node->valor == valor) {
+                return node;
             } else {
-                for(int i =0; i < tmp->quantidadeFilhos(); i++) { 
-                    if(tmp->filhos[i] != NULL) {
-                        elemento = buscaNo(tmp->filhos[i], valor);
+                for(int i =0; i < node->getQuantidadeFilhos(); i++) { 
+                    if(node->filhos[i] != NULL) {
+                        // busca recursivamente através profundidade primeiramente 
+                        elemento = busca(node->filhos[i], valor);
                         if(elemento != NULL) {
                             return elemento;
                         }
                     }
-                }                
+                }
             }
 
             return elemento;
         }
 
         Node<T>* busca(T valor) {
-            return this->buscaNo(this->raiz, valor);
+            if(this->raiz == NULL) {
+                return NULL;
+            }
+            return this->busca(this->raiz, valor);
         }
 
         void remover(T valor) {
+            // buscando o elemento
             Node<T> *tmp = this->busca(valor);
-            tmp->pai->removerFilhos(tmp->posicaoVetorDoPai);
-            this->removerRecursivamente(tmp);
+
+            if(tmp == NULL) {
+                std::cout << "Elemento não encontrado\n";
+            } else if(tmp->pai != NULL) {
+                tmp->pai->removerFilho(tmp->posicaoVetorDoPai);
+                this->removerRecursivamente(tmp);
+            } else {
+                // só ocorre se for pra remover a raiz
+                this->removerRecursivamente(tmp);
+                this->raiz = NULL;
+            }
         }
 
         void removerRecursivamente(Node<T> *tmp) {
-            for(int i =0; i < tmp->quantidadeFilhos(); i++) {
+            for(int i =0; i < tmp->getQuantidadeFilhos(); i++) {
                 this->removerRecursivamente(tmp->filhos[i]);
             }
+
             // removendo todos os filhos do vetor
             tmp->removerFilhos();
             delete tmp;
         }
- 
-       // precisa ser melhorado
-        void printNo(Node<T> *tmp) {
-            for(int i =0; i < tmp->quantidadeFilhos(); i++) {
-                std::cout << tmp->filhos[i]->valor << " ";
-                if(tmp->filhos[i]->quantidadeFilhos() != 0) {
-                    printNo(tmp->filhos[i]);
-                }
+
+        void altura() {
+            std::cout << "Altura: " << this->altura(this->raiz) << '\n';
+        }
+
+        int altura(Node<T>* tmp) {
+            int n = 1;
+            
+            if(tmp == NULL) {
+                return 0;
+            } else if(tmp->getQuantidadeFilhos() > 0) {
+                // isso funciona pq a inserção no momento que a árvore está cheia
+                // é no primeiro filho. 
+                // Por isso só precisa percorrer a profundidade no primeiro filho recursivamente
+                n += altura(tmp->filhos[0]);
             }
 
+            return n;
+        }
+
+        void printFilhos(Node<T> *tmp) {
+            for(int i = 0; i < tmp->getQuantidadeFilhos(); i++) {
+                std::cout << tmp->filhos[i]->valor << " ";
+            }
+            std::cout << " ";
+        }
+
+        void printAll(Node<T> *tmp) {
+            this->printFilhos(tmp);
+            std::cout << '\n';
+            for(int i = 0; i < tmp->getQuantidadeFilhos(); i++) {
+                this->printFilhos(tmp->filhos[i]);
+            }
             std::cout << '\n';
         }
 
         void print() {
             std::cout << "\n----Árvore----\n";
-            std::cout << this->raiz->valor << '\n';
-            this->printNo(this->raiz);
+            if(this->raiz == NULL) {
+                std::cout << "Árvore vazia\n";
+            } else {
+                std::cout << this->raiz->valor << '\n';
+                this->printAll(this->raiz);
+            }
         }
 };
 
