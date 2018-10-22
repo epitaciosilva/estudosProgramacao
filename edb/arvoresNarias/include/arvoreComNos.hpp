@@ -114,31 +114,23 @@ class ArvoreComNos {
             return n;
         }
 
-        void printFilhos(Node<T> *tmp) {
-            for(int i = 0; i < tmp->getQuantidadeFilhos(); i++) {
+        // print com problemas, acaba imprimindo filhos do filhos ao lado
+        void print(Node<T> *tmp) {
+            for(int i =0; i < tmp->getQuantidadeFilhos(); i++) {
                 std::cout << tmp->filhos[i]->valor << " ";
-            }
-            std::cout << " ";
-        }
-
-        void printAll(Node<T> *tmp) {
-            this->printFilhos(tmp);
-            std::cout << '\n';
-            for(int i = 0; i < tmp->getQuantidadeFilhos(); i++) {
-                this->printFilhos(tmp->filhos[i]);
+                if(tmp->filhos[i]->getQuantidadeFilhos() != 0) {
+                    print(tmp->filhos[i]);
+                }
             }
             std::cout << '\n';
         }
 
         void print() {
             std::cout << "\n----Árvore----\n";
-            if(this->raiz == NULL) {
-                std::cout << "Árvore vazia\n";
-            } else {
-                std::cout << this->raiz->valor << '\n';
-                this->printAll(this->raiz);
-            }
+            std::cout << this->raiz->valor << '\n';
+            this->print(this->raiz);
         }
+
 };
 
 #endif
