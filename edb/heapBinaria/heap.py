@@ -1,49 +1,61 @@
-arvore = [None]
+from copy import copy 
+arvore = []
 
-def add(value):
+def swap(index1, index2, remover=False):
     global arvore
+    if not remover:
+        value = copy(arvore[index1])
+        arvore[index1] = copy(arvore[index2])
+        arvore[index2] = value
+    else: 
+        arvore[index1] = copy(arvore[index2])
+        arvore.pop(index2)
+
+def heap():
+    global arvore
+    index = len(arvore)-1
+    pai = (index-1)//2
+    while index > 0: # enquanto não chegar na raiz
+        pai = (index-1)//2
+        if arvore[pai] < arvore[index]:
+            break
+        swap(index, pai)
+        index = copy(pai)
+
+def pop():
+    if len(arvore) == 0:
+        return
+    elif len(arvore) == 1:
+        arvore.pop(0)
+        return
+
+    swap(0, len(arvore)-1, remover=True)
 
     index = 0
-    limit = 1
-    offset = 0
-    
-    while index < len(arvore):
-        # quando a árvore enche é preciso alocar mais espaço
-        if index == len(arvore)-1:
-            arvore += (None, None)
-        # como é binário, quando o limit chega a 3 é pq offset(nó/pai) já tem duas folhas
-        if limit == 3:
-            offset +=1
-            limit = 1
-        # adicionando
-        if arvore[index] == None:
-            arvore[index] = value
-            break
+    while(True):
+        posicao = 0
+        filhoEsquerdo = index*2+1
+        filhoDireito = index*2+2
+
+        if filhoDireito >= len(arvore) or arvore[filhoEsquerdo] <= arvore[filhoDireito]:
+            posicao = copy(filhoEsquerdo)
+        else: 
+            posicao = copy(filhoEsquerdo)
+        
+        if arvore[posicao] < arvore[index]:
+            swap(index, posicao)
+            index = copy(posicao)
         else:
-            index = offset*2+limit
-            limit += 1
-    
-for i in range(3):
-    add(i)
-print(arvore)
+            break
 
-# def append(value):
-#     global arvore
+def push(value):
+    global arvore
+    arvore.append(value)
+    heap()
 
-#     if len(arvore) == 0:
-#         arvore += (value,0,0)
-#     else:
-#         idx = 0
-#         while idx < len(arvore):
-#             if value < arvore[idx]:
-#                 if idx*2+2 < len(arvore) and arvore[idx*2+2] == 0:
-#                     arvore[idx*2+2] = arvore[idx]
-#                     arvore[idx] = value
-#                     arvore += (0,0)
-#                     break
-#                 elif idx*2+1 < len(arvore) and arvore[idx*2+1] == 0:
-#                     arvore[idx*2+1] = arvore[idx]
-#                     arvore[idx] = value
-#                     arvore += (0,0)
-#                     break
-#             idx +=1
+push(20)
+push(10)
+push(30)
+push(8)
+push(5)
+pop()
