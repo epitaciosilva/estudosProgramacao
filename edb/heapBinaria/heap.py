@@ -12,9 +12,9 @@ def swap(index1, index2, remover=False):
         arvore.pop(index2)
 
 def heap():
-    global arvore
     index = len(arvore)-1
     pai = (index-1)//2
+
     while index > 0: # enquanto não chegar na raiz
         pai = (index-1)//2
         if arvore[pai] < arvore[index]:
@@ -58,4 +58,6 @@ push(10)
 push(30)
 push(8)
 push(5)
+print(arvore)
 pop()
+print(arvore)
