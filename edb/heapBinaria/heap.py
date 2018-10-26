@@ -1,26 +1,43 @@
 from copy import copy 
 arvore = []
 
-def swap(index1, index2, remover=False):
+def pai(index):
+    return (index-1)//2
+
+def filhoEsquerdo(index):
+    return index*2+2
+
+def filhoDireito(index):
+    return index*2+1
+
+def swap(index1, index2):
     global arvore
-    if not remover:
-        value = copy(arvore[index1])
-        arvore[index1] = copy(arvore[index2])
-        arvore[index2] = value
-    else: 
-        arvore[index1] = copy(arvore[index2])
-        arvore.pop(index2)
+    value = copy(arvore[index1])
+    arvore[index1] = copy(arvore[index2])
+    arvore[index2] = value
 
-def heap():
-    index = len(arvore)-1
-    pai = (index-1)//2
+def remove(index1, index2):
+    arvore[index1] = copy(arvore[index2])
+    arvore.pop(index2)
 
-    while index > 0: # enquanto não chegar na raiz
-        pai = (index-1)//2
-        if arvore[pai] < arvore[index]:
-            break
-        swap(index, pai)
-        index = copy(pai)
+def heapify(index):
+    global arvore
+
+    esquerdo = filhoEsquerdo(index)
+    direito = filhoDireito(index)
+    maior = 0
+
+    if esquerdo <= len(arvore)-1 and arvore[esquerdo] < arvore[index]:
+        maior = esquerdo
+    else:
+        maior = index
+
+    if direito <= len(arvore)-1 and arvore[direito] < arvore[maior]:
+        maior = direito
+
+    if maior != index:
+        swap(index, maior)
+        heapify(maior)
 
 def pop():
     if len(arvore) == 0:
@@ -29,35 +46,28 @@ def pop():
         arvore.pop(0)
         return
 
-    swap(0, len(arvore)-1, remover=True)
-
-    index = 0
-    while(True):
-        posicao = 0
-        filhoEsquerdo = index*2+1
-        filhoDireito = index*2+2
-
-        if filhoDireito >= len(arvore) or arvore[filhoEsquerdo] <= arvore[filhoDireito]:
-            posicao = copy(filhoEsquerdo)
-        else: 
-            posicao = copy(filhoEsquerdo)
-        
-        if arvore[posicao] < arvore[index]:
-            swap(index, posicao)
-            index = copy(posicao)
-        else:
-            break
+    remove(0, len(arvore)-1)
+    contruirHeapify()
 
 def push(value):
     global arvore
     arvore.append(value)
-    heap()
+    contruirHeapify()
+
+def contruirHeapify():
+    i = pai(len(arvore)-1)
+    
+    while i >= 0:
+        heapify(i)
+        i -= 1
 
 push(20)
 push(10)
-push(30)
-push(8)
 push(5)
+push(8)
+push(3)
+push(30)
 print(arvore)
 pop()
 print(arvore)
+
