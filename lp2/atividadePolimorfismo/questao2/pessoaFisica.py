@@ -7,11 +7,11 @@ class PessoaFisica(Cliente):
 
 	@property
 	def cpf(self):
-		return self._cpf
+		return self.__cpf
 
 	@cpf.setter
 	def cpf(self, cpf):
-		self._cpf = cpf
+		self.__cpf = cpf
 
 	def imprimirDados(self):
 		print("CPF: {}".format(self.cpf))

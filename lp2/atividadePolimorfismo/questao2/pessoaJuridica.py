@@ -8,19 +8,19 @@ class PessoaJuridica(Cliente):
 	
 	@property
 	def cnpj(self):
-		return self._cnpj
+		return self.__cnpj
 
 	@cnpj.setter
 	def cnpj(self, cnpj):
-		self._cnpj = cnpj
+		self.__cnpj = cnpj
 
 	@property
 	def nomeFantasia(self):
-		return self._nomeFantasia
+		return self.__nomeFantasia
 
 	@nomeFantasia.setter
 	def nomeFantasia(self, nomeFantasia):
-		self._nomeFantasia = nomeFantasia
+		self.__nomeFantasia = nomeFantasia
 
 
 	def imprimirDados(self):
