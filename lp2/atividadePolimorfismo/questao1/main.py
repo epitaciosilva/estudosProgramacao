@@ -1,26 +1,25 @@
 class Viajante:
-	def dizerOla(self):
-		if (type(self) == Espanhol):
-			print("Hola")
-		elif(type(self) == Americano):
-			print("Hello")
-		elif(type(self) == Brasileiro):
-			print("OLá")
+	def __init__(self, cls):
+		self.__cls = cls
 
-class Espanhol(Viajante):
-	def __init__(self):
-		pass
+	def dizerOla(self):	
+		self.__cls.dizerOla(self)
 
 class Brasileiro(Viajante):
-	def __init__(self):
-		pass
-class Americano(Viajante):
-	def __init__(self):
-		pass
+	def dizerOla(self):
+		print("Olá")
 
-v1 = Espanhol()
-v2 = Brasileiro()
-v3 = Americano()
+class Espanhol(Viajante):
+	def dizerOla(self):	
+		print("Hola")
+
+class Americano(Viajante):
+	def dizerOla(self):
+		print("Hello")
+
+v1 = Viajante(Americano)
+v2 = Viajante(Espanhol)
+v3 = Viajante(Brasileiro)
 
 v1.dizerOla()
 v2.dizerOla()
