@@ -7,5 +7,6 @@ def main():
     retangulo = Retangulo(5,10)
     circunferencia = Circunferencia(10)
     print(circunferencia.calcularArea(), retangulo.calcularArea(), quadrado.calcularArea())
+    
 if __name__ == "__main__":
     main()
