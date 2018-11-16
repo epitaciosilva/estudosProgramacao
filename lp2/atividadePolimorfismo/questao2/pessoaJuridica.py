@@ -5,23 +5,24 @@ class PessoaJuridica(Cliente):
 		super().__init__(nome, endereco, telefone)
 		self.cnpj = cnpj
 		self.nomeFantasia = nomeFantasia
+	
+	@property
+	def cnpj(self):
+		return self._cnpj
 
 	@cnpj.setter
 	def cnpj(self, cnpj):
 		self._cnpj = cnpj
 
 	@property
-	def cnpj(self):
-		return self._cnpj
+	def nomeFantasia(self):
+		return self._nomeFantasia
 
 	@nomeFantasia.setter
 	def nomeFantasia(self, nomeFantasia):
 		self._nomeFantasia = nomeFantasia
 
-	@property
-	def nomeFantasia(self):
-		return self._nomeFantasia
 
 	def imprimirDados(self):
-		print("CNPJ: {}\n Nome Fantasia: {}\n".format(self.cnpj, self.nomeFantasia))
-		print(Cliente.imprimirDados(self))
+		print("CNPJ: {}\nNome Fantasia: {}\n".format(self.cnpj, self.nomeFantasia), end="")
+		Cliente.imprimirDados(self)

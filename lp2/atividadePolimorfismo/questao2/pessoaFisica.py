@@ -15,4 +15,4 @@ class PessoaFisica(Cliente):
 
 	def imprimirDados(self):
 		print("CPF: {}".format(self.cpf))
-		print(Cliente.imprimirDados(self))
+		Cliente.imprimirDados(self)
