@@ -19,14 +19,14 @@ class AVL:
         self.root = self.__add(value, self.root)
 
     def rotationRight(self, node):
-        tmp       = node.left
+        tmp = node.left
         node.left  = tmp.right
         tmp.right = node
         
         return tmp
 
     def rotationLeft(self, node):
-        tmp       = node.right
+        tmp = node.right
         node.right = tmp.left
         tmp.left  = node
         
@@ -34,24 +34,32 @@ class AVL:
 
     def __balance(self, node):
         if node != None:
-            if node.fb < -1 and node.right != None:
+            if node.fb < -1 and node.right:
                 if node.right.fb <= 0: 
                     node = self.rotationLeft(node)
-            elif node.fb > 1 and node.left != None:
+                else:
+                    node.right = self.rotationRight(node.right)
+                    node = self.rotationLeft(node)
+
+            elif node.fb > 1 and node.left:
                 if node.left.fb >= 0:
                     node = self.rotationRight(node)
+                else:
+                    node.left = self.rotationLeft(node.left)
+                    node = self.rotationRight(node)
+                    
         return node
 
     def __str__(self):
         iter = self.root
-        if iter != None:
+        if iter:
             print(iter.value)
-            while iter.left != None:
+            while iter.left:
                 print(iter.left.value)
                 iter = iter.left
             
             iter = self.root
-            while iter.right != None:
+            while iter.right:
                 print(iter.right.value)
                 iter = iter.right
             
