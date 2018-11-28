@@ -3,10 +3,12 @@ from avl import AVL
 
 def main():
     avl = AVL()
-    avl.add(15)
-    avl.add(27)
-    avl.add(49)
-    print(avl)
+    value = 0
+
+    while value != -1:
+    	value = int(input("Digite um numero: "))
+    	avl.add(value)
+    	print(avl)
 
 if __name__ == "__main__":
     main()

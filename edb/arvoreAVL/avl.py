@@ -8,7 +8,7 @@ class AVL:
         if node == None:
             return Node(value)
         
-        if value > node.value:
+        if value < node.value:
             node.left = self.__add(value, node.left)
         else:
             node.right  = self.__add(value, node.right)
@@ -19,28 +19,27 @@ class AVL:
         self.root = self.__add(value, self.root)
 
     def rotationRight(self, node):
-        no = node.right
-        node.right = no.left
-        node.left = no
-
-        return no
+        tmp       = node.left
+        node.left  = tmp.right
+        tmp.right = node
+        
+        return tmp
 
     def rotationLeft(self, node):
-        no = node.left
-        node.left = no.left
-        node.right = no
-
-        return no
+        tmp       = node.right
+        node.right = tmp.left
+        tmp.left  = node
+        
+        return tmp
 
     def __balance(self, node):
         if node != None:
-            if node.fb > 1:
-                if node.right != None and node.right.fb >= 0: 
-                    node = self.rotationRight(node)
-            elif node.left != None and node.fb < -1:
-                if node.left <= 0:
+            if node.fb < -1 and node.right != None:
+                if node.right.fb <= 0: 
                     node = self.rotationLeft(node)
-
+            elif node.fb > 1 and node.left != None:
+                if node.left.fb >= 0:
+                    node = self.rotationRight(node)
         return node
 
     def __str__(self):
