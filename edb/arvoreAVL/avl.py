@@ -1,4 +1,5 @@
 from no import Node
+from copy import copy
 
 class AVL:
     def __init__(self):
@@ -50,17 +51,30 @@ class AVL:
                     
         return node
 
-    def __str__(self):
-        iter = self.root
+    def imprimir(self):
+        self.__imprimir(self.root)
+
+    def __imprimir(self, iter, indent = 0, last = None):
         if iter:
-            print(iter.value)
-            while iter.left:
-                print(iter.left.value)
-                iter = iter.left
+            print(" "*indent, iter.value)
+
+            if iter.right and iter.left:
+                last = indent+4
+            else:
+                last = None
+
+            if iter.right:
+                indent +=4
+                self.__imprimir(iter.right, indent, last)
             
-            iter = self.root
-            while iter.right:
-                print(iter.right.value)
-                iter = iter.right
+            if iter.left:
+                if last:
+                    indent = copy(last)
+                    last = None
+                else: 
+                    indent +=4
+
+                self.__imprimir(iter.left, indent, last)
             
-        return " "
+
+

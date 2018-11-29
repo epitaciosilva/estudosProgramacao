@@ -1,4 +1,3 @@
-from no import Node
 from avl import AVL
 
 def main():
@@ -8,7 +7,7 @@ def main():
     while value != -1:
     	value = int(input("Digite um numero: "))
     	avl.add(value)
-    	print(avl)
+    	avl.imprimir()
 
 if __name__ == "__main__":
     main()
