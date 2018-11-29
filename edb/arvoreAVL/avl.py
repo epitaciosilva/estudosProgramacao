@@ -19,6 +19,32 @@ class AVL:
     def add(self, value):
         self.root = self.__add(value, self.root)
 
+
+    def __remove(self, value, node):
+        if node:
+            if value == node.value:
+                # se o nó não tiver um dos filhos
+                if not node.left or not node.right:
+                    node = node.left or node.right
+                else:
+                    tmp = node.left
+
+                    while tmp.right:
+                        tmp = tmp.right
+
+                    node.value = tmp.value
+                    node.left = self.__remove(tmp.value, node.left)
+                    
+            elif value > node.value:
+                node.right = self.__remove(value, node.right)
+            else:
+                node.left = self.__remove(value, node.left)
+        
+        return self.__balance(node)
+
+    def remove(self, value):
+        self.__remove(value, self.root)
+
     def rotationRight(self, node):
         tmp = node.left
         node.left  = tmp.right
