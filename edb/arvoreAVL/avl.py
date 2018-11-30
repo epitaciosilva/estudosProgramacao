@@ -34,7 +34,7 @@ class AVL:
 
                     node.value = tmp.value
                     node.left = self.__remove(tmp.value, node.left)
-                    
+
             elif value > node.value:
                 node.right = self.__remove(value, node.right)
             else:
@@ -43,7 +43,7 @@ class AVL:
         return self.__balance(node)
 
     def remove(self, value):
-        self.__remove(value, self.root)
+        self.root = self.__remove(value, self.root)
 
     def rotationRight(self, node):
         tmp = node.left
