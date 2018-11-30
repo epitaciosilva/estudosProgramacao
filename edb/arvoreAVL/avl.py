@@ -19,7 +19,6 @@ class AVL:
     def add(self, value):
         self.root = self.__add(value, self.root)
 
-
     def __remove(self, value, node):
         if node:
             if value == node.value:
@@ -74,7 +73,7 @@ class AVL:
                 else:
                     node.left = self.rotationLeft(node.left)
                     node = self.rotationRight(node)
-                    
+
         return node
 
     def imprimir(self):
@@ -82,18 +81,18 @@ class AVL:
 
     def __imprimir(self, iter, indent = 0, last = None):
         if iter:
-            print(" "*indent, iter.value)
+            print(" " * indent, iter.value)
 
-            if iter.right and iter.left:
-                last = indent+4
-            else:
-                last = None
+            # se o nó tiver os dois filhos, então o last deve ser atualizado
+            last = indent+4 if iter.right and iter.left else None
 
             if iter.right:
                 indent +=4
                 self.__imprimir(iter.right, indent, last)
             
             if iter.left:
+                # se o last existir é porque o nó em questão possui um irmão que já foi impresso
+                # logo o recuou deve ser igual ao do irmão
                 if last:
                     indent = copy(last)
                     last = None
