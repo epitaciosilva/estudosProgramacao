@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulário</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div {
+			display: block;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="">
+		<h1>Formulário</h1>
+		<form method="get" accept="#" id="formulario">
+			<div>
+				<label>Nome: </label>
+				<input type="text" id="nome" name="nome">
+			</div>
+			<div>
+				<label>Sobrenome: </label>
+				<input type="text" id="sobrenome" name="sobrenome">
+			</div>
+			<div>
+				<label>Data de Nascimento: </label>
+				<input type="date" id="dt_nascimento" name="dt_nascimento">
+			</div>
+			<div>
+				<label>RG: </label>
+				<input type="text" id="rg" name="rg">
+			</div>
+			<div>
+				<label>CPF: </label>
+				<input type="text" id="cpf" name="cpf">
+			</div>
+			<div>
+				<label>Endereço completo: </label>
+				<input type="text" id="endereco" name="endereco">
+			</div>
+			<input type="submit" name="" value="Adicionar">
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		document.getElementById("formulario").addEventListener("submit", function(event) {
+		  event.preventDefault();
+		  
+		  var nome = document.getElementById("nome");
+		  var sobrenome = document.getElementById("sobrenome");
+		  var dt_nascimento = document.getElementById("dt_nascimento");
+		  var rg = document.getElementById("rg");
+		  var cpf = document.getElementById("cpf");
+		  var endereco = document.getElementById("endereco");
+
+		  validarDataNascimento(dt_nascimento.value);
+		  validarCPF(cpf.value);
+		});
+
+		function validarDataNascimento(dt_nascimento) {
+			let data = new Date(dt_nascimento);
+			if (data > new Date()) {
+				alert("Data de nascimento não pode ser futura");
+			}
+		}
+			
+
+		function soma(valores, digito) {
+			var mult_inicial = digito == 1 ? 10 : 11;
+
+			return valores.reduce(function (acumulativo, value, index) {
+				return acumulativo+parseInt(value)*(mult_inicial-index);
+			}, 0);
+		}
+
+		function validarCPF(cpf) {
+			var array_cpf = cpf.split('');
+			var digito1 = soma(array_cpf.slice(0,9), 1);
+
+			if(digito1*10/11 >= 10 && array_cpf[9] != 0) {
+				alert("CPF não válido");
+				return;
+			} else if(digito1*10/11 != array_cpf[9]) {
+				alert("CPF não válido");
+				return;
+			}
+
+			// var digito2 = soma(array_cpf.slice(0,10)) {
+
+			// }
+
+			// let numeros_cpf = cpf.split('');
+			// let soma = 0; 
+
+			// for(let i = 0; i < 9; i++) {
+			// 	soma += (10-i)*numeros_cpf[i];
+			// }
+			
+			// if(soma*10/11 != numeros_cpf[10]) {
+			// 	alert("CPF não valido");
+			// } else {
+			// 	for(let i = 0; i < 10; i++) {
+			// 		soma += (10-i)*numeros_cpf[i];
+			// 	}				
+
+			// 	if(soma*10/11 != numeros_cpf[11]) {
+			// 		alert("CPF não valido2");
+			// 	}
+			// }
+		}
+	</script>
+</body>
+</html>

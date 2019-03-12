@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>To Do List</title>
+	<style type="text/css">
+		.tarefas {
+			float: right;
+			width: 50%;
+			height: 100vh;
+		}
+		.hr-vertical {
+			float: right;
+			margin-left: 17px;
+			width: 0px;
+			height: 100vh;
+		}
+		.formularios {
+			float: left;
+			width: 49%;
+		}
+		p {
+			text-align: justify;
+		}
+		.form-campos input {
+			display: inline-block;
+			margin-bottom: 10px;
+		}
+		.form-campos label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+	</style>
+	
+</head>
+<body>
+	<h1 align="center">Lista de Tarefas</h1>
+	<br>
+	<div class="formularios">
+		<hr class="hr-vertical">
+		<hr>
+
+		<h2 align="center">Adicionar Tarefas</h2>
+		<form method="post" accept="#" id="formulario">
+			<div class="form-campos">
+				<label for="titulo">Título: </label>
+				<input type="text" id="titulo" name="titulo">	
+			</div>
+			
+			<div class="form-campos">
+				<label for="descricao">Descrição: </label>
+				<textarea id="descricao" name="descricao"></textarea>
+			</div>
+			<div class="form-campos">
+				<label for="prazo">Prazo</label>
+				<input type="date" id="prazo" name="prazo">
+			</div>
+
+			<input type="submit" name="" value="Adicionar">
+		</form>
+	</div>
+	<div class="tarefas">
+		<hr>
+		<div>
+			<h2>Lista de x	tarefas a fazer usando HTML</h2>
+			<p>
+				Desenvolver, utilizando apenas tecnologias Web lado-cliente, uma lista de tarefas-a-fazer (To-Do List) que permita editar (inserir, remover e alterar) tarefas, incluindo a descrição da tarefa, a quem ela deve ser atribuída e o prazo previsto para a sua realização.<br>
+
+				Na primeira destas atividades, você vai usar APENAS HTML. Nas aulas seguintes, vamos usar JS para permitir a interatividade.
+			</p>
+			<h4>Prazo: 26/02/2019</h4>
+		</div>
+		<hr>
+
+		<div>
+			<h2>Lorem Ipsum</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+			<h4>Prazo: 15/03/2019</h4>
+		</div>
+		<hr>
+
+		<div>
+			<h2>Estudar</h2>
+			<p>
+				At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+			</p>
+			<h4>Prazo: 15/03/2019</h4>
+		</div>
+		<hr>
+	</div>
+	<script type="text/javascript">
+	 	document.getElementById("formulario").addEventListener("click", function(event){
+		  event.preventDefault();
+		  
+		  var titulo = document.getElementById("titulo");
+		  var descricao = document.getElementById("descricao");
+		  var prazo = document.getElementById("prazo");
+
+		  var tarefa = document.createElement("div");
+		  tarefa.innerHTML = titulo.value;
+
+		  var tarefas = document.getElementsByClassName("tarefas");
+		  tarefas[0].appendChild(tarefa);
+		});
+ 	</script>
+</body>
+</html>
