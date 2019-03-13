@@ -60,53 +60,44 @@
 		function validarDataNascimento(dt_nascimento) {
 			let data = new Date(dt_nascimento);
 			if (data > new Date()) {
-				alert("Data de nascimento não pode ser futura");
+				alertMensagem("Data de nascimento");
 			}
 		}
-			
 
-		function soma(valores, digito) {
-			var mult_inicial = digito == 1 ? 10 : 11;
-
-			return valores.reduce(function (acumulativo, value, index) {
-				return acumulativo+parseInt(value)*(mult_inicial-index);
+		function digito(valores) {
+			var multiplicador = valores.length+1;
+			var soma =  valores.reduce(function (acumulativo, value) {
+				return acumulativo+parseInt(value)*multiplicador--;
 			}, 0);
+
+			return soma*10%11;
 		}
 
+		function verificarDigito(resto, digito) {
+			if(resto >= 10 && digito != 0) {
+				alertMensagem("CPF");
+			} else if(resto < 10 && digito != resto) {
+				alertMensagem("CPF");
+			}
+			return;
+		}
+		
 		function validarCPF(cpf) {
 			var array_cpf = cpf.split('');
-			var digito1 = soma(array_cpf.slice(0,9), 1);
-
-			if(digito1*10/11 >= 10 && array_cpf[9] != 0) {
-				alert("CPF não válido");
-				return;
-			} else if(digito1*10/11 != array_cpf[9]) {
-				alert("CPF não válido");
+			if(array_cpf.length > 11) {
+				alertMensagem("CPF");
 				return;
 			}
 
-			// var digito2 = soma(array_cpf.slice(0,10)) {
+			var digito1 = digito(array_cpf.slice(0,9));
+			verificarDigito(digito1, array_cpf[9]);
 
-			// }
+			var digito1 = digito(array_cpf.slice(0,10));
+			verificarDigito(digito1, array_cpf[10]);
+		}
 
-			// let numeros_cpf = cpf.split('');
-			// let soma = 0; 
-
-			// for(let i = 0; i < 9; i++) {
-			// 	soma += (10-i)*numeros_cpf[i];
-			// }
-			
-			// if(soma*10/11 != numeros_cpf[10]) {
-			// 	alert("CPF não valido");
-			// } else {
-			// 	for(let i = 0; i < 10; i++) {
-			// 		soma += (10-i)*numeros_cpf[i];
-			// 	}				
-
-			// 	if(soma*10/11 != numeros_cpf[11]) {
-			// 		alert("CPF não valido2");
-			// 	}
-			// }
+		function alertMensagem(campoInvalido) {
+			alert(campoInvalido + " invalido");
 		}
 	</script>
 </body>
