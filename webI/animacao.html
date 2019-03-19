@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <head>
+    <style>
+    #container {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      background: yellow;
+    }
+    #animate {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <p><button onclick="myMove(1)">Baixar</button></p> 
+    <p><button onclick="myMove(3)">Direita</button></p> 
+    <p><button onclick="myMove(2)">Subir</button></p> 
+    <p><button onclick="myMove(4)">Esquerda</button></p> 
+    <div id ="container">
+      <div id ="animate"></div>
+    </div>
+
+    <script>
+    function myMove(option) {		
+      var elem = document.getElementById("animate");   
+      var pos = 0;
+      var id = setInterval(frame, 5);
+      function frame() {
+        if (pos == 350 || posicao(elem) < 0) {
+          clearInterval(id);
+        } else {
+          if(option == 1) {
+            pos++; 
+            elem.style.top = pos + "px"; 
+          } else if(option == 2) {
+            pos++;
+            if(elem.style.top != null) {
+              elem.style.top = (parseInt(elem.style.top.split("px")[0]) - 1) + "px";
+            }
+          } else if(option == 3) {
+            pos++;
+            elem.style.left = pos+"px";
+          } else if(option == 4) {
+            pos++;
+            if(elem.style.left != null) {
+              elem.style.left = (parseInt(elem.style.left.split("px")[0]) - 1) + "px";
+            }
+          }
+        }
+      }
+    }
+
+    function posicao(elem) {
+      if(elem.style.top != null) {
+        var pos = parseInt(elem.style.top.split("px")[0]);
+        if(pos < 0) {
+          elem.style.top = "0px";
+          return -1;
+        }
+      }
+      if(elem.style.left != null) {
+        var pos = parseInt(elem.style.left.split("px")[0]);
+        if(pos < 0) {
+          elem.style.left = "0px";
+          return -1;
+        }
+      }
+      return 0;
+    }
+    </script>
+  </body>
+</html>
+

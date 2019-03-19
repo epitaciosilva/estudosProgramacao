@@ -6,8 +6,7 @@
 	<style type="text/css">
 		.tarefas {
 			float: right;
-			width: 50%;
-			height: 100vh;
+			width: 51%;
 		}
 		.hr-vertical {
 			float: right;
@@ -17,7 +16,7 @@
 		}
 		.formularios {
 			float: left;
-			width: 49%;
+			width: 48%;
 		}
 		p {
 			text-align: justify;
@@ -72,27 +71,9 @@
 			<h4>Prazo: 26/02/2019</h4>
 		</div>
 		<hr>
-
-		<div>
-			<h2>Lorem Ipsum</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</p>
-			<h4>Prazo: 15/03/2019</h4>
-		</div>
-		<hr>
-
-		<div>
-			<h2>Estudar</h2>
-			<p>
-				At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
-			</p>
-			<h4>Prazo: 15/03/2019</h4>
-		</div>
-		<hr>
 	</div>
 	<script type="text/javascript">
-	 	document.getElementById("formulario").addEventListener("click", function(event){
+	 	document.getElementById("formulario").addEventListener("submit", function(event){
 		  event.preventDefault();
 		  
 		  var titulo = document.getElementById("titulo");
@@ -100,10 +81,26 @@
 		  var prazo = document.getElementById("prazo");
 
 		  var tarefa = document.createElement("div");
-		  tarefa.innerHTML = titulo.value;
+		  var tarefaTitulo = document.createElement("h2");
+		  var tarefaDescricao = document.createElement("p");
+		  var tarefaPrazo = document.createElement("h4");
 
-		  var tarefas = document.getElementsByClassName("tarefas");
-		  tarefas[0].appendChild(tarefa);
+		  tarefaTitulo.innerHTML = titulo.value;
+		  tarefaDescricao.innerHTML = descricao.value;
+		  tarefaPrazo.innerHTML = "Prazo: " + prazo.value.split("-").reverse().join("/");
+
+		  tarefa.appendChild(tarefaTitulo);
+		  tarefa.appendChild(tarefaDescricao);
+		  tarefa.appendChild(tarefaPrazo);
+		  tarefa.appendChild(document.createElement("hr"));
+
+		  var tarefas = document.getElementsByClassName("tarefas")[0];
+		  tarefas.appendChild(tarefa);
+
+		  var hrVertical = document.getElementsByClassName("hr-vertical")[0];
+		  if(tarefas.clientHeight > hrVertical.clientHeight) {
+		  	hrVertical.style.height =  tarefas.clientHeight + "px";
+		  } 
 		});
  	</script>
 </body>
