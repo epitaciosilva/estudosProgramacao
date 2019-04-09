@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>To Do List</title>
+        <style> 
+            body {
+                margin-left: 20%;
+                margin-right: 20%;
+            }   
+            #tarefas {
+                text-align: justify;
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 align="center">Lista de Tarefas</h1>
+        <button>Projeto A</button>
+        <button>Projeto B</button>
+        <button>Projeto C</button>
+        <br>
+        <hr>
+        <div id="tarefas">
+            <div class="formulario">
+                <form id="formulario" action="">
+                    <input type="text" placeholder="Título" size="84" id="titulo" required><br><br>
+                    <textarea name="textarea" id="descricao" cols="115" rows="8" placeholder="Tarefa" required></textarea><br><br>
+                    <input type="text" placeholder="Responsável" size="84" id="responsavel" required><br><br>
+                    <select name="status" id="status" required>
+                        <option value="" selected>Status da tarefa</option>
+                        <option value="0">A fazer</option>
+                        <option value="1">Fazendo</option>
+                        <option value="2">Feito</option>
+                    </select><br><br>
+                    <input type="date" placeholder="Prazo" id="prazo" required><br><br>
+                    <input type="submit" value="Salvar">
+                </form>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event){
+            event.preventDefault();
+            addTarefa(this.elements);
+            clearForm(this);
+		});
+
+        function addTarefa(elements) {
+            let tarefaTitulo = document.createElement("h2");
+            let tarefaDescricao = document.createElement("p");
+            let tarefaResponsavel = document.createElement("h4");
+            let tarefaStatus = document.createElement("h4");
+            let tarefaPrazo = document.createElement("h4");
+            
+            tarefaTitulo.innerHTML = elements.titulo.value;
+            tarefaDescricao.innerHTML = elements.descricao.value;
+            tarefaResponsavel.innerHTML = "Responsável: " + elements.responsavel.value;
+            tarefaStatus.innerHTML = "Status: " + elements.status.options[elements.status.selectedIndex].text;
+            tarefaPrazo.innerHTML = "Prazo: " + elements.prazo.value.split("-").reverse().join("/");
+
+            let tarefa = document.createElement("div");
+            tarefa.appendChild(tarefaTitulo);
+            tarefa.appendChild(tarefaDescricao);
+            tarefa.appendChild(tarefaResponsavel);
+            tarefa.appendChild(tarefaStatus);
+            tarefa.appendChild(tarefaPrazo);
+            tarefa.appendChild(document.createElement("hr"));
+
+            let tarefas = document.getElementById("tarefas");
+            tarefas.insertBefore(tarefa, document.getElementsByClassName('formulario')[0]);
+        }
+
+        function clearForm(form) {
+            form.reset();
+        }
+    </script>
+</html>
