@@ -1,7 +1,7 @@
 #ifndef HASH_TABLE_HPP
 #define HASH_TABLE_HPP
 
- #include <vector> 
+#include <vector> 
 #include <algorithm> 
 
 template <typename T> 
@@ -14,13 +14,12 @@ class HashTable {
         }
 
         void adicionar(T valor) {
-            // valor >> 1 retorna a divisão do 'valor' por 2, independente do tipo
-            int index = (valor >> 1) % (int)(this->table.size() == 0 ? 1 : this->table.size());
+            int index = this->hash(valor) % this->sizeTable();
             this->table[index].push_back(valor);
         }
 
         bool busca(T valor) {
-            int index = (valor >> 1) % (int)(this->table.size() == 0 ? 1 : this->table.size());
+            int index = this->hash(valor) % this->sizeTable();
             // caso o valor encontrado seja diferente da última posição, então foi encontrado.
             return std::find(this->table[index].begin(), this->table[index].end(), valor) != this->table[index].end();
         }
@@ -33,6 +32,20 @@ class HashTable {
                 std::cout << '\n';
             }
         }
+		
+	private:
+		int hash(valor) {
+			// valor >> 1 retorna a divisão do 'valor' por 2, independente do tipo
+			return valor >> 1;
+		}
+		
+		int sizeTable() {
+			if(this->table.size() == 0) {
+				return 1;
+			} 
+			
+			return (int)this->table.size();
+		}
 };
 
 #endif
