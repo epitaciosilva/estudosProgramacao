@@ -23,8 +23,8 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!" onClick="login()">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#doadores">Doadores</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,6 +49,15 @@
                         <h2 class="h4 fw-bolder">Cadastro de ONG</h2>
                         <p>Cadastre ONG para conseguir melhorar as doações</p>
                         <a class="text-decoration-none" href="#cadOng">
+                            Cadastrar
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h4 fw-bolder">Cadastro de Empresa</h2>
+                        <p>Cadastre Empresa e ajude aqueles que mais necessitam.</p>
+                        <a class="text-decoration-none" href="#cadempresa">
                             Cadastrar
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -106,6 +115,28 @@
                 </div>
             </div>
         </section>
+        <section class="bg-light py-5" id="eventos">
+            <div class="container px-5 my-5 px-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder">Eventos</h2>
+                    <p class="lead mb-0"></p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <select id="cidade" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" "required" data-sb-validations="required" >
+                            <option selected>Selecione a cidade</option>
+                            <option value="2">Natal</option>
+                            <option value="3">Mossoró</option>
+                            <option value="3">Macaíba</option>
+                        </select>
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action">Evento Para Crianças - Mãos Para o Sertão</button>
+                            <button type="button" class="list-group-item list-group-item-action">Doações para pessoas Carentes - SESAP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="bg-light py-5" id="cadOng">
             <div class="container px-5 my-5 px-5">
                 <div class="text-center mb-5">
@@ -153,7 +184,7 @@
                                 </div>
                             </div>
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao se cadastrar!</div></div>
-                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
+                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit" onClick="ong()">Enviar</button></div>
                         </form>
                     </div>
                 </div>
@@ -197,7 +228,7 @@
                                 </div>
                             </div>
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao se cadastrar!</div></div>
-                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
+                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit" onClick="empresa()">Enviar</button></div>
                         </form>
                     </div>
                 </div>
@@ -241,7 +272,7 @@
                                 </div>
                             </div>
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao se cadastrar!</div></div>
-                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
+                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit" onClick="pessoa()">Enviar</button></div>
                         </form>
                     </div>
                 </div>
@@ -256,6 +287,15 @@
         <script>
             function login() {
                 window.open("login.html",'_self');
+            }
+            function empresa() {
+                window.open("empresa.html",'_self');
+            }
+            function pessoa() {
+                window.open("pessoafisica.html",'_self');
+            }
+            function ong() {
+                window.open("ong.html",'_self');
             }
         </script>
     </body>
